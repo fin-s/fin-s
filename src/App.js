@@ -1,14 +1,13 @@
 import React from 'react';
 import './App.css';
-import LoginForm from './Components/LoginRegister/LoginForm'
-import Register from './Components/LoginRegister/Register'
+import { HashRouter as Router } from 'react-router-dom'
+import routes from './routes'
 
 function App() {
   return (
-    <div className="App">
-      <LoginForm />
-      <Register />
-    </div>
+    <Router>
+      {routes}
+    </Router>
   );
 }
 
