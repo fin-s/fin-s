@@ -79,8 +79,7 @@ class RegisterForm extends Component {
               />
               </div>
 					<div >
-						<button onClick={this.handleSignUpFormSubmittype}
-							 >
+						<button onClick={this.handleSignUpFormSubmit}>
 							<b>sign up</b>
 						</button>
 					</div>
