@@ -71,15 +71,13 @@ class RegisterForm extends Component {
 							placeholder='email'
 							onChange={this.handleFormUpdate}
 						/>
-					</div>
-					<div >
 						<input
 							type='text'
 							name='password'
 							placeholder='password'
 							onChange={this.handleFormUpdate}
-						/>
-					</div>
+              />
+              </div>
 					<div >
 						<button onClick={this.handleSignUpFormSubmittype}
 							 >

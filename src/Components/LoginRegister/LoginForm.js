@@ -64,6 +64,7 @@ class LoginForm extends Component {
   render() {
     return (
       <>
+      <h1>please log in</h1>
         <form onSubmit={this.handleLoginFormSubmit}>
           <div  >
             <input
@@ -91,7 +92,7 @@ class LoginForm extends Component {
           <header authenticated={this.state.authenticated} />
           {!this.state.authenticated ? (
             <div >
-              <h1>please log in</h1>
+              
             </div>
           ) : (
               <div >
