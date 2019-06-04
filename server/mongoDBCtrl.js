@@ -116,33 +116,11 @@ module.exports = {
   },
 
   updateMoney: async function (req, res) {
-    // const schemas = []
-    // const { incomes, email } = body
-
-    // // console.log(incomes)
-
-    // incomes.forEach(element => {
-    //   let newIncome = new Income();
-    //   newIncome.nickname = element.nickname;
-    //   newIncome.type = element.type;
-    //   newIncome.amount = element.amount;
-    //   newIncome.notes = element.notes;
-    //   newIncome.interval = element.interval
-    //   schemas.push(newIncome)
-    // })
-
-    // User.findOneAndUpdate({ email: email }, {
-    //   $set: { incomes: schemas }
-    // }, function (err, data) {
-    //   console.log(err, data)
-    // })
-
     const {body} = req
 
     let updatedIncome = await updateIncome(body)
     let updatedDebt = await updateDebt(body)
     let updatedExpenses = await updateExpense(body)
-
 
     res.status(200).send(updatedExpenses)
   }
