@@ -1,15 +1,16 @@
 const mongoose = require('mongoose')
 
 const IncomeSchema = new mongoose.Schema({
-  nickname: {type: string},
-  type: {type: string},
-  amount: {type: number},
-  notes: {type: string},
+  nickname: {type: 'string'},
+  type: {type: 'string'},
+  amount: {type: 'number'},
+  notes: {type: 'string'},
   interval: {
-    frequency: {type: string},
-    date: {type: number},
-    weekDay1: {type: number},
-    weekDay2: {type: number}
+    frequency: {type: 'string'},
+    date: {type: 'number'},
+    incomeDate1: {type: 'number'},
+    incomeDate2: {type: 'number'},
+    incomeWeekday: {type: 'number'}
   }
 })
 
