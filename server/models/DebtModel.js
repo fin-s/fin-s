@@ -5,6 +5,7 @@ const DebtSchema = new mongoose.Schema({
   balance: number,
   interestRate: number,
   minimumPayment: number,
+  actualPayment: number,
   notes: string
 })
 
