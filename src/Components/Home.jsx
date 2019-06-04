@@ -12,9 +12,6 @@ class Home extends Component {
         <Link to='/login'>
           <h3><b>login</b></h3>
         </Link>
-        <Link to='/register'>
-          <h3><b>register</b></h3>
-        </Link>
       </div>
     )
   }

@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import '../../Styles/LoginRegister.css';
+
 
 class LoginForm extends Component {
   constructor() {
@@ -64,52 +66,37 @@ class LoginForm extends Component {
   render() {
     return (
       <>
-      <h1>please log in</h1>
-        <form onSubmit={this.handleLoginFormSubmit}>
-          <div  >
-            <input
-              type='text'
-              name="loginEmail"
-              placeholder="email"
-              value={this.state.loginEmail}
-              onChange={this.handleFormInputUpdate}
-            />
-            <input
-              type='text'
-              name="loginPassword"
-              placeholder="password"
-              value={this.state.loginPassword}
-              onChange={this.handleFormInputUpdate}
-            />
-          </div>
-        </form>
-        <div >
-          <button type="button" class="btn btn-primary" onClick={this.handleLoginFormSubmit}><b>login</b></button>
-          <button type="button" class="btn btn-primary" onClick={this.handleLogout}><b>logout</b></button>
-        </div>
-        {this.state.loginError && <h3>{this.state.loginErrorMessage}</h3>}
-        <div>
-          <header authenticated={this.state.authenticated} />
-          {!this.state.authenticated ? (
-            <div >
-              
+        <header className='header'>
+
+
+          <form onSubmit={this.handleLoginFormSubmit}>
+            <div  className='loginInput'>
+              <input
+                type='text'
+                name="loginEmail"
+                placeholder="email"
+                value={this.state.loginEmail}
+                onChange={this.handleFormInputUpdate}
+              />
+              <input
+                type='text'
+                name="loginPassword"
+                placeholder="password"
+                value={this.state.loginPassword}
+                onChange={this.handleFormInputUpdate}
+              />
             </div>
-          ) : (
-              <div >
-                <h2>hi {this.state.userFirstName}!</h2>
-              </div>
-            )}
-        </div>
+          </form>
+          <div className='buttonDiv'>
+            <button type="button" class="btn btn-outline-secondary" onClick={this.handleLoginFormSubmit}><b>log in</b></button>
+            {/* <button type="button" onClick={this.handleLogout}><b>logout</b></button> */}
+          </div>
+          {this.state.loginError && <h3>{this.state.loginErrorMessage}</h3>}
+        </header>
       </>
     )
   }
 }
 
-// const mapDispatchToProps = {
-//   updateUserId,
-//   updateUsername
-// }
-
-// export default connect(null, mapDispatchToProps)(withRouter(LoginForm))
 
 export default LoginForm

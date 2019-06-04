@@ -1,0 +1,52 @@
+Body{
+  background-color: #2C2E35;
+  color: #C5B358;
+  border: solid;
+  font-family: 'Raleway', sans-serif;
+}
+
+.header{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 1.5%;
+  margin-bottom: 1.5%;
+  margin-right: 6%;
+  
+}
+
+.main{
+  display: flex;
+  justify-content: flex-end;
+  border: solid;
+}
+
+input[type=text]{
+  background-color: #34373F;
+  border: none;
+  color: #C5B358;
+  height: 4vh;
+  width: 10vw;
+  font-family: 'Raleway', sans-serif;
+  font-size: 20px;
+  text-align: center;
+  margin: 9px;
+}
+
+
+.registerInput{
+  display: flex;
+  flex-direction: column;
+}
+
+
+input[type=button]{
+  
+}
+
+::placeholder{
+  color: #DACE94;
+  font-size: 20px;
+  font-family: 'Raleway', sans-serif;
+  font-weight: lighter;
+}
