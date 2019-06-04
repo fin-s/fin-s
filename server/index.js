@@ -4,6 +4,7 @@ const massive = require('massive')
 const mongoose = require('mongoose')
 require('dotenv').config()
 const session = require('express-session')
+const MDBCtrl = require('./mongoDBCtrl')
 
 const {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET, MONGO_URI} = process.env
 
@@ -16,6 +17,10 @@ app.use(session({
     maxAge: 1000 * 60 * 60 * 4
   }
 }))
+
+app.post('/api/users/register', MDBCtrl.create)
+app.get('/api/users', MDBCtrl.get)
+app.post('/api/users/money', MDBCtrl.updateMoney)
 
 massive(CONNECTION_STRING).then(db => {
   app.set('db', db)
