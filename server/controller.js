@@ -1,12 +1,6 @@
 const bcrypt = require('bcryptjs')
 
 module.exports = {
-  // getUsers: (req, res) => {
-  //   const db = req.app.get('db')
-  //   db.getUsers().then((data) => {
-  //     res.status(200).send(data)
-  //   })
-  // },
 
   register: async (req, res) => {
     const db = req.app.get('db')
@@ -51,29 +45,11 @@ module.exports = {
     }
   },
 
-  // getDetails: async (req, res) => {
-  //   const db = req.app.get('db')
-  //   const { session } = req
-  //   try {
-  //     const { login_id: id } = session.user
-  //     const data = await db.getUserDetails({ id })
-  //     res.status(200).send(data[0])
-  //   } catch (err) {
-  //     res.sendStatus(500)
-  //   }
-  // },
 
   logout: (req, res) => {
     req.session.destroy() 
     res.sendStatus(200)
   },
 
-  // getUserFirstName: (req, res) => {
-  //   const db = req.app.get('db')
-  //   const{loginEmail: username} = req.params
-  //   db.getUserFirstName({username}).then((data) => {
-  //     res.status(200).send(data)
-  //   })
-  // },
 
 }

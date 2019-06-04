@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 
+
+
 class RegisterForm extends Component {
 	constructor() {
 		super()
@@ -48,45 +50,52 @@ class RegisterForm extends Component {
 	render() {
 		return (
 			<>
-				<h2 className='registerText'>need an account? sign up here</h2>
-				<form onSubmit={this.handleSignUpFormSubmit}>
-					<div  >
-						<input
-							type='text'
-							name='firstname'
-							placeholder='first name'
-							onChange={this.handleFormUpdate}
-						/>
-						<input
-							type='text'
-							name='lastname'
-							placeholder='last name'
-							onChange={this.handleFormUpdate}
-						/>
-					</div>
-					<div >
-						<input
-							type='text'
-							name='email'
-							placeholder='email'
-							onChange={this.handleFormUpdate}
-						/>
-						<input
-							type='text'
-							name='password'
-							placeholder='password'
-							onChange={this.handleFormUpdate}
-              />
-              </div>
-					<div >
-						<button onClick={this.handleSignUpFormSubmit}>
-							<b>sign up</b>
-						</button>
-					</div>
-				</form>
-				{this.state.registerError && (
-					<h3 style={{ color: 'tomato' }}>{this.state.registerErrorMessage}</h3>
-				)}
+				<main className='main'>
+
+					<h2 className='registerText'>
+						need an account? <p>sign up here</p></h2>
+					<form onSubmit={this.handleSignUpFormSubmit}>
+						<div className='registerInput' >
+							<div>
+								<input
+									type='text'
+									name='firstname'
+									placeholder='first name'
+									onChange={this.handleFormUpdate}
+								/>
+								<input
+									type='text'
+									name='lastname'
+									placeholder='last name'
+									onChange={this.handleFormUpdate}
+								/>
+							</div>
+							<div>
+								<input
+									type='text'
+									name='email'
+									placeholder='email'
+									onChange={this.handleFormUpdate}
+								/>
+								<input
+									type='text'
+									name='password'
+									placeholder='password'
+									onChange={this.handleFormUpdate}
+								/>
+							</div>
+
+						</div>
+						<div >
+							<button type="button" class="btn btn-outline-secondary" onClick={this.handleSignUpFormSubmit}>
+								<b>sign up</b>
+							</button>
+						</div>
+					</form>
+					{this.state.registerError && (
+						<h3 style={{ color: 'tomato' }}>{this.state.registerErrorMessage}</h3>
+					)}
+				</main>
 			</>
 		)
 	}
