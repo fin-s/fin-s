@@ -1,15 +1,15 @@
 const mongoose = require('mongoose')
-			Income = require('./IncomeModel')
-			Debt = require('./DebtModel')
-			Expense = require('./ExpenseModel')
+			Income = require('./IncomeModel').schema
+			Debt = require('./DebtModel').schema
+			Expense = require('./ExpenseModel').schema
 
 const UserSchema = new mongoose.Schema({
-	Firstname: {type: string, required: true},
-	Lastname: {type: string, required: true},
-	Email: {type: string, required: true},
-	Incomes: [Income],
-	Debts: [Debt],
-	Expenses: [Expense]
+	firstName: {type: 'string', required: true},
+	lastName: {type: 'string', required: true},
+	email: {type: 'string', required: true, unique: true},
+	incomes: [Income],
+	debts: [Debt],
+	expenses: [Expense]
 })
 
 module.exports = mongoose.model("User", UserSchema)
