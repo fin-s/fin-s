@@ -3,6 +3,7 @@ import NextSteps from './NextSteps'
 import HorizonSnapshot from './HorizonSnapshot'
 import Calendar from './Calendar'
 import NavBar from '../NavBar'
+import Chart from './Chart'
 
 class Dashboard extends Component {
   constructor() {
@@ -30,6 +31,7 @@ class Dashboard extends Component {
               </div>
           </div>
         </div>
+        <Chart />
       </>
     )
   }
