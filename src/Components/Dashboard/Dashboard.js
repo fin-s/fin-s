@@ -3,6 +3,7 @@ import NextSteps from './NextSteps'
 import UpcomingEvents from './UpcomingEvents'
 import Calendar from './Calendar'
 import NavBar from '../NavBar'
+import Chart from './Chart'
 
 class Dashboard extends Component {
   constructor(){
@@ -17,6 +18,7 @@ class Dashboard extends Component {
       <div>
         <NavBar />
         <Calendar />
+        <Chart/>
         <NextSteps />
         <UpcomingEvents />
       </div>
