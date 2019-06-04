@@ -6,10 +6,10 @@ const IncomeSchema = new mongoose.Schema({
   amount: {type: number},
   notes: {type: string},
   interval: {
-    frequency: {type: String},
-    date: {type: Number},
-    weekDay1: {type: Number},
-    weekDay2: {type: Number}
+    frequency: {type: string},
+    date: {type: number},
+    weekDay1: {type: number},
+    weekDay2: {type: number}
   }
 })
 
