@@ -2,6 +2,7 @@ const User = require('./models/UserModel')
 const Income = require('./models/IncomeModel')
 const Debt = require('./models/DebtModel')
 const Expense = require('./models/ExpenseModel')
+const getList = require('./controllers/getList')
 
 const updateIncome = (body) => {
   const schemas = []
@@ -123,5 +124,27 @@ module.exports = {
     let updatedExpenses = await updateExpense(body)
 
     res.status(200).send(updatedExpenses)
+  },
+
+  fetchList: async (req, res) => {
+    const {email} = req.query
+    let users = await User.find({email: email})
+    let user = users[0]
+
+    const {incomes, debts, expenses} = user
+
+    let list = getList.getList(incomes, debts, expenses)
+    res.status(200).send(list)
+  },
+
+  addIncome: async (req, res) => {
+    const {email} = req.query
+    const {incomes} = req.body
+
+    let users = await User.find({email: email})
+    let oldIncomes = users[0].incomes
+    let newIncomes = [...oldIncomes, incomes]
+    
+    res.status(200).send(oldIncomes)
   }
 }
