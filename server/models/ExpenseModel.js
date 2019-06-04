@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 const ExpenseSchema = new mongoose.Schema({
   nickname: {type: 'string'},
   amount: {type: 'number'},
+  dueDate: {type: 'number'},
   notes: {type: 'string'}
 })
 
