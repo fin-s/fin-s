@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import '../../Styles/LoginRegister.css';
 
 
 class LoginForm extends Component {
@@ -13,8 +12,6 @@ class LoginForm extends Component {
       loginErrorMessage: 'Incorrect username or password.',
       authenticated: false,
       userFirstName: '',
-      // userLastName: '',
-      // userEmail: '',
     }
   }
 

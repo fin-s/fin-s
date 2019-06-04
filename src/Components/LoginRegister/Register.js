@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import '../../Styles/LoginRegister.css';
+
 
 
 class RegisterForm extends Component {
