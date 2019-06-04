@@ -10,6 +10,7 @@
     "express": "^4.17.1",
     "express-session": "^1.16.1",
     "massive": "^5.10.0",
+    "mongod": "^2.0.0",
     "mongoose": "^5.5.12",
     "react": "^16.8.6",
     "react-chartjs-2": "^2.7.6",
