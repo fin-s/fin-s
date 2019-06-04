@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import Income from './Income'
 import Debts from './Debts'
 import Expenses from './Expenses';
+import NavBar from './NavBar'
 
 class RegisterWizzard extends Component {
   constructor(){
@@ -34,6 +35,7 @@ class RegisterWizzard extends Component {
   render(){
     return(
       <div>
+        <NavBar />
         <Income incomes={this.state.incomes} updateIncomes={this.updateIncomes}/>
         <Debts debts={this.state.debts} updateDebts={this.updateDebts}/>
         <Expenses expenses={this.state.expenses} updateExpenses={this.updateExpenses} />
