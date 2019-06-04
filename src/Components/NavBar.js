@@ -3,21 +3,27 @@ import { Link } from "react-router-dom";
 
 function NavBar() {
   return (
-    <div>
+    <div className='navBarLinks'>
       <Link to="/">
-        <h3>
-          <b>home</b>
-        </h3>
+        <span className='spans'>
+          <h3>
+            <b>home</b>
+          </h3>
+        </span>
       </Link>
       <Link to="/wizard">
-        <h3>
-          <b>wizard</b>
-        </h3>
+        <span className='spans'>
+          <h3>
+            <b>wizard</b>
+          </h3>
+        </span>
       </Link>
       <Link to='/dashboard'>
-        <h3>
-          <b>dashboard</b>
-        </h3>
+        <span className='spans'>
+          <h3>
+            <b>dashboard</b>
+          </h3>
+        </span>
       </Link>
     </div>
   );

@@ -8,16 +8,17 @@ Body{
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  margin-top: 1.5%;
+  margin-top: -4.2%;
   margin-bottom: 1.5%;
   margin-right: 6%;
-  border: solid;
+  // border: solid;
 }
 
 .main{
   display: flex;
-  justify-content: flex-end;
-  border: solid;
+  justify-content: space-between;
+  // border: solid;
+  flex-direction: column;
 }
 
 input[type=text]{
@@ -25,7 +26,7 @@ input[type=text]{
   border: none;
   color: $gold-color;
   height: 4vh;
-  width: 10vw;
+  width: 12vw;
   font-family: 'Raleway', sans-serif;
   font-size: 20px;
   text-align: center;
@@ -34,8 +35,15 @@ input[type=text]{
 }
 
 .registerInput{
-  display: flex;
-  flex-direction: column;
+  float: right;
+  margin: 1% 10% 3% 3%;
+
+}
+
+.registerText{
+  text-align: right;
+  margin-right: 10.9%;
+  margin-top: 2%;
 }
 
 ::placeholder{
@@ -43,5 +51,25 @@ input[type=text]{
   font-size: 20px;
   font-family: 'Raleway', sans-serif;
   font-weight: lighter;
+}
+
+.signUpButton{
+  margin: 5% 4% 1% 1%;
+  float: right;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  border: none;
+  -webkit-text-fill-color: $gold-color;
+  transition: background-color 5000s ease-in-out 0s;
+  font-family: 'Raleway', sans-serif;
 }
 
