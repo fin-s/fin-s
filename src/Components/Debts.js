@@ -8,7 +8,8 @@ class Debts extends Component {
       balance: null,
       interestRate: null,
       minimumPayment: null,
-      notes: ''
+      notes: '',
+      averagePayment: null
     }
   }
 
@@ -19,12 +20,13 @@ class Debts extends Component {
   }
 
   confirmDebt = () => {
-    let {nickname, balance, interestRate, minimumPayment, notes} = this.state
+    let {nickname, balance, interestRate, minimumPayment, averagePayment, notes} = this.state
     let newDebt = {
       nickname,
       balance,
       interestRate,
       minimumPayment,
+      averagePayment,
       notes
     }
     this.props.updateDebts(newDebt)
@@ -37,6 +39,7 @@ class Debts extends Component {
         <input placeholder='Balance' onChange={this.handleChange} name='balance' />
         <input placeholder='Interest Rate' onChange={this.handleChange} name='interestRate' />
         <input placeholder='Minimum Payment' onChange={this.handleChange} name='minimumPayment' />
+        <input placeholder='Average Payment' onChange={this.handleChange} name='averagePayment' />
         <textarea columns={20} rows={5} placeholder='Notes' onChange={this.handleChange} name='notes' />
         <button onClick={this.confirmDebt}>Add Debt</button>
         {this.props.debts.map((current, index) => {

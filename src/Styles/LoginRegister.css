@@ -1,7 +1,6 @@
 Body{
   background-color: #2C2E35;
   color: #C5B358;
-  border: solid;
   font-family: 'Raleway', sans-serif;
 }
 
@@ -12,7 +11,7 @@ Body{
   margin-top: 1.5%;
   margin-bottom: 1.5%;
   margin-right: 6%;
-  
+  border: solid;
 }
 
 .main{
@@ -33,15 +32,9 @@ input[type=text]{
   margin: 9px;
 }
 
-
 .registerInput{
   display: flex;
   flex-direction: column;
-}
-
-
-input[type=button]{
-  
 }
 
 ::placeholder{

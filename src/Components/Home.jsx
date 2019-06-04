@@ -1,20 +1,20 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import NavBar from './NavBar'
+import LoginForm from './LoginRegister/LoginForm'
+import Register from './LoginRegister/Register'
 
 class Home extends Component {
 
   render() {
     return (
       <div>
-        <Link to='/'>
-          <h3><b>home</b></h3>
-        </Link>
-        <Link to='/login'>
-          <h3><b>login</b></h3>
-        </Link>
+        <NavBar />
+        <LoginForm />
+        <Register />
       </div>
     )
   }
 }
 
 export default Home
+
