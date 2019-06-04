@@ -1,0 +1,39 @@
+.containers{
+  display: flex;
+
+  margin: 2% 0 0 0;
+  padding: 0;
+}
+
+.calendar{
+  border: solid;
+  height: 800px;
+  width: 65%;
+  color: red;
+}
+
+.nextSteps{
+  border: solid;
+  height: 35%;
+  width: 90%;
+  color: blue;
+  margin-right: 5%;
+  margin-bottom: 5%;
+}
+
+.horizonSnapshot{
+  border: solid;
+  height: 70%;
+  width: 90%;
+  color: purple;
+  margin-right: 5%;
+  margin-top: 5%;
+}
+
+.rightSide{
+  align-items: flex-end;
+  display: flex;
+  flex-direction: column;
+
+  width: 35%;
+}

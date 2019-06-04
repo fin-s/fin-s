@@ -1,9 +1,9 @@
 import React from 'react'
 
-function UpcomingEvents(){
+function HorizonSnapshot(){
   return(
     <div>
-      <h3>Upcoming Events</h3>
+      <h3>horizon snapshot</h3>
       <div>
         <h4>some Date</h4>
         <h4>event name</h4>
@@ -12,4 +12,4 @@ function UpcomingEvents(){
     </div>
   )
 }
-export default UpcomingEvents
+export default HorizonSnapshot
