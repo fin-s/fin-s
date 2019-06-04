@@ -1,11 +1,12 @@
 const mongoose = require('mongoose')
 
 const DebtSchema = new mongoose.Schema({
-  nickname: string,
-  balance: number,
-  interestRate: number,
-  minimumPayment: number,
-  notes: string
+  nickname: {type: 'string'},
+  balance: {type: 'number'},
+  interestRate: {type: 'number'},
+  minimumPayment: {type: 'number'},
+  actualPayment: {type: 'number'},
+  notes: {type: 'string'}
 })
 
 module.exports = mongoose.model("Debt", DebtSchema)
