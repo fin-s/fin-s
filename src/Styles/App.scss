@@ -1,6 +1,12 @@
 $gold-color: #C5B358;
 $black-color: #2C2E35;
 
+div{
+  a{
+    color: $gold-color;
+  }
+}
+//above is the link tags in the navbar. scss is fun
 
 .App {
   text-align: center;
@@ -41,3 +47,4 @@ $black-color: #2C2E35;
 
 
 @import 'LoginRegister';
+@import 'NavBar';

@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 
-
-
 class RegisterForm extends Component {
 	constructor() {
 		super()
@@ -56,40 +54,43 @@ class RegisterForm extends Component {
 						need an account? <p>sign up here</p></h2>
 					<form onSubmit={this.handleSignUpFormSubmit}>
 						<div className='registerInput' >
-							<div>
-								<input
-									type='text'
-									name='firstname'
-									placeholder='first name'
-									onChange={this.handleFormUpdate}
-								/>
-								<input
-									type='text'
-									name='lastname'
-									placeholder='last name'
-									onChange={this.handleFormUpdate}
-								/>
-							</div>
-							<div>
-								<input
-									type='text'
-									name='email'
-									placeholder='email'
-									onChange={this.handleFormUpdate}
-								/>
-								<input
-									type='text'
-									name='password'
-									placeholder='password'
-									onChange={this.handleFormUpdate}
-								/>
-							</div>
+							<a className='inputAlign'>
+								<div>
+									<input
+										type='text'
+										name='firstname'
+										placeholder='first name'
+										onChange={this.handleFormUpdate}
+									/>
+									<input
+										type='text'
+										name='lastname'
+										placeholder='last name'
+										onChange={this.handleFormUpdate}
+									/>
+								</div>
+								<div>
+									<input
+										type='text'
+										name='email'
+										placeholder='email'
+										onChange={this.handleFormUpdate}
+									/>
+									<input
+										type='text'
+										name='password'
+										placeholder='password'
+										onChange={this.handleFormUpdate}
+									/>
+								</div>
+							</a>
+						<div className='signUpButton'>
+
+								<button type="button" class="btn btn-outline-secondary" onClick={this.handleSignUpFormSubmit}>
+									<b>sign up</b>
+								</button>
 
 						</div>
-						<div >
-							<button type="button" class="btn btn-outline-secondary" onClick={this.handleSignUpFormSubmit}>
-								<b>sign up</b>
-							</button>
 						</div>
 					</form>
 					{this.state.registerError && (
