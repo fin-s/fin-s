@@ -30,6 +30,7 @@ const debt = [
     name: 'Credit Card 1',
     balance: 5000,
     minimum_payment: 50,
+    actual_payment: 200,
     due_date: 25,
     interest_rate: 2540
   },
@@ -37,6 +38,7 @@ const debt = [
     name: 'Credit Card 2',
     balance: 3000,
     minimum_payment: 70,
+    actual_payment: null,
     due_date: 9,
     interest_rate: 2120
   },
@@ -44,6 +46,7 @@ const debt = [
     name: 'Credit Card 3',
     balance: 2000,
     minimum_payment: 100,
+    actual_payment: null,
     due_date: 14,
     interest_rate: 1897
   }
@@ -201,11 +204,23 @@ const listUpcoming = (incomes, debts, expenses) => {
 
 
   debts.forEach(element => {
+    let balance1
+    let balance2
+
+    if(element.actual_payment) {
+      balance1 = element.balance - element.actual_payment
+      balance2 = element.balance - element.actual_payment*2
+    } else {
+      balance1 = element.balance - element.minimum_payment
+      balance2 = element.balance - element.minimum_payment*2
+    }
+
     if (element.due_date >= day) {
       month0.dueDates.push({
         name: element.name,
         dueDate: element.due_date,
         amount: element.minimum_payment,
+        balance: element.balance,
         type: 'debt'
       })
     }
@@ -213,12 +228,14 @@ const listUpcoming = (incomes, debts, expenses) => {
       name: element.name,
       dueDate: element.due_date,
       amount: element.minimum_payment,
+      balance: balance1,
       type: 'debt'
     })
     month2.dueDates.push({
       name: element.name,
       dueDate: element.due_date,
       amount: element.minimum_payment,
+      balance: balance2,
       type: 'debt'
     })
   })
@@ -288,12 +305,14 @@ let showList = []
 
 list.map(element => {
   element.dueDates.map(date => {
-    showList.push(`${element.month} ${date.dueDate}: ${date.name}  $${date.amount}`)
+    let balance 
+    if(date.balance){
+      balance = `Remaining balance: $${date.balance}`
+    } else {
+      balance = ''
+    }
+    showList.push(`${element.month} ${date.dueDate}: ${date.name}  $${date.amount}.  ${balance}`)
   })
 })
 
 console.log(showList)
-
-
-
-
