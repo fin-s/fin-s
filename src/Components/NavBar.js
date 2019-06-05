@@ -1,10 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import logo from '../Images/newFinS_logo.png'
 // import LoginForm from 'LoginForm';
 
 function NavBar() {
   return (
     <div className='navBarLinks'>
+      <Link to ='/dashboard'>
+        <img src = {logo} alt ='Logo' type='Logo'/>
+      </Link>
       <Link to="/">
         <span className='spans'>
           <h3>
