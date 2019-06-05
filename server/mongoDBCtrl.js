@@ -239,52 +239,48 @@ module.exports = {
 
   deleteIncome: (req, res) => {
     const { income, email } = req.body
-      User.updateOne({
-      email: email, "expenses._id": expense._id
-    },
-      {
-        $pull: {
-          "expenses.$.nickname": expense.nickname,
-          "expenses.$.amount": expense.amount,
-          "expenses.$.dueDate": expense.dueDate,
-          "expenses.$.notes": expense.notes
-        }
-      }).exec((err, data) => {
-        if (err) {
-          console.log(err)
-        } else {
-          res.send(data)
-        }
-      })
+    User.updateOne({email: email},
+    {
+      $pull: {"incomes": {_id: income._id}}
+    })
+    .exec((err, data) => {
+      if(err){
+        console.log(err)
+      } else {
+        res.send(data)
+      }
+    })
   },
 
   deleteDebt: (req, res) => {
     const { debt, email } = req.body
-    User.remove(
-      {email: email, "debt._id": debt._id},
-      {justOne: true}
-    )
-    .exec((err) => {
-      if (err) {
-        console.log('err in mongoDBCtrl.js/deleteDebt method', err)
+    User.updateOne({email: email},
+    {
+      $pull: {"debts": {_id: debt._id}}
+    })
+    .exec((err, data) => {
+      if(err){
+        console.log(err)
       } else {
-        res.sendStatus(200)
+        res.send(data)
       }
     })
   },
 
   deleteExpense: (req, res) => {
     const { expense, email } = req.body
-    User.remove(
-      {email: email, "expense._id": expense._id},
-      {justOne: true}
-    )
-    .exec((err) => {
-      if (err) {
-        console.log('err in mongoDBCtrl.js/deleteExpense method', err)
+    User.updateOne({email: email},
+    {
+      $pull: {"expenses": {_id: expense._id}}
+    })
+    .exec((err, data) => {
+      if(err){
+        console.log(err)
       } else {
-        res.sendStatus(200)
+        res.send(data)
       }
     })
   }
+
+  
 }
