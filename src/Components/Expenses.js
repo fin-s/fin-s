@@ -7,7 +7,8 @@ class Expenses extends Component {
     this.state = {
       nickname: '',
       amount: null,
-      notes: ''
+      notes: '',
+      dueDate: null
     }
   }
 
@@ -18,11 +19,12 @@ class Expenses extends Component {
   }
 
   confirmExpense = () => {
-    let {nickname, amount, notes} = this.state
+    let {nickname, amount, notes, dueDate} = this.state
     let newExpense = {
       nickname,
       amount, 
-      notes
+      notes,
+      dueDate
     }
     this.props.updateExpenses(newExpense)
   }
@@ -33,6 +35,7 @@ class Expenses extends Component {
         <input onChange={this.handleChange} name='nickname' placeholder='Expense name' />
         <input onChange={this.handleChange} name='amount' placeholder='Amount'/>
         <textarea onChange={this.handleChange} columns={20} rows={5} name='notes' placeholder='notes' />
+        <input type='number' min='1' max='28' placeholder='Day of the Month this comes due' onChange={this.handleChange} name='dueDate' />
         <button onClick={this.confirmExpense}>Add Expense</button>
         {this.props.expenses.map((current, index) => {
           return <span key={index}>{current.nickname} {current.amount}</span>

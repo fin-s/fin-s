@@ -19,6 +19,7 @@ Body{
   justify-content: space-between;
   // border: solid;
   flex-direction: column;
+  font-size: 40px;
 }
 
 input[type=text]{
@@ -56,6 +57,10 @@ input[type=text]{
 .signUpButton{
   margin: 5% 4% 1% 1%;
   float: right;
+}
+
+a{
+  color: $gold-color;
 }
 
 input:-webkit-autofill,
