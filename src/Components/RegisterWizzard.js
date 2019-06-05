@@ -38,10 +38,7 @@ class RegisterWizzard extends Component {
   handleSubmitFinances = async () => {
     const {incomes, expenses, debts} = this.state
     try{
-      const user = await axios.post('/api/users/money', {incomes, expenses, debts}).catch((err) => {
-        console.log(err)
-        throw new Error(409)
-      })
+      const user = await axios.post('/api/users/money', {incomes, expenses, debts})
       this.props.history.push('/dashboard')
     } catch (err) {
       console.log('Error encountered submitting finances: ', err)

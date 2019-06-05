@@ -2,7 +2,12 @@
 
 @import 'sassVars';
 @import 'LoginRegister';
-@import 'NavBar';
 @import 'dashboard';
 @import 'chart';
 
+Body{
+  background-color: $black-color;
+  color: $gold-color;
+  font-family: 'Raleway', sans-serif;
+}
+@import 'NavBar';
