@@ -18,20 +18,22 @@ class Dashboard extends Component {
       <>
         <NavBar />
         <div className='containers'>
-              <div className='calendar'>
-                calendar
+          {/* <div className='calendar'>
+            calendar
                 <Calendar />
-              </div>
+          </div> */}
+          <div className='chart'>
+            <Chart />
+          </div>
           <div className='rightSide'>
-              <div className='nextSteps'>
-                <NextSteps />
-              </div>
-              <div className='horizonSnapshot'>
-                <HorizonSnapshot />
-              </div>
+            <div className='nextSteps'>
+              <NextSteps />
+            </div>
+            <div className='horizonSnapshot'>
+              <HorizonSnapshot />
+            </div>
           </div>
         </div>
-        <Chart />
       </>
     )
   }
