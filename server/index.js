@@ -28,6 +28,9 @@ app.post('/api/list/expenses', MDBCtrl.addExpense)
 app.put('/api/list/incomes', MDBCtrl.editIncome)
 app.put('/api/list/debts', MDBCtrl.editDebt)
 app.put('/api/list/expenses', MDBCtrl.editExpense)
+app.delete('/api/list/incomes/delete', MDBCtrl.deleteIncome)
+app.delete('/api/list/debts/delete', MDBCtrl.deleteDebt)
+app.delete('/api/list/expenses/delete', MDBCtrl.deleteExpense)
 
 massive(CONNECTION_STRING).then(db => {
   app.set('db', db)
