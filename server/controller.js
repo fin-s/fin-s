@@ -32,7 +32,7 @@ module.exports = {
     const { session } = req
     const { loginEmail: email } = req.body
     try {
-      let user = await db.login({ email })
+      let users = await db.login({ email })
       session.user = users[0]
       const authenticated = bcrypt.compareSync(req.body.loginPassword, users[0].password)
       if (authenticated) {
