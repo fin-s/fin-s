@@ -10,7 +10,6 @@ class RegisterForm extends Component {
 			firstName: '',
 			lastName: '',
 			email: '',
-			// username: '',
 			password: '',
 			loginError: false,
 			loginErrorMessage: 'username or password incorrect, please try again',
@@ -31,25 +30,20 @@ class RegisterForm extends Component {
 		const { password, firstName, lastName, email } = this.state
 		try {
 			await axios.post('/auth/register', {
-				// username,
 				password,
 				firstName,
 				lastName,
 				email
 			})
-			// this.props.updateUsername(username)
-			// this.props.history.push('/#/')
 		} catch (err) {
 			this.setState({ registerError: true })
 		}
-
 	}
 
 	render() {
 		return (
 			<>
 				<main className='main'>
-
 					<h2 className='registerText'>
 						need an account? <p>sign up here</p></h2>
 					<form onSubmit={this.handleSignUpFormSubmit}>
@@ -85,11 +79,9 @@ class RegisterForm extends Component {
 								</div>
 							</a>
 							<div className='signUpButton'>
-
 								<button type="button" class="btn btn-outline-secondary" onClick={this.handleSignUpFormSubmit}>
 									<b>sign up</b>
 								</button>
-
 							</div>
 						</div>
 					</form>
