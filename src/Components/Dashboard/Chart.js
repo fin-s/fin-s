@@ -29,7 +29,7 @@ class Chart extends Component {
   }
 
   render() {
-    return (<div style={this.state.divStyle}>
+    return (<div className='chartDiv'>
       <Line data={this.state.chartData} 
       options={{
         title:{display:true, text:'Debt payoff timeline', fontSize: '20', fontColor:'#DACE94'}, 
