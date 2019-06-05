@@ -20,6 +20,8 @@ app.use(session({
 }))
 
 app.post('/auth/login', authCtrl.login)
+//LOGS USER IN
+//EXPECTS email AND password ON REQ.BODY
 app.post('/auth/register', authCtrl.register)
 //REGISTERS A NEW USER
 //EXPECTS firstName, lastName, email, password ON REQ.BODY
