@@ -136,9 +136,33 @@ module.exports = {
 
     let users = await User.find({email: email})
     let oldIncomes = users[0].incomes
-    let newIncomes = [...oldIncomes, incomes]
+    let newIncomes = [...oldIncomes, ...incomes]
 
     let update = await updateIncome(newIncomes, email)
+    
+    res.status(200).send(update)
+  },
+
+  addDebt: async (req, res) => {
+    const {debts, email} = req.body
+
+    let users = await User.find({email: email})
+    let oldDebts = users[0].debts
+    let newDebts = [...oldDebts, ...debts]
+
+    let update = await updateDebt(newDebts, email)
+    
+    res.status(200).send(update)
+  },
+
+  addExpense: async (req, res) => {
+    const {expenses, email} = req.body
+
+    let users = await User.find({email: email})
+    let oldExpenses = users[0].expenses
+    let newExpenses = [...oldExpenses, ...expenses]
+
+    let update = await updateExpense(newExpenses, email)
     
     res.status(200).send(update)
   }
