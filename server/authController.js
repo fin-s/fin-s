@@ -5,6 +5,7 @@ module.exports = {
 
   register: async (req, res) => {
     const db = req.app.get('db')
+    console.log(req.body)
     const { email, firstName, lastName, password } = req.body
     const { session } = req
     let emailTaken = await db.checkEmail({ email })
@@ -33,6 +34,7 @@ module.exports = {
     const db = req.app.get('db')
     const { session } = req
     const { email, password } = req.body
+    console.log(email, password)
     try {
       let users = await db.login({ email })
       const authenticated = bcrypt.compareSync(password, users[0].hash)
