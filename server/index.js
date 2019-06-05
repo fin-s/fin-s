@@ -19,6 +19,7 @@ app.use(session({
   }
 }))
 
+app.post('/auth/login', authCtrl.login)
 app.post('/auth/register', authCtrl.register)
 //REGISTERS A NEW USER
 //EXPECTS firstName, lastName, email, password ON REQ.BODY
@@ -28,7 +29,7 @@ app.post('/api/users/register', MDBCtrl.createUser)
 //EXPECTS firstName, lastName, email ON REQ.BODY
 app.get('/api/users', MDBCtrl.get)
 //FETCHES USER OBJECT FROM MONGODB
-//EXPECTS USER email AS A QUERY
+//EXPECTS USER email AS A STRING ON REQ.BODY
 app.post('/api/users/money', MDBCtrl.updateMoney)
 //INITIALIZES INCOMES, DEBTS, AND EXPENSES
 //EXPECTS 3 ARRAYS CALLED incomes, debts, expenses
