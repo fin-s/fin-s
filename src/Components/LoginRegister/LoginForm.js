@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import {withRouter} from 'react-router-dom'
 
 class LoginForm extends Component {
   constructor() {
@@ -34,6 +35,7 @@ class LoginForm extends Component {
           })
         )
       this.getUserFirstName()
+      this.props.history.push('/dashboard')
     } catch (err) {
       this.setState({ loginEmail: '', loginPassword: '', loginError: true })
     }
@@ -111,4 +113,4 @@ class LoginForm extends Component {
 }
 
 
-export default LoginForm
+export default withRouter(LoginForm)

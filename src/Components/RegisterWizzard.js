@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import {withRouter} from 'react-router-dom'
 import Income from './Income'
 import Debts from './Debts'
 import Expenses from './Expenses';
@@ -34,8 +35,17 @@ class RegisterWizzard extends Component {
     })
   }
 
-  handleSubmitFinances = () => {
-    //fire axios to endpoint
+  handleSubmitFinances = async () => {
+    const {incomes, expenses, debts} = this.state
+    try{
+      const user = await axios.post('/api/users/money', {incomes, expenses, debts}).catch((err) => {
+        console.log(err)
+        throw new Error(409)
+      })
+      this.props.history.push('/dashboard')
+    } catch (err) {
+      console.log('Error encountered submitting finances: ', err)
+    }
   }
 
   handleWizardConditional = (page) => {
@@ -80,15 +90,12 @@ class RegisterWizzard extends Component {
       <div>
         <NavBar />
         {this.handleWizardConditional(switchPage)}
-        {/* <Income incomes={this.state.incomes} updateIncomes={this.updateIncomes}/>
-            <Debts debts={this.state.debts} updateDebts={this.updateDebts}/>
-            <Expenses expenses={this.state.expenses} updateExpenses={this.updateExpenses} /> */}
         <button onClick={() => this.handleSwitchPage(true)} >Next Form</button>
         <button onClick={() => this.handleSwitchPage(false)} >Previous Form</button>
-        <button onChange={this.handleSubmitFinances} >Confirm and Submit</button>
+        <button onClick={() => this.handleSubmitFinances()} >Confirm and Submit</button>
       </div>
     )
   }
 }
 
-export default RegisterWizzard
+export default withRouter(RegisterWizzard)

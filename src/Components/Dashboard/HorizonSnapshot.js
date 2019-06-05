@@ -1,15 +1,26 @@
 import React from 'react'
 
-function HorizonSnapshot(){
-  return(
-    <div>
-      <h3>horizon snapshot</h3>
+function HorizonSnapshot(props){
+  if(props.loadingSnapshot){
+    return (
       <div>
-        <h4>some Date</h4>
-        <h4>event name</h4>
-        <h4>balance change</h4>
+        <h3>Horizon Snapshot</h3>
+        <h4>Loading...</h4>
       </div>
-    </div>
-  )
+    )
+  } else {
+      return (
+        <div>
+          <h3>Horizon Snapshot</h3>
+          {props.snapshotList.map((ele) => {
+            return (
+              <section>
+                <h4>{ele.nickname} Balance Change: {ele.amount} on: {ele.dueDate} </h4>
+              </section>
+            )
+          })}
+        </div>
+      )
+  }
 }
 export default HorizonSnapshot
