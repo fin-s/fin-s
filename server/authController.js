@@ -35,7 +35,6 @@ module.exports = {
     const { email, password } = req.body
     try {
       let users = await db.login({ email })
-      console.log(users)
       const authenticated = bcrypt.compareSync(password, users[0].hash)
       if (authenticated) {
         session.user = {
@@ -43,7 +42,6 @@ module.exports = {
           userId: users[0].users_login_id,
           authenticated: true
         }
-        console.log(session.user)
         MDBCtrl.get(req,res)
       } else {
         return res.status(401).send('Email or password incorrect')

@@ -111,7 +111,8 @@ module.exports = {
   },
 
   updateMoney: async function (req, res) {
-    const { incomes, debts, expenses, email } = req.body
+    const { incomes, debts, expenses } = req.body
+    const {email} = req.session.user
 
     let updatedIncome = await updateIncome(incomes, email)
     let updatedDebt = await updateDebt(debts, email)
@@ -121,7 +122,7 @@ module.exports = {
   },
 
   fetchList: async (req, res) => {
-    const { email } = req.query
+    const { email } = req.session.user
     let users = await User.find({ email: email })
     let user = users[0]
 
@@ -132,7 +133,8 @@ module.exports = {
   },
 
   addIncome: async (req, res) => {
-    const { incomes, email } = req.body
+    const { incomes } = req.body
+    const {email } = req.session.user
 
     let users = await User.find({ email: email })
     let oldIncomes = users[0].incomes
@@ -144,7 +146,8 @@ module.exports = {
   },
 
   addDebt: async (req, res) => {
-    const { debts, email } = req.body
+    const { debts } = req.body
+    const {email } = req.session.user
 
     let users = await User.find({ email: email })
     let oldDebts = users[0].debts
@@ -156,7 +159,8 @@ module.exports = {
   },
 
   addExpense: async (req, res) => {
-    const { expenses, email } = req.body
+    const { expenses } = req.body
+    const {email} = req.session.user
 
     let users = await User.find({ email: email })
     let oldExpenses = users[0].expenses
@@ -168,7 +172,8 @@ module.exports = {
   },
 
   editIncome: async (req, res) => {
-    const { income, email } = req.body
+    const { income } = req.body
+    const {email} = req.session.user
     User.updateOne({
       email: email, "incomes._id": income._id
     },
@@ -193,7 +198,8 @@ module.exports = {
   },
 
   editDebt: async (req, res) => {
-    const { debt, email } = req.body
+    const { debt } = req.body
+    const {email} = req.session.user
     User.updateOne({
       email: email, "debts._id": debt._id
     },
@@ -217,7 +223,8 @@ module.exports = {
   },
 
   editExpense: async (req, res) => {
-    const { expense, email } = req.body
+    const { expense } = req.body
+    const {email} = req.session.user
     User.updateOne({
       email: email, "expenses._id": expense._id
     },
@@ -238,7 +245,8 @@ module.exports = {
   },
 
   deleteIncome: (req, res) => {
-    const { income, email } = req.body
+    const { income } = req.body
+    const {email } = req.session.user
     User.updateOne({email: email},
     {
       $pull: {"incomes": {_id: income._id}}
@@ -253,7 +261,8 @@ module.exports = {
   },
 
   deleteDebt: (req, res) => {
-    const { debt, email } = req.body
+    const { debt } = req.body
+    const {email} = req.session.user
     User.updateOne({email: email},
     {
       $pull: {"debts": {_id: debt._id}}
@@ -268,7 +277,8 @@ module.exports = {
   },
 
   deleteExpense: (req, res) => {
-    const { expense, email } = req.body
+    const { expense } = req.body
+    const {email} = req.session.user
     User.updateOne({email: email},
     {
       $pull: {"expenses": {_id: expense._id}}
