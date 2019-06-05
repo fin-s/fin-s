@@ -21,9 +21,10 @@ module.exports = {
 
     session.user = {
       email,
-      userId: user[0].user_id
+      userId: user[0].users_id
     }
-    res.status(200).send(user)
+
+    MDBCtrl.createUser(req, res)
   },
 
 
