@@ -81,7 +81,7 @@ const updateExpense = (expenses, email) => {
 }
 
 module.exports = {
-  create: function (req, res) {
+  createUser: function (req, res) {
     let newUser = new User();
     newUser.firstName = req.body.firstName;
     newUser.lastName = req.body.lastName;
