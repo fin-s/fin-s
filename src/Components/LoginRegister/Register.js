@@ -7,15 +7,15 @@ class RegisterForm extends Component {
 		this.state = {
 			loginEmail: '',
 			loginPassword: '',
-			firstname: '',
-			lastname: '',
+			firstName: '',
+			lastName: '',
 			email: '',
 			// username: '',
 			password: '',
 			loginError: false,
-			loginErrorMessage: 'Username or password incorrect. Please try again.',
+			loginErrorMessage: 'username or password incorrect, please try again',
 			registerError: false,
-			registerErrorMessage: 'Email already in use.'
+			registerErrorMessage: 'email already in use'
 		}
 	}
 
@@ -28,13 +28,13 @@ class RegisterForm extends Component {
 
 	handleSignUpFormSubmit = async (e) => {
 		e.preventDefault()
-		const { password, firstname, lastname, email } = this.state
+		const { password, firstName, lastName, email } = this.state
 		try {
 			await axios.post('/auth/register', {
 				// username,
 				password,
-				firstname,
-				lastname,
+				firstName,
+				lastName,
 				email
 			})
 			// this.props.updateUsername(username)
@@ -84,18 +84,20 @@ class RegisterForm extends Component {
 									/>
 								</div>
 							</a>
-						<div className='signUpButton'>
+							<div className='signUpButton'>
 
 								<button type="button" class="btn btn-outline-secondary" onClick={this.handleSignUpFormSubmit}>
 									<b>sign up</b>
 								</button>
 
-						</div>
+							</div>
 						</div>
 					</form>
-					{this.state.registerError && (
-						<h3 style={{ color: 'tomato' }}>{this.state.registerErrorMessage}</h3>
-					)}
+					<span className='errorMessage'>
+						{this.state.registerError && (
+							<h3>{this.state.registerErrorMessage}</h3>
+						)}
+					</span>
 				</main>
 			</>
 		)

@@ -59,6 +59,29 @@ input[type=text]{
   float: right;
 }
 
+#logoutButton{
+  float: right;
+  margin: -4% 15.3% 0% 0%;
+}
+
+.errorMess{
+  font-family: $font-fam;
+  font-size: 30px;
+  color: $red-color;
+  text-align: right;
+  margin: 0% 8% -1% 0%;
+  padding: 0;
+  // border: solid;
+}
+
+.errorMessage{
+  font-family: $font-fam;
+  font-size: 30px;
+  color: $red-color;
+  text-align: right;
+  margin: -5.6% 17.6% 0% 0%;
+}
+
 a{
   color: $gold-color;
 }

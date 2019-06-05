@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+// import LoginForm from 'LoginForm';
 
 function NavBar() {
   return (
@@ -25,6 +26,7 @@ function NavBar() {
           </h3>
         </span>
       </Link>
+      {/* <LoginForm /> */}
     </div>
   );
 }
