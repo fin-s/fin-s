@@ -11,6 +11,7 @@ class LoginForm extends Component {
       loginErrorMessage: 'Incorrect username or password.',
       authenticated: false,
       userFirstName: '',
+      isLoggedIn: true,
     }
   }
 
@@ -28,22 +29,19 @@ class LoginForm extends Component {
       const res = await axios.post('/auth/login', { loginEmail, loginPassword })
         .then(
           this.setState({
-            authenticated: true
+            authenticated: true,
+            isLoggedIn: true
           })
         )
-      // this.props.updateUsername(loginEmail)
-      // this.props.updateUserId(res.data.user_id)
       this.getUserFirstName()
     } catch (err) {
       this.setState({ loginEmail: '', loginPassword: '', loginError: true })
     }
-  }
-
-  getUserFirstName = () => {
-    axios.get(`/api/users/first-name/${this.state.loginEmail}`)
-      .then(res => {
-        this.setState({ userFirstName: res.data[0].firstname })
-      })
+    if(this.state.loginError === true){
+      return(
+        alert(`incorrect username or password`)
+      )
+    }
   }
 
   handleLogout = () => {
@@ -51,43 +49,62 @@ class LoginForm extends Component {
       loginEmail: '',
       loginPassword: '',
       loginError: false,
-      loginErrorMessage: 'Incorrect username or password.',
+      loginErrorMessage: 'incorrect username or password',
       authenticated: false,
+      isLoggedIn: false,
       userFirstName: ''
     })
     alert('logged out')
   }
 
+  conditionalRender = (bleh) => {
+    // console.log('fire conditional eval')
+    if (!bleh) {
+      return (<header className='header'>
+        <form onSubmit={this.handleLoginFormSubmit}>
+          <div className='loginInput'>
+            <input
+              type='text'
+              name="loginEmail"
+              placeholder="email"
+              value={this.state.loginEmail}
+              onChange={this.handleFormInputUpdate}
+            />
+            <input
+              type='text'
+              name="loginPassword"
+              placeholder="password"
+              value={this.state.loginPassword}
+              onChange={this.handleFormInputUpdate}
+            />
+          </div>
+        </form>
+        <div className='buttonDiv'>
+          <button
+            type="button"
+            class="btn btn-outline-secondary"
+            onClick={this.handleLoginFormSubmit}><b>log in</b></button>
+        </div>
+      </header>)
+    } else {
+      return (<div>
+        <button
+          type="button"
+          class="btn btn-outline-secondary"
+          id='logoutButton'
+          onClick={this.handleLogout}><b>logout</b></button>
+      </div>)
+    }
+  }
+
   render() {
+    const { isLoggedIn } = this.state
     return (
       <>
-        <header className='header'>
-
-
-          <form onSubmit={this.handleLoginFormSubmit}>
-            <div  className='loginInput'>
-              <input
-                type='text'
-                name="loginEmail"
-                placeholder="email"
-                value={this.state.loginEmail}
-                onChange={this.handleFormInputUpdate}
-              />
-              <input
-                type='text'
-                name="loginPassword"
-                placeholder="password"
-                value={this.state.loginPassword}
-                onChange={this.handleFormInputUpdate}
-              />
-            </div>
-          </form>
-          <div className='buttonDiv'>
-            <button type="button" class="btn btn-outline-secondary" onClick={this.handleLoginFormSubmit}><b>log in</b></button>
-            {/* <button type="button" onClick={this.handleLogout}><b>logout</b></button> */}
-          </div>
-          {this.state.loginError && <h3>{this.state.loginErrorMessage}</h3>}
-        </header>
+        {this.conditionalRender(isLoggedIn)}
+        {/* <alert>
+          {this.state.loginError && <h3 className='errorMess'>{this.state.loginErrorMessage}</h3>}
+        </alert> */}
       </>
     )
   }

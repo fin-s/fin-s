@@ -235,5 +235,52 @@ module.exports = {
           res.send(data)
         }
       })
+  },
+
+  deleteIncome: (req, res) => {
+    const { income, email } = req.body
+    User.updateOne({email: email},
+    {
+      $pull: {"incomes": {_id: income._id}}
+    })
+    .exec((err, data) => {
+      if(err){
+        console.log(err)
+      } else {
+        res.send(data)
+      }
+    })
+  },
+
+  deleteDebt: (req, res) => {
+    const { debt, email } = req.body
+    User.updateOne({email: email},
+    {
+      $pull: {"debts": {_id: debt._id}}
+    })
+    .exec((err, data) => {
+      if(err){
+        console.log(err)
+      } else {
+        res.send(data)
+      }
+    })
+  },
+
+  deleteExpense: (req, res) => {
+    const { expense, email } = req.body
+    User.updateOne({email: email},
+    {
+      $pull: {"expenses": {_id: expense._id}}
+    })
+    .exec((err, data) => {
+      if(err){
+        console.log(err)
+      } else {
+        res.send(data)
+      }
+    })
   }
+
+  
 }
