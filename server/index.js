@@ -19,6 +19,9 @@ app.use(session({
   }
 }))
 
+app.post('/auth/login', authCtrl.login)
+//LOGS USER IN
+//EXPECTS email AND password ON REQ.BODY
 app.post('/auth/register', authCtrl.register)
 //REGISTERS A NEW USER
 //EXPECTS firstName, lastName, email, password ON REQ.BODY
@@ -28,7 +31,7 @@ app.post('/api/users/register', MDBCtrl.createUser)
 //EXPECTS firstName, lastName, email ON REQ.BODY
 app.get('/api/users', MDBCtrl.get)
 //FETCHES USER OBJECT FROM MONGODB
-//EXPECTS USER email AS A QUERY
+//EXPECTS USER email AS A STRING ON REQ.BODY
 app.post('/api/users/money', MDBCtrl.updateMoney)
 //INITIALIZES INCOMES, DEBTS, AND EXPENSES
 //EXPECTS 3 ARRAYS CALLED incomes, debts, expenses
@@ -64,8 +67,14 @@ app.put('/api/list/expenses', MDBCtrl.editExpense)
 //EXPECTS THE ENTIRE EXPENSE OBJECT CALLED expense
 //AND email ON REQ.BODY
 app.delete('/api/list/incomes', MDBCtrl.deleteIncome)
+//Deletes AN income from the users income array
+// needs Income._id and email on Req.body
 app.delete('/api/list/debts', MDBCtrl.deleteDebt)
+//Deletes AN income from the users income array
+// needs Debt._id and email on Req.body
 app.delete('/api/list/expenses', MDBCtrl.deleteExpense)
+//Deletes AN income from the users income array
+// needs Expense._id and email on Req.body
 
 massive(CONNECTION_STRING).then(db => {
   app.set('db', db)
