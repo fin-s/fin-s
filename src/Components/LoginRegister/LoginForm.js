@@ -12,7 +12,7 @@ class LoginForm extends Component {
       loginErrorMessage: 'Incorrect username or password.',
       authenticated: false,
       userFirstName: '',
-      isLoggedIn: true,
+      isLoggedIn: false,
     }
   }
 
