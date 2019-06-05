@@ -10,6 +10,11 @@ class Chart extends Component {
         labels: [ "jan","feb","mar","apr","may","jun","july","aug","sept","oct","nov","dec"],
         datasets:[
           {
+            label: 'other balance',
+            data:[400, 350, 200, 150, 100, 50, 0],
+            backgroundColor: 'green'
+          },
+          {
             label: 'Balance',
             data:[300, 250, 210, 200, 195, 187, 175, 130, 100, 70, 60, 50],
             backgroundColor: 'gold'
