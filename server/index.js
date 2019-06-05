@@ -67,8 +67,14 @@ app.put('/api/list/expenses', MDBCtrl.editExpense)
 //EXPECTS THE ENTIRE EXPENSE OBJECT CALLED expense
 //AND email ON REQ.BODY
 app.delete('/api/list/incomes', MDBCtrl.deleteIncome)
+//Deletes AN income from the users income array
+// needs Income._id and email on Req.body
 app.delete('/api/list/debts', MDBCtrl.deleteDebt)
+//Deletes AN income from the users income array
+// needs Debt._id and email on Req.body
 app.delete('/api/list/expenses', MDBCtrl.deleteExpense)
+//Deletes AN income from the users income array
+// needs Expense._id and email on Req.body
 
 massive(CONNECTION_STRING).then(db => {
   app.set('db', db)
