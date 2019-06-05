@@ -58,13 +58,13 @@ class RegisterForm extends Component {
 								<div>
 									<input
 										type='text'
-										name='firstname'
+										name='firstName'
 										placeholder='first name'
 										onChange={this.handleFormUpdate}
 									/>
 									<input
 										type='text'
-										name='lastname'
+										name='lastName'
 										placeholder='last name'
 										onChange={this.handleFormUpdate}
 									/>
