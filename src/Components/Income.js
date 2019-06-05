@@ -7,12 +7,12 @@ class Income extends Component {
     this.state = {
       nickname: '',
       type: null,
-      frequency: '',
-      date: null,
       amount: null,
       notes: '',
-      weekDay1: null,
-      weekDay2: null
+      frequency: '',
+      incomeWeekday: null,
+      incomeDate1: null,
+      incomeDate2: null
     }
   }
 
@@ -23,7 +23,7 @@ class Income extends Component {
   }
 
   confirmIncome = () => {
-    let {nickname, type, frequency, date, amount, notes, weekDay1, weekDay2} = this.state
+    let {nickname, type, frequency, incomeWeekday, amount, notes, incomeDate1, incomeDate2} = this.state
     let newIncome = {
       nickname,
       type,
@@ -31,9 +31,9 @@ class Income extends Component {
       notes,
       interval: {
         frequency,
-        date,
-        weekDay1,
-        weekDay2
+        incomeWeekday,
+        incomeDate1,
+        incomeDate2
       }
     }
     this.props.updateIncomes(newIncome)
@@ -55,25 +55,40 @@ class Income extends Component {
           <select onChange={this.handleChange} name = 'frequency'>
             <option value=''>-Choose an option-</option>
             <option value='monthly'>Monthly</option>
+            <option value='semi-monthly'>Semi-Monthly</option>
             <option value='bi-weekly' >Bi-weekly</option>
             <option value='weekly' >Weekly</option>
           </select>
          {this.state.frequency === 'monthly' 
-         ? <input onChange={this.handleChange} name=''/> 
+         ? <input type='number' min='1' max='28' onChange={this.handleChange} name='incomeDate1'/> 
          : this.state.frequency === 'bi-weekly' 
-         ? <div><input onChange={this.handleChange} name='weekDay1' /> <input name='weekDay2' /></div> 
+         ? <select onChange={this.handleChange} name='incomeWeekday'>
+            <option value=''>-select an option-</option>
+            <option value={0}>Sunday</option>
+            <option value={1}>Monday</option>
+            <option value={2}>Tuesday</option>
+            <option value={3}>Wednesday</option>
+            <option value={4}>Thursday</option>
+            <option value={5}>Friday</option>
+            <option value={6}>Saturday</option>
+          </select>
          : this.state.frequency === 'weekly'
-         ? <select onChange={this.handleChange} name='weekday'>
-           <option value=''>-select an option-</option>
-           <option value={0}>Sunday</option>
-           <option value={1}>Monday</option>
-           <option value={2}>Tuesday</option>
-           <option value={3}>Wednesday</option>
-           <option value={4}>Thursday</option>
-           <option value={5}>Friday</option>
-           <option value={6}>Saturday</option>
+         ? <select onChange={this.handleChange} name='incomeWeekday'>
+            <option value=''>-select an option-</option>
+            <option value={0}>Sunday</option>
+            <option value={1}>Monday</option>
+            <option value={2}>Tuesday</option>
+            <option value={3}>Wednesday</option>
+            <option value={4}>Thursday</option>
+            <option value={5}>Friday</option>
+            <option value={6}>Saturday</option>
            </select>
-         : <div>Input a frequency</div>}
+         : this.state.frequency === 'semi-monthly'
+         ? <div>
+              <input type='number' min='1' max='28' onChange={this.handleChange} name='incomeDate1'/>
+              <input type='number' min='1' max='28' onChange={this.handleChange} name='incomeDate2'/>
+            </div>
+          : <div>Input a Frequency</div> }
          <input onChange={this.handleChange} name='amount' placeholder='amount' />
          <textarea onChange={this.handleChange} columns={20} rows={5} name='notes' placeholder='notes'></textarea>
          <button onClick={this.confirmIncome}>Confirm Income</button>
