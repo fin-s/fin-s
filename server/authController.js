@@ -30,6 +30,7 @@ module.exports = {
 
 
   login: async (req, res) => {
+    console.log(res.send)
     const db = req.app.get('db')
     const { session } = req
     const { email, password } = req.body
