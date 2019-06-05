@@ -235,5 +235,50 @@ module.exports = {
           res.send(data)
         }
       })
+  },
+
+  deleteIncome: async (req, res) => {
+    const { income, email } = req.body
+    User.remove(
+      {email: email, "income._id": income._id},
+      {justOne: true}
+    )
+    .exec((err) => {
+      if (err) {
+        console.log('err in mongoDBCtrl.js/deleteIncome method', err)
+      } else {
+        res.sendStatus(200)
+      }
+    })
+  },
+
+  deleteDebt: async (req, res) => {
+    const { debt, email } = req.body
+    User.remove(
+      {email: email, "debt._id": debt._id},
+      {justOne: true}
+    )
+    .exec((err) => {
+      if (err) {
+        console.log('err in mongoDBCtrl.js/deleteDebt method', err)
+      } else {
+        res.sendStatus(200)
+      }
+    })
+  },
+
+  deleteExpense: async (req, res) => {
+    const { expense, email } = req.body
+    User.remove(
+      {email: email, "expense._id": expense._id},
+      {justOne: true}
+    )
+    .exec((err) => {
+      if (err) {
+        console.log('err in mongoDBCtrl.js/deleteExpense method', err)
+      } else {
+        res.sendStatus(200)
+      }
+    })
   }
 }
