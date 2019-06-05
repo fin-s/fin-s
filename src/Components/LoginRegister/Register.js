@@ -7,8 +7,8 @@ class RegisterForm extends Component {
 		this.state = {
 			loginEmail: '',
 			loginPassword: '',
-			firstname: '',
-			lastname: '',
+			firstName: '',
+			lastName: '',
 			email: '',
 			// username: '',
 			password: '',
@@ -28,13 +28,13 @@ class RegisterForm extends Component {
 
 	handleSignUpFormSubmit = async (e) => {
 		e.preventDefault()
-		const { password, firstname, lastname, email } = this.state
+		const { password, firstName, lastName, email } = this.state
 		try {
 			await axios.post('/auth/register', {
 				// username,
 				password,
-				firstname,
-				lastname,
+				firstName,
+				lastName,
 				email
 			})
 			// this.props.updateUsername(username)
@@ -58,13 +58,13 @@ class RegisterForm extends Component {
 								<div>
 									<input
 										type='text'
-										name='firstname'
+										name='firstName'
 										placeholder='first name'
 										onChange={this.handleFormUpdate}
 									/>
 									<input
 										type='text'
-										name='lastname'
+										name='lastName'
 										placeholder='last name'
 										onChange={this.handleFormUpdate}
 									/>
