@@ -62,6 +62,8 @@ app.put('/api/list/expenses', MDBCtrl.editExpense)
 //EXPECTS THE ENTIRE EXPENSE OBJECT CALLED 'EXPENSE'
 //AND EMAIL ON REQ.BODY
 app.delete('/api/list/incomes', MDBCtrl.deleteIncome)
+app.delete('/api/list/debts', MDBCtrl.deleteDebt)
+app.delete('/api/list/expenses', MDBCtrl.deleteExpense)
 
 massive(CONNECTION_STRING).then(db => {
   app.set('db', db)
