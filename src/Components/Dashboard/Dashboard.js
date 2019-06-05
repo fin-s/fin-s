@@ -17,11 +17,9 @@ class Dashboard extends Component {
 
   async componentDidMount() {
     try {
-      const horizonList = await axios.get('/api/list').catch(error => {
-        console.log('Error retrieving horizon events: ', error)
-        throw new Error(409)
-      })
-      this.setState({loadingSnapshot: false, snapshotList: horizonList})
+      const horizonList = await axios.post('/api/list')
+      console.log(horizonList)
+      this.setState({loadingSnapshot: false, snapshotList: horizonList.data})
     } catch (err) {
       console.log('Error encoutered retrieving horizon events: ', err)
     }
