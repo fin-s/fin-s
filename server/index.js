@@ -25,6 +25,7 @@ app.post('/api/list', MDBCtrl.fetchList)
 app.post('/api/list/incomes', MDBCtrl.addIncome)
 app.post('/api/list/debts', MDBCtrl.addDebt)
 app.post('/api/list/expenses', MDBCtrl.addExpense)
+app.put('/api/list/incomes', MDBCtrl.updateIncome)
 
 massive(CONNECTION_STRING).then(db => {
   app.set('db', db)
