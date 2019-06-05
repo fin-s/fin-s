@@ -239,15 +239,15 @@ module.exports = {
 
   deleteIncome: async (req, res) => {
     const { income, email } = req.body
-    User.remove(
-      {email: email, "income._id": income._id},
-      {justOne: true}
-    )
-    .exec((err) => {
-      if (err) {
-        console.log('err in mongoDBCtrl.js/deleteIncome method', err)
+    User.updateOne({email: email},
+    {
+      $pull: {"incomes": {_id: income._id}}
+    })
+    .exec((err, data) => {
+      if(err){
+        console.log(err)
       } else {
-        res.sendStatus(200)
+        res.send(data)
       }
     })
   },
@@ -267,18 +267,5 @@ module.exports = {
     })
   },
 
-  deleteExpense: async (req, res) => {
-    const { expense, email } = req.body
-    User.remove(
-      {email: email, "expense._id": expense._id},
-      {justOne: true}
-    )
-    .exec((err) => {
-      if (err) {
-        console.log('err in mongoDBCtrl.js/deleteExpense method', err)
-      } else {
-        res.sendStatus(200)
-      }
-    })
-  }
+  
 }

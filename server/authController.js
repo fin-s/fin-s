@@ -1,29 +1,29 @@
 const bcrypt = require('bcryptjs')
+const MDBCtrl = require('./mongoDBCtrl')
 
 module.exports = {
 
   register: async (req, res) => {
     const db = req.app.get('db')
-    const { email, firstname, lastname, password } = req.body
+    const { email, firstName, lastName, password } = req.body
     const { session } = req
     let emailTaken = await db.checkEmail({ email })
     emailTaken = +emailTaken[0].count
     if (emailTaken !== 0) {
-      return res.sendStatus(409)
+      return res.status(409).send(`Email is in use`)
     }
+
     const salt = bcrypt.genSaltSync(10)
     const hash = bcrypt.hashSync(password, salt)
-    const user_id = await db.registerUser({
-      email,
-      firstname,
-      lastname,
-      hash
-    })
+    const user = await db.registerUser([email, firstName, lastName, hash])
+
+    delete user.hash
+
     session.user = {
       email,
-      users_login_id: users_id[0]
+      userId: user[0].user_id
     }
-    res.sendStatus(200)
+    res.status(200).send(user)
   },
 
 

@@ -5,6 +5,7 @@ const mongoose = require('mongoose')
 require('dotenv').config()
 const session = require('express-session')
 const MDBCtrl = require('./mongoDBCtrl')
+const authCtrl = require('./authController')
 
 const {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET, MONGO_URI} = process.env
 
@@ -17,6 +18,8 @@ app.use(session({
     maxAge: 1000 * 60 * 60 * 4
   }
 }))
+
+app.post('/auth/register', authCtrl.register)
 
 app.post('/api/users/register', MDBCtrl.create)
 //THIS CREATES A USER OBJECT IN THE MONGODB
@@ -58,6 +61,7 @@ app.put('/api/list/expenses', MDBCtrl.editExpense)
 //EDITS AN EXISTING EXPENSE. 
 //EXPECTS THE ENTIRE EXPENSE OBJECT CALLED 'EXPENSE'
 //AND EMAIL ON REQ.BODY
+app.delete('/api/list/incomes', MDBCtrl.deleteIncome)
 
 massive(CONNECTION_STRING).then(db => {
   app.set('db', db)
