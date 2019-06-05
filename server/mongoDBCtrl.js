@@ -2,11 +2,10 @@ const User = require('./models/UserModel')
 const Income = require('./models/IncomeModel')
 const Debt = require('./models/DebtModel')
 const Expense = require('./models/ExpenseModel')
+const getList = require('./controllers/getList')
 
-const updateIncome = (body) => {
+const updateIncome = (incomes, email) => {
   const schemas = []
-  // var result = []
-  const { incomes, email } = body
 
   incomes.forEach(element => {
     let newIncome = new Income();
@@ -20,8 +19,8 @@ const updateIncome = (body) => {
 
   let result = User.findOneAndUpdate({ email: email }, {
     $set: { incomes: schemas }
-  }, {useFindAndModify: false}, function (err, data) {
-    if(err) {
+  }, { useFindAndModify: false }, function (err, data) {
+    if (err) {
       console.log(`Error in updateIncome`)
     } else {
       return data
@@ -30,10 +29,8 @@ const updateIncome = (body) => {
   return result
 }
 
-const updateDebt = (body) => {
+const updateDebt = (debts, email) => {
   const schemas = []
-  // var result = []
-  const { debts, email } = body
 
   debts.forEach(element => {
     let newDebt = new Debt();
@@ -49,8 +46,8 @@ const updateDebt = (body) => {
 
   let result = User.findOneAndUpdate({ email: email }, {
     $set: { debts: schemas }
-  }, {useFindAndModify: false}, function (err, data) {
-    if(err) {
+  }, { useFindAndModify: false }, function (err, data) {
+    if (err) {
       console.log(`Error in updateIncome`)
     } else {
       return data
@@ -59,10 +56,8 @@ const updateDebt = (body) => {
   return result
 }
 
-const updateExpense = (body) => {
+const updateExpense = (expenses, email) => {
   const schemas = []
-  // var result = []
-  const { expenses, email } = body
 
   expenses.forEach(element => {
     let newExpense = new Expense();
@@ -75,8 +70,8 @@ const updateExpense = (body) => {
 
   let result = User.findOneAndUpdate({ email: email }, {
     $set: { expenses: schemas }
-  }, {useFindAndModify: false}, function (err, data) {
-    if(err) {
+  }, { useFindAndModify: false }, function (err, data) {
+    if (err) {
       console.log(`Error in updateIncome`)
     } else {
       return data
@@ -116,12 +111,84 @@ module.exports = {
   },
 
   updateMoney: async function (req, res) {
-    const {body} = req
+    const { incomes, debts, expenses, email } = req.body
 
-    let updatedIncome = await updateIncome(body)
-    let updatedDebt = await updateDebt(body)
-    let updatedExpenses = await updateExpense(body)
+    let updatedIncome = await updateIncome(incomes, email)
+    let updatedDebt = await updateDebt(debts, email)
+    let updatedExpenses = await updateExpense(expenses, email)
 
     res.status(200).send(updatedExpenses)
+  },
+
+  fetchList: async (req, res) => {
+    const { email } = req.query
+    let users = await User.find({ email: email })
+    let user = users[0]
+
+    const { incomes, debts, expenses } = user
+
+    let list = getList.getList(incomes, debts, expenses)
+    res.status(200).send(list)
+  },
+
+  addIncome: async (req, res) => {
+    const { incomes, email } = req.body
+
+    let users = await User.find({ email: email })
+    let oldIncomes = users[0].incomes
+    let newIncomes = [...oldIncomes, ...incomes]
+
+    let update = await updateIncome(newIncomes, email)
+
+    res.status(200).send(update)
+  },
+
+  addDebt: async (req, res) => {
+    const { debts, email } = req.body
+
+    let users = await User.find({ email: email })
+    let oldDebts = users[0].debts
+    let newDebts = [...oldDebts, ...debts]
+
+    let update = await updateDebt(newDebts, email)
+
+    res.status(200).send(update)
+  },
+
+  addExpense: async (req, res) => {
+    const { expenses, email } = req.body
+
+    let users = await User.find({ email: email })
+    let oldExpenses = users[0].expenses
+    let newExpenses = [...oldExpenses, ...expenses]
+
+    let update = await updateExpense(newExpenses, email)
+
+    res.status(200).send(update)
+  },
+
+  updateIncome: async (req, res) => {
+    const { income, email } = req.body
+    User.updateOne({
+      email: email, "incomes._id": income._id
+    },
+      {
+        $set: {
+          "incomes.$.nickname": income.nickname,
+          "incomes.$.type": income.type,
+          "incomes.$.amount": income.amount,
+          "incomes.$.notes": income.notes,
+          "incomes.$.interval.frequency": income.interval.frequency,
+          "incomes.$.interval.incomeDate1": income.interval.incomeDate1,
+          "incomes.$.interval.incomeDate2": income.interval.incomeDate2,
+          "incomes.$.interval.incomeWeekday": income.interval.incomeWeekday
+        }
+      }).exec((err, data) => {
+        if (err) {
+          console.log(err)
+        } else {
+          res.send(data)
+        }
+      })
   }
 }

@@ -1,6 +1,6 @@
 const moment = require('moment-weekdaysin')
 
-export const listUpcoming = (incomes, debts, expenses) => {
+const getList = (incomes, debts, expenses) => {
   let month0 = {
     month: moment().format('MMMM'),
     dueDates: []
@@ -19,7 +19,7 @@ export const listUpcoming = (incomes, debts, expenses) => {
   incomes.forEach(element => {
     switch (element.interval.frequency) {
       case 'monthly':
-        if (element.frequency.incomeDate1 >= day) {
+        if (element.interval.incomeDate1 >= day) {
           month0.dueDates.push({
             nickname: element.nickname,
             style: 'income',
@@ -41,7 +41,7 @@ export const listUpcoming = (incomes, debts, expenses) => {
         })
         break;
       case 'semi-monthly':
-        if (element.frequency.incomeDate1 >= day) {
+        if (element.interval.incomeDate1 >= day) {
           month0.dueDates.push({
             nickname: element.nickname,
             style: 'income',
@@ -49,7 +49,7 @@ export const listUpcoming = (incomes, debts, expenses) => {
             dueDate: element.interval.incomeDate1,
           })
         }
-        if (element.incomeDate2 >= day) {
+        if (element.interval.incomeDate2 >= day) {
           month0.dueDates.push({
             nickname: element.nickname,
             style: 'income',
@@ -82,16 +82,16 @@ export const listUpcoming = (incomes, debts, expenses) => {
         break;
 
       case 'weekly':
-        let days0 = moment().month(month).weekdaysInMonth(element.frequency.incomeWeekday)
+        let days0 = moment().month(month).weekdaysInMonth(element.interval.incomeWeekday)
         let showMe0 = days0.map(day => {
           return day.date()
         })
 
-        let days1 = moment().month(month + 1).weekdaysInMonth(element.frequency.incomeWeekday)
+        let days1 = moment().month(month + 1).weekdaysInMonth(element.interval.incomeWeekday)
         let showMe1 = days1.map(day => {
           return day.date()
         })
-        let days2 = moment().month(month + 2).weekdaysInMonth(element.frequency.incomeWeekday)
+        let days2 = moment().month(month + 2).weekdaysInMonth(element.interval.incomeWeekday)
         let showMe2 = days2.map(day => {
           return day.date()
         })
@@ -134,44 +134,52 @@ export const listUpcoming = (incomes, debts, expenses) => {
 
 
   debts.forEach(element => {
+    
     let balance1
     let balance2
+    let payment
 
-    if (element.actual_payment) {
-      balance1 = element.balance - element.actual_payment
-      balance2 = element.balance - element.actual_payment * 2
+    if (element.actualPayment) {
+      balance1 = element.balance - element.actualPayment
+      balance2 = element.balance - element.actualPayment * 2
+      payment = element.actualPayment
     } else {
-      balance1 = element.balance - element.minimum_payment
-      balance2 = element.balance - element.minimum_payment * 2
+      balance1 = element.balance - element.minimumPayment
+      balance2 = element.balance - element.minimumPayment * 2
+      payment = element.minimumPayment
     }
 
-    if (element.due_date >= day) {
+    
+
+    if (element.dueDate >= day) {
       month0.dueDates.push({
         nickname: element.nickname,
         dueDate: element.dueDate,
-        amount: element.minimumPayment,
+        amount: payment,
         balance: element.balance,
         style: 'debt'
       })
     }
+
     month1.dueDates.push({
       nickname: element.nickname,
       dueDate: element.dueDate,
-      amount: element.minimumPayment,
+      amount: payment,
       balance: balance1,
       style: 'debt'
     })
+    
     month2.dueDates.push({
       name: element.nickname,
-      dueDate: element.due_date,
-      amount: element.minimum_payment,
+      dueDate: element.dueDate,
+      amount: payment,
       balance: balance2,
       style: 'debt'
     })
   })
 
   expenses.forEach(element => {
-    if (element.due_date >= day) {
+    if (element.dueDate >= day) {
       month0.dueDates.push({
         nickname: element.nickname,
         dueDate: element.dueDate,
@@ -227,4 +235,8 @@ export const listUpcoming = (incomes, debts, expenses) => {
   const schedule = [month0, month1, month2]
 
   return schedule
+}
+
+module.exports = {
+  getList
 }
