@@ -4,7 +4,9 @@ const MDBCtrl = require('./mongoDBCtrl')
 module.exports = {
 
   register: async (req, res) => {
-    const db = req.app.get('db')
+
+    try {
+      const db = req.app.get('db')
     const steps = [0,0,0,0,0,0,0,0,0,0]
     // console.log(req.body)
     const { email, firstName, lastName, password } = req.body
@@ -28,15 +30,19 @@ module.exports = {
     }
 
     MDBCtrl.createUser(req, res)
+    } catch (error) {
+      console.log(error)
+      res.status(500).send(`There was an error registering`)
+    }
   },
 
 
   login: async (req, res) => {
     const db = req.app.get('db')
-    const { session } = req
-    const { email, password } = req.body
     // console.log(email, password)
     try {
+      const { session } = req
+      const { email, password } = req.body
       let users = await db.login({ email })
       const authenticated = bcrypt.compareSync(password, users[0].hash)
       if (authenticated) {
@@ -50,7 +56,7 @@ module.exports = {
         return res.status(401).send('Email or password incorrect')
       }
     } catch (err) {
-      res.sendStatus(401)
+      res.status(500).send(`There was an error logging in`)
     }
   },
 
