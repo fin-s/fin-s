@@ -1,5 +1,4 @@
-.horizonSnapshot{
-  border: solid;
+.horizonSnapshot {
   height: 70%;
   width: 90%;
   color: $gold-color;
@@ -7,19 +6,74 @@
   margin-top: 5%;
 }
 
-.horizon{
-  
+.horizon {
+  font-size: 1.7rem;
+  text-align: center;
 }
 
-.innerInfo{
-  
+.innerInfo {
 }
 
-.title{
+.title {
   text-align: center;
   font-size: 30px;
 }
 
-.span{
+.nickname {
   color: red;
 }
+
+.month {
+  color: orange;
+}
+
+.dueDate {
+  color: blue;
+}
+
+.amount {
+  color: indigo;
+}
+
+.balance {
+  color: white;
+}
+
+.income {
+  font-size: 20px;
+  border: solid;
+  line-height: 5rem;
+  display: flex;
+  padding-bottom: 0;
+  .amount {
+    color: $green-color;
+  }
+}
+
+.debt {
+  font-size: 20px;
+  line-height: 5rem;
+  display: flex;
+  padding-bottom: 0;
+  .amount {
+    color: $red-color;
+  }
+}
+
+.expense {
+  font-size: 20px;
+  line-height: 5rem;
+  display: flex;
+  padding-bottom: 0;
+  .amount {
+    color: $red-color;
+  }
+
+}
+
+
+// .itemHolder{
+//   display: flex;
+//   justify-content: space-around;
+// }
+//element.style will be income, expense, or debt

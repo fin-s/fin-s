@@ -11,7 +11,7 @@ function HorizonSnapshot(props) {
   }
   if (props.loadingSnapshot) {
     return (
-      <div className='horizon'>
+      <div>
         {/* <h3>Horizon Snapshot</h3>
         <h4>Loading...</h4> */}
         <Lottie options={defaultOptions} />
@@ -21,23 +21,23 @@ function HorizonSnapshot(props) {
 
     return (
       <div>
-        <h3>Horizon Snapshot</h3>
+        <h3 className ='horizon'>horizon snapshot</h3>
         <ul>
           {props.snapshotList.map(element => {
             if (element.balance) {
               return <li className={element.style}>
-                <span>{element.nickname}</span>
-                <span>{element.month}</span>
-                <span>{element.dueDate}</span>
-                <span>${element.amount}</span>
-                <span>Balance: ${element.balance}</span>
+                <span className='nickname'>{element.nickname}</span>
+                <span className='month'>{element.month}</span>
+                <span className='dueDate'>{element.dueDate}</span>
+                <span className='amount'>${element.amount}</span>
+                <span className='balance'>Balance: ${element.balance}</span>
               </li>
             } else {
               return <li className={element.style}>
-                <span>{element.nickname}</span>
-                <span>{element.month}</span>
-                <span>{element.dueDate}</span>
-                <span>${element.amount}</span>
+                <span className='nickname'>{element.nickname}</span>
+                <span className='month'>{element.month} </span>
+                <span className='dueDate'>{element.dueDate}</span>
+                <span className='amount'>${element.amount}</span>
               </li>
             }
           })}
