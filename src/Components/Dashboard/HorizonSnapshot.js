@@ -35,13 +35,6 @@ function HorizonSnapshot(props){
       return (
         <div>
           <h3>Horizon Snapshot</h3>
-          {/* {props.snapshotList.map((ele) => {
-            return (
-              <section>
-                <h4>{ele.nickname} Balance Change: {ele.amount} on: {ele.dueDate} </h4>
-              </section>
-            )
-          })} */}
           <ul>{showList.map(element => {
           return <li>{element}</li>
           })}</ul>
