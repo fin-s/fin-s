@@ -46,7 +46,7 @@ class Income extends Component {
           <h1>Enter Income</h1>
         </div>
         <div>
-          <input placeholder='Account Name' onChange={this.handleChange} name='nickname' />
+          <input placeholder='Income Name' onChange={this.handleChange} name='nickname' />
           <select onChange={this.handleChange} name='type'>
             <option value=''>-Select an option-</option>
             <option value='fixed'>Fixed</option>
