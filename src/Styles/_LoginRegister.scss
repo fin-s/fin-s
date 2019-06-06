@@ -10,9 +10,9 @@
 
 .main{
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   // border: solid;
-  flex-direction: column;
   font-size: 40px;
 }
 
@@ -95,3 +95,12 @@ select:-webkit-autofill:focus {
   font-family: 'Raleway', sans-serif;
 }
 
+
+  .appInfo{
+    width: 500px;
+    text-align: center;
+    font-size: 30px;
+    margin-left: 15%;
+    margin-top: 10%;
+    margin-bottom: -20%;
+  }

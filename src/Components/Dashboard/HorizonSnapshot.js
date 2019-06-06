@@ -11,7 +11,7 @@ function HorizonSnapshot(props) {
   }
   if (props.loadingSnapshot) {
     return (
-      <div>
+      <div className='horizon'>
         {/* <h3>Horizon Snapshot</h3>
         <h4>Loading...</h4> */}
         <Lottie options={defaultOptions} />
