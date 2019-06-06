@@ -5,6 +5,7 @@ module.exports = {
 
   register: async (req, res) => {
     const db = req.app.get('db')
+    console.log(req.body)
     const { email, firstName, lastName, password } = req.body
     const { session } = req
     let emailTaken = await db.checkEmail({ email })
@@ -21,7 +22,8 @@ module.exports = {
 
     session.user = {
       email,
-      userId: user[0].users_id
+      userId: user[0].users_id,
+      authenticated: true
     }
 
     MDBCtrl.createUser(req, res)
@@ -31,15 +33,20 @@ module.exports = {
   login: async (req, res) => {
     const db = req.app.get('db')
     const { session } = req
-    const { loginEmail: email } = req.body
+    const { email, password } = req.body
+    console.log(email, password)
     try {
       let users = await db.login({ email })
-      session.user = users[0]
-      const authenticated = bcrypt.compareSync(req.body.loginPassword, users[0].password)
+      const authenticated = bcrypt.compareSync(password, users[0].hash)
       if (authenticated) {
-        res.status(200).send({ authenticated, users_id: users[0].login_id })
+        session.user = {
+          email,
+          userId: users[0].users_login_id,
+          authenticated: true
+        }
+        MDBCtrl.get(req,res)
       } else {
-        throw new Error(401)
+        return res.status(401).send('Email or password incorrect')
       }
     } catch (err) {
       res.sendStatus(401)
@@ -48,7 +55,7 @@ module.exports = {
 
 
   logout: (req, res) => {
-    req.session.destroy() 
+    req.session.destroy()
     res.sendStatus(200)
   },
 

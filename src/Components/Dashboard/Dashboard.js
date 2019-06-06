@@ -4,16 +4,30 @@ import HorizonSnapshot from './HorizonSnapshot'
 import Calendar from './Calendar'
 import NavBar from '../NavBar'
 import Chart from './Chart'
+import axios from 'axios'
 
 class Dashboard extends Component {
   constructor() {
     super()
     this.state = {
-
+      loadingSnapshot: true,
+      snapshotList: []
     }
   }
 
+  async componentDidMount() {
+    try {
+      const horizonList = await axios.post('/api/list')
+      console.log(horizonList)
+      this.setState({loadingSnapshot: false, snapshotList: horizonList.data})
+    } catch (err) {
+      console.log('Error encoutered retrieving horizon events: ', err)
+    }
+  }
+  
+
   render() {
+    const {loadingSnapshot, snapshotList} = this.state
     return (
       <>
         <NavBar />
@@ -30,7 +44,7 @@ class Dashboard extends Component {
               <NextSteps />
             </div>
             <div className='horizonSnapshot'>
-              <HorizonSnapshot />
+              <HorizonSnapshot loadingSnapshot={loadingSnapshot} snapshotList={snapshotList} />
             </div>
           </div>
         </div>

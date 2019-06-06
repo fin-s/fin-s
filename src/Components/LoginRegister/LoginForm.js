@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import {withRouter} from 'react-router-dom'
 
 class LoginForm extends Component {
   constructor() {
@@ -11,7 +12,7 @@ class LoginForm extends Component {
       loginErrorMessage: 'Incorrect username or password.',
       authenticated: false,
       userFirstName: '',
-      isLoggedIn: true,
+      isLoggedIn: false,
     }
   }
 
@@ -24,16 +25,14 @@ class LoginForm extends Component {
 
   handleLoginFormSubmit = async (e) => {
     e.preventDefault()
-    const { loginEmail, loginPassword } = this.state
+    const { loginEmail: email, loginPassword: password } = this.state
     try {
-      const res = await axios.post('/auth/login', { loginEmail, loginPassword })
-        .then(
-          this.setState({
-            authenticated: true,
-            isLoggedIn: true
-          })
-        )
-      this.getUserFirstName()
+      const res = await axios.post('/auth/login', { email, password })
+      console.log(res)
+      this.setState({
+        isLoggedIn: true
+      })
+      this.props.history.push('/dashboard')
     } catch (err) {
       this.setState({ loginEmail: '', loginPassword: '', loginError: true })
     }
@@ -111,4 +110,4 @@ class LoginForm extends Component {
 }
 
 
-export default LoginForm
+export default withRouter(LoginForm)
