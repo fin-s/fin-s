@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Line } from "react-chartjs-2";
+import axios from "axios";
 
 class Chart extends Component {
   constructor(props) {
@@ -24,8 +25,17 @@ class Chart extends Component {
             backgroundColor: 'rgba(223, 207, 32, 0.2)'
         }
       ],
-      }
+      },
+      userData: {}
     };
+  }
+
+  async componentDidMount() {
+    let user = await axios.get('/api/users')
+    this.setState({
+      userData: user.data.debts
+    })
+    // console.log(`USER DATA IS: ${user}`)
   }
 
   render() {

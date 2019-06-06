@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import {withRouter} from 'react-router-dom'
 
 class Debts extends Component {
   constructor(){
@@ -51,9 +52,10 @@ class Debts extends Component {
             <span key={index}>{current.nickname} {current.balance}</span>
           )
         })}
+        <span onClick={()=>this.props.history.push('/dashboard')}>Skip for now</span>
       </div>
     )
   }
 }
 
-export default Debts
+export default withRouter(Debts)

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import {withRouter} from 'react-router-dom'
 
 class RegisterForm extends Component {
 	constructor() {
@@ -35,6 +36,7 @@ class RegisterForm extends Component {
 				lastName,
 				email
 			})
+			this.props.history.push('/wizard')
 		} catch (err) {
 			this.setState({ registerError: true })
 		}
@@ -43,6 +45,10 @@ class RegisterForm extends Component {
 	render() {
 		return (
 			<>
+
+          <p className ='appInfo'>
+						Welcome to fin-s. 
+							<p>fin-s makes it easy to keep track, and stay on top of your monthly expenses.</p> Our goal is unlike other finance tracking resources, fin-s is geared around guiding users to financial stability by building a roadmap of how to eliminate your debts.</p>
 				<main className='main'>
 					<h2 className='registerText'>
 						need an account? <p>sign up here</p></h2>
@@ -110,4 +116,4 @@ class RegisterForm extends Component {
 // )(withRouter(RegisterForm))
 
 
-export default RegisterForm
+export default withRouter(RegisterForm)
