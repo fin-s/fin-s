@@ -35,7 +35,7 @@ class Chart extends Component {
     this.setState({
       userData: user.data.debts
     })
-    console.log(`USER DATA IS: ${user}`)
+    // console.log(`USER DATA IS: ${user}`)
   }
 
   render() {
