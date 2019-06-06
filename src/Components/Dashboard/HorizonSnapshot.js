@@ -23,9 +23,9 @@ function HorizonSnapshot(props) {
       <div>
         <h3 className ='horizon'>horizon snapshot</h3>
         <ul>
-          {props.snapshotList.map(element => {
+          {props.snapshotList.map((element, index) => {
             if (element.balance) {
-              return <li className={element.style}>
+              return <li key={`${index}${element._id}`} _id={element._id} className={element.style}>
                 <span className='nickname'>{element.nickname}</span>
                 <span className='month'>{element.month}</span>
                 <span className='dueDate'>{element.dueDate}</span>
@@ -33,7 +33,7 @@ function HorizonSnapshot(props) {
                 <span className='balance'>Balance: ${element.balance}</span>
               </li>
             } else {
-              return <li className={element.style}>
+              return <li key={`${index}${element._id}`} _id={element._id} className={element.style}>
                 <span className='nickname'>{element.nickname}</span>
                 <span className='month'>{element.month} </span>
                 <span className='dueDate'>{element.dueDate}</span>
