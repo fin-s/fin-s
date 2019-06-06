@@ -6,18 +6,25 @@ class NextSteps extends Component {
     super()
 
     this.state= {
-      stepsCompleted: []
+      stepsCompleted: [],
+      displayArray: []
     }
   }
 
-  componentDidMount() {
-    axios.get('/api/todos')
+  async componentDidMount() {
+    await axios.get('/api/todos')
     .then(res => {
       this.setState({
         stepsCompleted: res.data
       })
     })
     .catch(() => console.log('You have an error in your CDM in NextSteps.js'))
+
+    this.state.stepsCompleted.forEach((element, index) => {
+      if (element === 0 && this.state.displayArray.length < 3) {
+        this.state.displayArray.push(index)
+      }
+    })
   }
 
   async componentWillUnmount() {
