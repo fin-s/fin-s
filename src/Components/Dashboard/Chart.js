@@ -1,10 +1,6 @@
 import React, { Component } from "react";
 import { Line } from "react-chartjs-2";
-<<<<<<< HEAD
-import axios from 'axios'
-=======
 import axios from "axios";
->>>>>>> master
 
 class Chart extends Component {
   constructor(props) {
@@ -29,18 +25,59 @@ class Chart extends Component {
             backgroundColor: 'rgba(223, 207, 32, 0.2)'
         }
       ],
-      },
-      userData: {}
+      }
     };
   }
 
   async componentDidMount() {
     let user = await axios.get('/api/users')
-    this.setState({
-      userData: user.data.debts
+    let userDataSets = []
+    user.data.debts.forEach((current) => {
+      let {nickname, minimumPayment, interestRate, balance, actualPayment} = current
+      let dataSet = {
+        label: nickname,
+        fill: true,
+        data:this.getDebtData(interestRate, balance, minimumPayment, actualPayment),
+        backgroundColor: 'rgba(41, 223, 32, 0.2)',
+        borderColor:'rgb(41, 223, 32)'
+      }
+      userDataSets.push(dataSet)
     })
-    console.log(`USER DATA IS: ${user}`)
+    console.log(userDataSets)
+    this.setState({
+      chartData: {
+        labels: [ "jan","feb","mar","apr","may","jun","july","aug","sept","oct","nov","dec"],
+        datasets: userDataSets
+      }
+    })
   }
+// debt object example
+//   actualPayment:
+// 500
+// balance:
+// 3000
+// dueDate:
+// 10
+// interestRate:
+// 1529
+// minimumPayment:
+// 100
+// nickname:
+// "Credit card 2"
+
+getDebtData = (interestRate, balance, minimumPayment, actualPayment) => {
+  let payments = []
+while(balance > 0){
+  let interestPayment = (interestRate / 120000) * balance
+  let principlePayment = actualPayment -interestPayment
+  balance -= principlePayment
+  if (balance < 0){
+    balance = 0
+  }
+payments.push(Math.floor(balance))
+}
+return payments
+}
 
   render() {
     return (<div className='chartDiv'>
