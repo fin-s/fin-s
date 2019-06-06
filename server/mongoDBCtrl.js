@@ -100,7 +100,7 @@ module.exports = {
   },
 
   get: function (req, res) {
-    User.find({ email: req.body.email })
+    User.find({ email: req.session.user.email })
       .exec(function (err, data) {
         if (err) {
           res.error(500).send(err)
