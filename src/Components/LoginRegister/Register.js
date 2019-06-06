@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import {withRouter} from 'react-router-dom'
 
 class RegisterForm extends Component {
 	constructor() {
@@ -35,6 +36,7 @@ class RegisterForm extends Component {
 				lastName,
 				email
 			})
+			this.props.history.push('/wizard')
 		} catch (err) {
 			this.setState({ registerError: true })
 		}
@@ -114,4 +116,4 @@ class RegisterForm extends Component {
 // )(withRouter(RegisterForm))
 
 
-export default RegisterForm
+export default withRouter(RegisterForm)
