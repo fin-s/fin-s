@@ -7,7 +7,7 @@ module.exports = {
 
     try {
       const db = req.app.get('db')
-    const steps = [0,0,0,0,0,0,0,0,0,0]
+    const steps = [0,0,0,0,0,0,0,0,0,0,0,0]
     // console.log(req.body)
     const { email, firstName, lastName, password } = req.body
     const { session } = req
