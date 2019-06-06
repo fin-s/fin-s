@@ -170,7 +170,7 @@ const getList = (incomes, debts, expenses) => {
     })
 
     month2.dueDates.push({
-      name: element.nickname,
+      nickname: element.nickname,
       dueDate: element.dueDate,
       amount: payment,
       balance: balance2,
