@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {withRouter} from 'react-router-dom'
 
 
 class Income extends Component {
@@ -102,9 +103,10 @@ class Income extends Component {
             )
           })}
         </div>
+        <span onClick={()=>this.props.history.push('/dashboard')}>Skip for now</span>
       </div>
     )
   }
 }
 
-export default Income
+export default withRouter(Income)
