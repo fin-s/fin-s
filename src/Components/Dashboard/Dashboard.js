@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import NextSteps from './NextSteps'
 import HorizonSnapshot from './HorizonSnapshot'
+import {withRouter} from 'react-router-dom'
 import Calendar from './Calendar'
 import NavBar from '../NavBar'
 import Chart from './Chart'
@@ -18,10 +19,14 @@ class Dashboard extends Component {
   async componentDidMount() {
     try {
       const horizonList = await axios.post('/api/list')
-      console.log(horizonList)
+      if(horizonList.data === 'User not logged in'){
+        // console.log(horizonList.data)
+        throw new Error
+      }
       this.setState({loadingSnapshot: false, snapshotList: horizonList.data})
     } catch (err) {
-      console.log('Error encoutered retrieving horizon events: ', err)
+      console.log('Error encountered retrieving horizon events: ', err)
+      this.props.history.push('/')
     }
   }
   

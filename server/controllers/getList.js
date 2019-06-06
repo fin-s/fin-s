@@ -25,6 +25,7 @@ const getList = (incomes, debts, expenses) => {
             style: 'income',
             amount: element.amount,
             dueDate: element.interval.incomeDate1,
+            _id: element._id
           })
         }
         month1.dueDates.push({
@@ -32,12 +33,14 @@ const getList = (incomes, debts, expenses) => {
           style: 'income',
           amount: element.amount,
           dueDate: element.interval.incomeDate1,
+          _id: element._id
         })
         month2.dueDates.push({
           nickname: element.nickname,
           style: 'income',
           amount: element.amount,
           dueDate: element.interval.incomeDate1,
+          _id: element._id
         })
         break;
       case 'semi-monthly':
@@ -47,6 +50,7 @@ const getList = (incomes, debts, expenses) => {
             style: 'income',
             amount: element.amount,
             dueDate: element.interval.incomeDate1,
+            _id: element._id
           })
         }
         if (element.interval.incomeDate2 >= day) {
@@ -55,6 +59,7 @@ const getList = (incomes, debts, expenses) => {
             style: 'income',
             amount: element.amount,
             dueDate: element.interval.incomeDate2,
+            _id: element._id
           })
         }
         month1.dueDates.push({
@@ -62,22 +67,26 @@ const getList = (incomes, debts, expenses) => {
           style: 'income',
           amount: element.amount,
           dueDate: element.interval.incomeDate1,
+          _id: element._id
         }, {
             nickname: element.nickname,
             style: 'income',
             amount: element.amount,
             dueDate: element.interval.incomeDate2,
+            _id: element._id
           })
         month2.dueDates.push({
           nickname: element.nickname,
           style: 'income',
           amount: element.amount,
           dueDate: element.interval.incomeDate1,
+          _id: element._id
         }, {
             nickname: element.nickname,
             style: 'income',
             amount: element.amount,
             dueDate: element.interval.incomeDate2,
+            _id: element._id
           })
         break;
 
@@ -104,6 +113,7 @@ const getList = (incomes, debts, expenses) => {
               style: 'income',
               amount: element.amount,
               dueDate: pay,
+              _id: element._id
             })
         })
 
@@ -113,6 +123,7 @@ const getList = (incomes, debts, expenses) => {
             style: 'income',
             amount: element.amount,
             dueDate: pay,
+            _id: element._id
           })
         })
 
@@ -122,6 +133,7 @@ const getList = (incomes, debts, expenses) => {
             style: 'income',
             amount: element.amount,
             dueDate: pay,
+            _id: element._id
           })
         })
 
@@ -134,7 +146,7 @@ const getList = (incomes, debts, expenses) => {
 
 
   debts.forEach(element => {
-    
+
     let balance1
     let balance2
     let payment
@@ -149,7 +161,7 @@ const getList = (incomes, debts, expenses) => {
       payment = element.minimumPayment
     }
 
-    
+
 
     if (element.dueDate >= day) {
       month0.dueDates.push({
@@ -157,7 +169,8 @@ const getList = (incomes, debts, expenses) => {
         dueDate: element.dueDate,
         amount: payment,
         balance: element.balance,
-        style: 'debt'
+        style: 'debt',
+        _id: element._id
       })
     }
 
@@ -166,15 +179,17 @@ const getList = (incomes, debts, expenses) => {
       dueDate: element.dueDate,
       amount: payment,
       balance: balance1,
-      style: 'debt'
+      style: 'debt',
+      _id: element._id
     })
-    
+
     month2.dueDates.push({
-      name: element.nickname,
+      nickname: element.nickname,
       dueDate: element.dueDate,
       amount: payment,
       balance: balance2,
-      style: 'debt'
+      style: 'debt',
+      _id: element._id
     })
   })
 
@@ -184,22 +199,27 @@ const getList = (incomes, debts, expenses) => {
         nickname: element.nickname,
         dueDate: element.dueDate,
         amount: element.amount,
-        style: 'expense'
+        style: 'expense',
+        _id: element._id
       })
     }
     month1.dueDates.push({
       nickname: element.nickname,
       dueDate: element.dueDate,
       amount: element.amount,
-      style: 'expense'
+      style: 'expense',
+      _id: element._id
     })
     month2.dueDates.push({
       nickname: element.nickname,
       dueDate: element.dueDate,
       amount: element.amount,
-      style: 'expense'
+      style: 'expense',
+      _id: element._id
     })
   })
+
+  const schedule = []
 
   month0.dueDates = month0.dueDates.sort((a, b) => {
     const dateA = a.dueDate
@@ -208,6 +228,31 @@ const getList = (incomes, debts, expenses) => {
       return 1
     } else {
       return -1
+    }
+  }).forEach(element => {
+    if (element.balance) {
+      schedule.push(
+        {
+          month: month0.month,
+          nickname: element.nickname,
+          dueDate: element.dueDate,
+          amount: element.amount,
+          balance: element.balance,
+          style: element.style,
+          _id: element._id
+        }
+      )
+    } else {
+      schedule.push(
+        {
+          month: month0.month,
+          nickname: element.nickname,
+          dueDate: element.dueDate,
+          amount: element.amount,
+          style: element.style,
+          _id: element._id
+        }
+      )
     }
   })
 
@@ -219,6 +264,31 @@ const getList = (incomes, debts, expenses) => {
     } else {
       return -1
     }
+  }).forEach(element => {
+    if (element.balance) {
+      schedule.push(
+        {
+          month: month1.month,
+          nickname: element.nickname,
+          dueDate: element.dueDate,
+          amount: element.amount,
+          balance: element.balance,
+          style: element.style,
+          _id: element._id
+        }
+      )
+    } else {
+      schedule.push(
+        {
+          month: month1.month,
+          nickname: element.nickname,
+          dueDate: element.dueDate,
+          amount: element.amount,
+          style: element.style,
+          _id: element._id
+        }
+      )
+    }
   })
 
   month2.dueDates = month2.dueDates.sort((a, b) => {
@@ -229,10 +299,33 @@ const getList = (incomes, debts, expenses) => {
     } else {
       return -1
     }
+  }).forEach(element => {
+    if (element.balance) {
+      schedule.push(
+        {
+          month: month2.month,
+          nickname: element.nickname,
+          dueDate: element.dueDate,
+          amount: element.amount,
+          balance: element.balance,
+          style: element.style,
+          _id: element._id
+        }
+      )
+    } else {
+      schedule.push(
+        {
+          month: month2.month,
+          nickname: element.nickname,
+          dueDate: element.dueDate,
+          amount: element.amount,
+          style: element.style,
+          _id: element._id
+        }
+      )
+    }
   })
 
-
-  const schedule = [month0, month1, month2]
 
   return schedule
 }

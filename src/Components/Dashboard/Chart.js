@@ -50,6 +50,7 @@ class Chart extends Component {
         datasets: userDataSets
       }
     })
+    // console.log(`USER DATA IS: ${user}`)
   }
 // debt object example
 //   actualPayment:
