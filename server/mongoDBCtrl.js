@@ -82,216 +82,296 @@ const updateExpense = (expenses, email) => {
 
 module.exports = {
   createUser: function (req, res) {
-    let newUser = new User();
-    newUser.firstName = req.body.firstName;
-    newUser.lastName = req.body.lastName;
-    newUser.email = req.body.email;
-    newUser.incomes = [];
-    newUser.debts = [];
-    newUser.expenses = [];
-    newUser.save(function (err, data) {
-      if (err) {
-        console.log(`you have an error in mdbCtrl create method`, err)
-        throw err;
-      } else {
-        res.send(data)
-      }
-    })
+
+    try {
+      let newUser = new User();
+      newUser.firstName = req.body.firstName;
+      newUser.lastName = req.body.lastName;
+      newUser.email = req.body.email;
+      newUser.incomes = [];
+      newUser.debts = [];
+      newUser.expenses = [];
+      newUser.save(function (err, data) {
+        if (err) {
+          console.log(`you have an error in mdbCtrl create method`, err)
+          throw err;
+        } else {
+          res.send(data)
+        }
+      })
+    } catch (error) {
+      console.log(error)
+      res.status(500).send(`Error creating user`)
+    }
+
+
   },
 
   get: function (req, res) {
-    User.find({ email: req.session.user.email })
-      .exec(function (err, data) {
-        if (err) {
-          res.error(500).send(err)
-        } else {
-          res.send(data[0])
-        }
-      })
+
+    try {
+      User.find({ email: req.session.user.email })
+        .exec(function (err, data) {
+          if (err) {
+            res.error(500).send(err)
+          } else {
+            res.send(data[0])
+          }
+        })
+    } catch (error) {
+      console.log(error)
+      res.status(500).send(`Error fetching user data`)
+    }
   },
 
   updateMoney: async function (req, res) {
-    const { incomes, debts, expenses } = req.body
-    const {email} = req.session.user
 
-    let updatedIncome = await updateIncome(incomes, email)
-    let updatedDebt = await updateDebt(debts, email)
-    let updatedExpenses = await updateExpense(expenses, email)
+    try {
+      const { incomes, debts, expenses } = req.body
+      const { email } = req.session.user
 
-    res.status(200).send(updatedExpenses)
+      let updatedIncome = await updateIncome(incomes, email)
+      let updatedDebt = await updateDebt(debts, email)
+      let updatedExpenses = await updateExpense(expenses, email)
+
+      res.status(200).send(updatedExpenses)
+    } catch (error) {
+      console.log(error)
+      res.status(500).send(`Error updating user events`)
+    }
   },
 
   fetchList: async (req, res) => {
-    const { email } = req.session.user
-    let users = await User.find({ email: email })
-    let user = users[0]
 
-    const { incomes, debts, expenses } = user
-    // console.log(incomes)
+    try {
+      const { email } = req.session.user
+      let users = await User.find({ email: email })
+      let user = users[0]
 
-    let list = getList.getList(incomes, debts, expenses)
-    res.status(200).send(list)
+      const { incomes, debts, expenses } = user
+      // console.log(incomes)
+
+      let list = getList.getList(incomes, debts, expenses)
+      res.status(200).send(list)
+    } catch (error) {
+      console.log(error)
+      res.status(500).send(`There was an error fetching the list`)
+    }
   },
 
   addIncome: async (req, res) => {
-    const { incomes } = req.body
-    const {email } = req.session.user
 
-    let users = await User.find({ email: email })
-    let oldIncomes = users[0].incomes
-    let newIncomes = [...oldIncomes, ...incomes]
+    try {
+      const { incomes } = req.body
+      const { email } = req.session.user
 
-    let update = await updateIncome(newIncomes, email)
+      let users = await User.find({ email: email })
+      let oldIncomes = users[0].incomes
+      let newIncomes = [...oldIncomes, ...incomes]
 
-    res.status(200).send(update)
+      let update = await updateIncome(newIncomes, email)
+
+      res.status(200).send(update)
+    } catch (error) {
+      console.log(error)
+      res.status(500).send(`There was an error adding income`)
+    }
   },
 
   addDebt: async (req, res) => {
-    const { debts } = req.body
-    const {email } = req.session.user
 
-    let users = await User.find({ email: email })
-    let oldDebts = users[0].debts
-    let newDebts = [...oldDebts, ...debts]
+    try {
+      const { debts } = req.body
+      const { email } = req.session.user
 
-    let update = await updateDebt(newDebts, email)
+      let users = await User.find({ email: email })
+      let oldDebts = users[0].debts
+      let newDebts = [...oldDebts, ...debts]
 
-    res.status(200).send(update)
+      let update = await updateDebt(newDebts, email)
+
+      res.status(200).send(update)
+    } catch (error) {
+      console.log(error)
+      res.status(500).send(`There was an error adding debt`)
+    }
   },
 
   addExpense: async (req, res) => {
-    const { expenses } = req.body
-    const {email} = req.session.user
 
-    let users = await User.find({ email: email })
-    let oldExpenses = users[0].expenses
-    let newExpenses = [...oldExpenses, ...expenses]
+    try {
+      const { expenses } = req.body
+      const { email } = req.session.user
 
-    let update = await updateExpense(newExpenses, email)
+      let users = await User.find({ email: email })
+      let oldExpenses = users[0].expenses
+      let newExpenses = [...oldExpenses, ...expenses]
 
-    res.status(200).send(update)
+      let update = await updateExpense(newExpenses, email)
+
+      res.status(200).send(update)
+    } catch (error) {
+      console.log(error)
+      res.status(500).send(`There was an error adding expense`)
+    }
   },
 
   editIncome: async (req, res) => {
-    const { income } = req.body
-    const {email} = req.session.user
-    User.updateOne({
-      email: email, "incomes._id": income._id
-    },
-      {
-        $set: {
-          "incomes.$.nickname": income.nickname,
-          "incomes.$.type": income.type,
-          "incomes.$.amount": income.amount,
-          "incomes.$.notes": income.notes,
-          "incomes.$.interval.frequency": income.interval.frequency,
-          "incomes.$.interval.incomeDate1": income.interval.incomeDate1,
-          "incomes.$.interval.incomeDate2": income.interval.incomeDate2,
-          "incomes.$.interval.incomeWeekday": income.interval.incomeWeekday
-        }
-      }).exec((err, data) => {
-        if (err) {
-          console.log(err)
-        } else {
-          res.send(data)
-        }
-      })
+
+    try {
+      const { income } = req.body
+      const { email } = req.session.user
+      User.updateOne({
+        email: email, "incomes._id": income._id
+      },
+        {
+          $set: {
+            "incomes.$.nickname": income.nickname,
+            "incomes.$.type": income.type,
+            "incomes.$.amount": income.amount,
+            "incomes.$.notes": income.notes,
+            "incomes.$.interval.frequency": income.interval.frequency,
+            "incomes.$.interval.incomeDate1": income.interval.incomeDate1,
+            "incomes.$.interval.incomeDate2": income.interval.incomeDate2,
+            "incomes.$.interval.incomeWeekday": income.interval.incomeWeekday
+          }
+        }).exec((err, data) => {
+          if (err) {
+            console.log(err)
+          } else {
+            res.send(data)
+          }
+        })
+    } catch (error) {
+      console.log(error)
+      res.status(500).send(`There was an error editing income`)
+    }
   },
 
   editDebt: async (req, res) => {
-    const { debt } = req.body
-    const {email} = req.session.user
-    User.updateOne({
-      email: email, "debts._id": debt._id
-    },
-      {
-        $set: {
-          "debts.$.nickname": debt.nickname,
-          "debts.$.balance": debt.balance,
-          "debts.$.interestRate": debt.interestRate,
-          "debts.$.dueDate": debt.dueDate,
-          "debts.$.minimumPayment": debt.minimumPayment,
-          "debts.$.actualPayment": debt.actualPayment,
-          "debts.$.notes": debt.notes
-        }
-      }).exec((err, data) => {
-        if (err) {
-          console.log(err)
-        } else {
-          res.send(data)
-        }
-      })
+
+    try {
+      const { debt } = req.body
+      const { email } = req.session.user
+      User.updateOne({
+        email: email, "debts._id": debt._id
+      },
+        {
+          $set: {
+            "debts.$.nickname": debt.nickname,
+            "debts.$.balance": debt.balance,
+            "debts.$.interestRate": debt.interestRate,
+            "debts.$.dueDate": debt.dueDate,
+            "debts.$.minimumPayment": debt.minimumPayment,
+            "debts.$.actualPayment": debt.actualPayment,
+            "debts.$.notes": debt.notes
+          }
+        }).exec((err, data) => {
+          if (err) {
+            console.log(err)
+          } else {
+            res.send(data)
+          }
+        })
+    } catch (error) {
+      console.log(error)
+      res.status(500).send(`There was an error editing debt`)
+    }
   },
 
   editExpense: async (req, res) => {
-    const { expense } = req.body
-    const {email} = req.session.user
-    User.updateOne({
-      email: email, "expenses._id": expense._id
-    },
-      {
-        $set: {
-          "expenses.$.nickname": expense.nickname,
-          "expenses.$.amount": expense.amount,
-          "expenses.$.dueDate": expense.dueDate,
-          "expenses.$.notes": expense.notes
-        }
-      }).exec((err, data) => {
-        if (err) {
-          console.log(err)
-        } else {
-          res.send(data)
-        }
-      })
+
+    try {
+      const { expense } = req.body
+      const { email } = req.session.user
+      User.updateOne({
+        email: email, "expenses._id": expense._id
+      },
+        {
+          $set: {
+            "expenses.$.nickname": expense.nickname,
+            "expenses.$.amount": expense.amount,
+            "expenses.$.dueDate": expense.dueDate,
+            "expenses.$.notes": expense.notes
+          }
+        }).exec((err, data) => {
+          if (err) {
+            console.log(err)
+          } else {
+            res.send(data)
+          }
+        })
+    } catch (error) {
+      console.log(error)
+      res.status(500).send(`There was an error editing expenses`)
+    }
   },
 
   deleteIncome: (req, res) => {
-    const { income } = req.body
-    const {email } = req.session.user
-    User.updateOne({email: email},
-    {
-      $pull: {"incomes": {_id: income._id}}
-    })
-    .exec((err, data) => {
-      if(err){
-        console.log(err)
-      } else {
-        res.send(data)
-      }
-    })
+
+    try {
+      const { income } = req.body
+      const { email } = req.session.user
+      User.updateOne({ email: email },
+        {
+          $pull: { "incomes": { _id: income._id } }
+        })
+        .exec((err, data) => {
+          if (err) {
+            console.log(err)
+          } else {
+            res.send(data)
+          }
+        })
+    } catch (error) {
+      console.log(error)
+      res.status(500).send(`There was an error deleting income`)
+    }
   },
 
   deleteDebt: (req, res) => {
-    const { debt } = req.body
-    const {email} = req.session.user
-    User.updateOne({email: email},
-    {
-      $pull: {"debts": {_id: debt._id}}
-    })
-    .exec((err, data) => {
-      if(err){
-        console.log(err)
-      } else {
-        res.send(data)
-      }
-    })
+
+    try {
+      const { debt } = req.body
+      const { email } = req.session.user
+      User.updateOne({ email: email },
+        {
+          $pull: { "debts": { _id: debt._id } }
+        })
+        .exec((err, data) => {
+          if (err) {
+            console.log(err)
+          } else {
+            res.send(data)
+          }
+        })
+    } catch (error) {
+      console.log(error)
+      res.status(500).send(`There was an error editing debt`)
+    }
   },
 
   deleteExpense: (req, res) => {
-    const { expense } = req.body
-    const {email} = req.session.user
-    User.updateOne({email: email},
-    {
-      $pull: {"expenses": {_id: expense._id}}
-    })
-    .exec((err, data) => {
-      if(err){
-        console.log(err)
-      } else {
-        res.send(data)
-      }
-    })
+
+    try {
+      const { expense } = req.body
+      const { email } = req.session.user
+      User.updateOne({ email: email },
+        {
+          $pull: { "expenses": { _id: expense._id } }
+        })
+        .exec((err, data) => {
+          if (err) {
+            console.log(err)
+          } else {
+            res.send(data)
+          }
+        })
+    } catch (error) {
+      console.log(error)
+      res.status(500).send(`There was an error editing expense`)
+    }
   }
 
-  
+
 }
