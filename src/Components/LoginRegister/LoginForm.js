@@ -30,7 +30,7 @@ class LoginForm extends Component {
       const res = await axios.post('/auth/login', { email, password })
       console.log(res)
       this.setState({
-        isLoggedIn: true
+        isLoggedIn: false
       })
       this.props.history.push('/dashboard')
     } catch (err) {
