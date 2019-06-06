@@ -30,6 +30,7 @@ function HorizonSnapshot(props) {
                 <span>{element.month}</span>
                 <span>{element.dueDate}</span>
                 <span>${element.amount}</span>
+                <span>Balance: ${element.balance}</span>
               </li>
             } else {
               return <li className={element.style}>
@@ -37,7 +38,6 @@ function HorizonSnapshot(props) {
                 <span>{element.month}</span>
                 <span>{element.dueDate}</span>
                 <span>${element.amount}</span>
-                <span>Balance: ${element.balance}</span>
               </li>
             }
           })}
