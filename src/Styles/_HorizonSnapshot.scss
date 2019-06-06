@@ -7,68 +7,100 @@
 }
 
 .horizon {
-  font-size: 1.7rem;
+  font-size: 2rem;
   text-align: center;
 }
 
-.innerInfo {
+.horizonList {
+  overflow-y: scroll;
+  height: 600px;
 }
 
-// .title {
-//   text-align: center;
-//   font-size: 30px;
-// }
-
-// .nickname {
-//   color: red;
-// }
-
-// .month {
-//   color: orange;
-// }
-
-// .dueDate {
-//   color: blue;
-// }
-
-// .amount {
-//   color: indigo;
-// }
-
-// .balance {
-//   color: white;
-// }
 
 .income {
   font-size: 20px;
-  border: solid;
   line-height: 2rem;
   display: flex;
-  padding-bottom: 0;
+  flex-direction: column;
+  align-items: center;
+  border: solid;
+  position: relative;
   .amount {
     color: $green-color;
+    justify-self: flex-end;
   }
+  .month{
+    align-self: flex-start;
+    position: absolute;
+    left: 10px;
+    // top: 0;
+    // display: inline-block;
+  }
+  .nickname{
+    justify-self: flex-start;
+    color: red;
+  }
+  // .dueDate{
+  //   position: sticky;
+  //   top: 0;
+  // }
 }
 
 .debt {
-  font-size: 20px;
-  line-height: 5rem;
-  display: flex;
-  padding-bottom: 0;
+  @extend .income;
+  // font-size: 20px;
+  // line-height: 5rem;
+  // display: flex;
+  // flex-direction: column;
+  // align-items: center;
+  // border: solid;
+  // position: relative;
   .amount {
     color: $red-color;
   }
+  .month{
+    align-self: flex-start;
+    position: absolute;
+    left: 10px;
+  }
+  .nickname{
+    justify-self: flex-start;
+    color: red;
+  }
+  // .dueDate{
+  //   position: sticky;
+  //   top: 0;
+  // }
 }
 
 .expense {
+  @extend .income;
   font-size: 20px;
   line-height: 5rem;
   display: flex;
-  padding-bottom: 0;
+  flex-direction: column;
+  align-items: center;
+  border: solid;
+  position: relative;
   .amount {
     color: $red-color;
+    // line-height: 100%;
   }
-
+  .month{
+    align-self: flex-start;
+    position: absolute;
+    left: 10px;
+  }
+  .nickname{
+    // justify-self: flex-start;
+    display: inline-block;
+    line-height: 100%;
+    color: red;
+  }
+  // .dueDate{
+  //   position: sticky;
+  //   top: 0;
+  // }
 }
 
 

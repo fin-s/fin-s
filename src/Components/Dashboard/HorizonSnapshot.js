@@ -20,31 +20,33 @@ function HorizonSnapshot(props) {
   } else {
 
     return (
-      <div>
+      <p className='horizonList'>
         <h3 className='horizon'>horizon snapshot</h3>
         <ul>
           {props.snapshotList.map((element, index) => {
             if (element.balance) {
-              return <li key={`${index}${element._id}`} _id={element._id} className={element.style}>
-                <div>
-                  <span className='month'>{element.month} </span>
-                  <span className='dueDate'>{element.dueDate} </span>
-                  <span className='nickname'>{element.nickname} </span>
-                </div>
-                <span className='amount'>${element.amount} </span>
-                <span className='balance'>Balance: ${element.balance}</span>
-              </li>
+              return <p key={`${index}${element._id}`} _id={element._id} className={element.style}>
+                <p>
+                  <p className='month'>{element.month}
+                    <p className='dueDate'> {element.dueDate} </p>
+                  </p>
+                  <p className='nickname'>{element.nickname} </p>
+                </p>
+                <p className='amount'>${element.amount} </p>
+                <p className='balance'>Balance: ${element.balance}</p>
+              </p>
             } else {
-              return <li key={`${index}${element._id}`} _id={element._id} className={element.style}>
-                <span className='month'>{element.month} </span>
-                <span className='dueDate'>{element.dueDate} </span>
-                <span className='nickname'>{element.nickname} </span>
-                <span className='amount'>${element.amount} </span>
-              </li>
+              return <p key={`${index}${element._id}`} _id={element._id} className={element.style}>
+                <p className='month'>{element.month} 
+                  <p className='dueDate'> {element.dueDate} </p>
+                </p>
+                <p className='nickname'>{element.nickname} </p>
+                <p className='amount'>${element.amount} </p>
+              </p>
             }
           })}
         </ul>
-      </div>
+      </p>
     )
   }
 }
