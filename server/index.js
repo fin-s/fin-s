@@ -22,6 +22,7 @@ app.use(session({
 app.post('/auth/register', authCtrl.register)
 //REGISTERS A NEW USER
 //EXPECTS firstName, lastName, email, password ON REQ.BODY
+app.delete('/auth/logout', authCtrl.logout)
 app.post('/api/users/register', MDBCtrl.createUser)
 //THIS CREATES A USER OBJECT IN THE MONGODB
 //THIS IS NOW DEPRECATED, DO NOT USE IT
