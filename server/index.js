@@ -7,6 +7,7 @@ const session = require('express-session')
 const MDBCtrl = require('./mongoDBCtrl')
 const authCtrl = require('./authController')
 const authMiddleware = require('./middlewares/authMiddleware')
+const userCTRL = require('./controllers/userController')
 
 const {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET, MONGO_URI} = process.env
 
@@ -76,6 +77,12 @@ app.delete('/api/list/debts', MDBCtrl.deleteDebt)
 app.delete('/api/list/expenses', MDBCtrl.deleteExpense)
 //Deletes AN income from the users income array
 // needs Expense._id and email on Req.body
+app.get('/api/todos', userCTRL.getList)
+//GETS THE USERS TODO LIST
+//PULLS EMAIL FROM SESSION
+app.post('/api/todos', userCTRL.setList)
+//UPDATES THE USERS TODO LIST
+//NEEDS AN ARRAY OF 12 ITEMS CALLED stepsCompleted
 
 massive(CONNECTION_STRING).then(db => {
   app.set('db', db)
