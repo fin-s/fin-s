@@ -14,34 +14,35 @@ function HorizonSnapshot(props) {
       <div className='horizon'>
         {/* <h3>Horizon Snapshot</h3>
         <h4>Loading...</h4> */}
-        <h2 className='title'>horizon snapshot</h2>
         <Lottie options={defaultOptions} />
       </div>
     )
   } else {
-    let showList = []
-    {
-      props.snapshotList.map(element => {
-        element.dueDates.map(date => {
-          let balance 
-          if(date.balance){
-            balance = `Remaining balance: $${date.balance}`
-          } else {
-            balance = ''
-          }
-          showList.push(`${element.month} ${date.dueDate}: ${date.nickname}  $${date.amount}.  ${balance}`)
-        })
-      })
-    }
-      return (
-        <>
-        <div>
-          <h3>Horizon Snapshot</h3>
-          <ul>{showList.map(element => {
-          return <li>{element}</li>
-          })}</ul>
-        </div>
-      </>
+
+    return (
+      <div>
+        <h3>Horizon Snapshot</h3>
+        <ul>
+          {props.snapshotList.map(element => {
+            if (element.balance) {
+              return <li className={element.style}>
+                <span>{element.nickname}</span>
+                <span>{element.month}</span>
+                <span>{element.dueDate}</span>
+                <span>${element.amount}</span>
+                <span>Balance: ${element.balance}</span>
+              </li>
+            } else {
+              return <li className={element.style}>
+                <span>{element.nickname}</span>
+                <span>{element.month}</span>
+                <span>{element.dueDate}</span>
+                <span>${element.amount}</span>
+              </li>
+            }
+          })}
+        </ul>
+      </div>
     )
   }
 }

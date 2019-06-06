@@ -2,7 +2,7 @@ module.exports = {
   checkLogin: (req, res, next) => {
     let user = req.session.user
 
-    console.log(req.session)
+    // console.log(req.session)
 
     if(user){
       next()
