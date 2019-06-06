@@ -3,6 +3,7 @@ const Income = require('./models/IncomeModel')
 const Debt = require('./models/DebtModel')
 const Expense = require('./models/ExpenseModel')
 const getList = require('./controllers/getList')
+const {showCalendarList} = require('./controllers/getCalendarList')
 
 const updateIncome = (incomes, email) => {
   const schemas = []
@@ -157,6 +158,17 @@ module.exports = {
       console.log(error)
       res.status(500).send(`There was an error fetching the list`)
     }
+  },
+
+  fetchCalendarList: async (req, res) => {
+    const {email} = req.session.user
+
+    let users = await User.find({email: email})
+    let user = users[0]
+    const {incomes, debts, expenses} = user
+    let list = getList.getList(incomes, debts, expenses)
+    let calendarList = showCalendarList(list)
+    res.status(200).send(calendarList)
   },
 
   addIncome: async (req, res) => {

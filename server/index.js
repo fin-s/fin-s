@@ -42,6 +42,7 @@ app.post('/api/users/money', MDBCtrl.updateMoney)
 app.post('/api/list', authMiddleware.checkLogin, MDBCtrl.fetchList)
 //FETCHES THE LIST OF UPCOMING EVENTS
 //EXPECTS email AS A QUERY
+app.get('/api/calendar', MDBCtrl.fetchCalendarList)
 app.post('/api/list/incomes', MDBCtrl.addIncome)
 //ADDS NEW INCOMES TO THE EXISTING ARRAY
 //EXPECTS AN ARRAY ON REQ.BODY CALLED incomes OF AT LEAST ONE
