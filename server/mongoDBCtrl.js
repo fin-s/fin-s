@@ -127,6 +127,7 @@ module.exports = {
     let user = users[0]
 
     const { incomes, debts, expenses } = user
+    // console.log(incomes)
 
     let list = getList.getList(incomes, debts, expenses)
     res.status(200).send(list)

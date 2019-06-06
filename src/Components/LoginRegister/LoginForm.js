@@ -28,7 +28,7 @@ class LoginForm extends Component {
     const { loginEmail: email, loginPassword: password } = this.state
     try {
       const res = await axios.post('/auth/login', { email, password })
-      console.log(res)
+      // console.log(res)
       this.setState({
         isLoggedIn: false
       })

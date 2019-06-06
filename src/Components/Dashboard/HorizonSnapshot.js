@@ -23,21 +23,23 @@ function HorizonSnapshot(props) {
       <div>
         <h3>Horizon Snapshot</h3>
         <ul>
-          {props.snapshotList.map(element => {
+          {props.snapshotList.map((element, index) => {
             if (element.balance) {
-              return <li className={element.style}>
+              return <li key={`${index}${element._id}`} _id={element._id} className={element.style}>
                 <span>{element.nickname}</span>
                 <span>{element.month}</span>
                 <span>{element.dueDate}</span>
                 <span>${element.amount}</span>
                 <span>Balance: ${element.balance}</span>
+                {/* <span>{element._id}</span> */}
               </li>
             } else {
-              return <li className={element.style}>
+              return <li key={`${index}${element._id}`}  _id={element._id} className={element.style}>
                 <span>{element.nickname}</span>
                 <span>{element.month}</span>
                 <span>{element.dueDate}</span>
                 <span>${element.amount}</span>
+                {/* <span>{element._id}</span> */}
               </li>
             }
           })}
