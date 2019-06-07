@@ -24,15 +24,21 @@ class Calendar extends Component {
       resizeMode: 'cover'
     }
 
+    const headerObj = {
+      left:   'title',
+      center: '',
+      right:  'prev,next'
+    }
+
     const newSources = [
       {
         events: [],
-        color: 'green',
+        color: 'rgb(0, 97, 0)',
         textColor: '$gold-color'
       },
       {
         events: [],
-        color: 'red',
+        color: 'rgb(210, 0, 0)',
         textColor: '$gold-color'
       }
     ]
@@ -68,7 +74,8 @@ class Calendar extends Component {
         eventMouseEnter={this.handleMouseEnter}
         eventMouseLeave={this.handleMouseLeave}
         validRange={validRange}
-        progressiveEventRendering={true} />
+        progressiveEventRendering={true}
+        header={headerObj} />
       )
     }
   }
