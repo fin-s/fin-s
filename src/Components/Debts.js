@@ -26,7 +26,7 @@ class Debts extends Component {
     let newDebt = {
       nickname,
       balance,
-      interestRate,
+      interestRate: interestRate * 100,
       minimumPayment,
       actualPayment,
       notes,
@@ -41,7 +41,7 @@ class Debts extends Component {
       <div>
         <input placeholder='account name' onChange={this.handleChange} name='nickname' type='text'/>
         <input placeholder='balance' onChange={this.handleChange} name='balance' type='number'/>
-        <input placeholder='interest rate' onChange={this.handleChange} name='interestRate' type='text'/>
+        <input placeholder='interest rate' type='number' max='100' min='0' onChange={this.handleChange} name='interestRate' type='text'/>
         <input placeholder='minimum payment' onChange={this.handleChange} name='minimumPayment' type='text' />
         <input placeholder='your average payment' onChange={this.handleChange} name='actualPayment' type='text' />
         <input type='number' min='1' max='28' placeholder='day' onChange={this.handleChange} name='dueDate' />

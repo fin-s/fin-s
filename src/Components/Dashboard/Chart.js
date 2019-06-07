@@ -58,47 +58,50 @@ getDataLabels = userDataSets => {
     }
   });
   let labelArr = [];
-  let month = new Date().getMonth();
+  let date = new Date()
+  let month = date.getMonth();
+  let year = date.getFullYear();
   for (let i = 0; i < longestPayoff; i++) {
     switch (month) {
       case 0:
-        labelArr.push("January");
+        labelArr.push(`January ${year}`);
         break;
       case 1:
-        labelArr.push("February");
+        labelArr.push(`February ${year}`);
         break;
       case 2:
-        labelArr.push("March");
+        labelArr.push(`March ${year}`);
         break;
       case 3:
-        labelArr.push("April");
+        labelArr.push(`April ${year}`);
         break;
       case 4:
-        labelArr.push("May");
+        labelArr.push(`May ${year}`);
         break;
       case 5:
-        labelArr.push("June");
+        labelArr.push(`June ${year}`);
         break;
       case 6:
-        labelArr.push("July");
+        labelArr.push(`July ${year}`);
         break;
       case 7:
-        labelArr.push("August");
+        labelArr.push(`August ${year}`);
         break;
       case 8:
-        labelArr.push("September");
+        labelArr.push(`September ${year}`);
         break;
       case 9:
-        labelArr.push("October");
+        labelArr.push(`October ${year}`);
         break;
       case 10:
-        labelArr.push("November");
+        labelArr.push(`November ${year}`);
         break;
       case 11:
-        labelArr.push("December");
+        labelArr.push(`December ${year}`);
         break;
     }
     if(month === 11){
+      year++
       month = -1
     }
     month++
