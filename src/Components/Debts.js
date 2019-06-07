@@ -44,7 +44,7 @@ class Debts extends Component {
         <input placeholder='interest rate' type='number' max='100' min='0' onChange={this.handleChange} name='interestRate' type='text'/>
         <input placeholder='minimum payment' onChange={this.handleChange} name='minimumPayment' type='text' />
         <input placeholder='your average payment' onChange={this.handleChange} name='actualPayment' type='text' />
-        <input type='number' min='1' max='28' placeholder='Day of the Month this comes due' onChange={this.handleChange} name='dueDate' />
+        <input type='number' min='1' max='28' placeholder='day' onChange={this.handleChange} name='dueDate' />
         <textarea columns={20} rows={5} placeholder='notes' onChange={this.handleChange} name='notes' />
         <button onClick={this.confirmDebt} type="button" class="btn btn-outline-secondary">add debt</button>
         {this.props.debts.map((current, index) => {

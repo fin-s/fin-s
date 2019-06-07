@@ -25,7 +25,6 @@ class Dashboard extends Component {
         throw new Error()
       }
       const {calendar, horizon} = lists.data
-      console.log(lists.data)
       this.setState({loadingSnapshot: false, 
         loadingCalendar: false,
         snapshotList: horizon,
@@ -51,9 +50,7 @@ class Dashboard extends Component {
             <Chart />
           </div>
           <div className='rightSide'>
-            <div className='nextSteps'>
               <NextSteps />
-            </div>
             <div className='horizonSnapshot'>
               <HorizonSnapshot loadingSnapshot={loadingSnapshot} snapshotList={snapshotList} />
             </div>
