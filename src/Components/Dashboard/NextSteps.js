@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from 'axios'
 import steps from './steps'
+import Step from './Step'
 
 class NextSteps extends Component {
   constructor() {
@@ -8,26 +9,35 @@ class NextSteps extends Component {
 
     this.state = {
       stepsCompleted: [],
-      userSteps: [],
       displayArray: [],
       steps: [...steps.steps],
-      showSteps: []
+      showSteps: [],
+      loading: true,
+      showAll: false
     }
   }
 
   async componentDidMount() {
-    let userSteps = await axios.get('/api/todos')
+    this.getThreeSteps()
+  }
+
+  getThreeSteps = async () => {
+    this.setState({
+      showSteps: [],
+      displayArray: []
+    })
+    let stepsCompleted = await axios.get('/api/todos')
 
     let threeSteps = []
 
-    userSteps.data.forEach((element, index) => {
+    stepsCompleted.data.forEach((element, index) => {
       if(element === 0 && threeSteps.length < 3){
         threeSteps.push(index)
       }
     })
 
     this.setState({
-      userSteps: userSteps.data,
+      stepsCompleted: stepsCompleted.data,
       showSteps: threeSteps
     })
 
@@ -39,9 +49,13 @@ class NextSteps extends Component {
         })
       }
     })
+
+    this.setState({
+      loading: false
+    })
   }
 
-  handleClick(i) {
+  handleClick = async (i) => {
     let copiedComplete = [...this.state.stepsCompleted]
     if (copiedComplete[i] === 0) {
       copiedComplete[i] = 1
@@ -51,6 +65,16 @@ class NextSteps extends Component {
     this.setState({
       stepsCompleted: copiedComplete
     })
+
+    await axios.post('/api/todos', {stepsCompleted: copiedComplete})
+
+    this.getThreeSteps()
+  }
+
+  toggleShow = () => {
+    this.setState({
+      showAll: !this.state.showAll
+    })
   }
 
   render() {
@@ -59,6 +83,30 @@ class NextSteps extends Component {
         <h3>Next Steps</h3>
         <div name="progress-bar" />
         <div className='stepContainer'>
+          {!this.state.showAll ? <>{this.state.loading ? <div>loading</div> :
+        this.state.displayArray.map(element => {
+          return <Step
+          stepNumber={element.stepNumber}
+          task={element.task}
+          handleClick={this.handleClick}
+          index={element.index}/>
+        })}</> : 
+        <>
+        {this.state.steps.map(element => {
+          return <Step
+          stepNumber={element.stepNumber}
+          task={element.task}
+          handleClick={this.handleClick}
+          index={element.index}/>
+        })}
+        </>}
+
+        <div>
+
+          {!this.state.showAll ? <p onClick={this.toggleShow}>Show All</p> : 
+          <p onClick={this.toggleShow}>Hide All</p>}
+
+        </div>
           {/* <div className="step">
             <h5>Step 1:</h5>
             <p>Set up a high interest savings account</p>
