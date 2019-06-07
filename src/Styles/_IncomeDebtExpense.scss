@@ -33,8 +33,6 @@ textarea[name=notes]{
   @extend input[type=text]
 }
 
-
-
 select {
   position: relative;
   display: inline-block;
@@ -77,4 +75,16 @@ select {
 }
 .select select:disabled ~ .select_arrow {
   border-top-color: #cccccc;
+}
+
+
+
+// .wizNav {
+//   display: grid;
+//   grid-template-columns: 1fr 1fr 1fr;
+//   grid-gap: 8rem;
+// }
+
+.inputs{
+  display: grid;
 }
