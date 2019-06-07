@@ -167,8 +167,7 @@ module.exports = {
     let user = users[0]
     const {incomes, debts, expenses} = user
     let list = getList.getList(incomes, debts, expenses)
-    let calendarList = showCalendarList(list)
-    res.status(200).send(calendarList)
+    res.status(200).send(list)
   },
 
   addIncome: async (req, res) => {

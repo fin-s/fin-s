@@ -24,7 +24,7 @@ const showCalendarList = (list) => {
     
   })
 
-  let filtered = calendarList.filter(element => {
+  let filteredCalendar = calendarList.filter(element => {
     return element !== undefined
   })
 

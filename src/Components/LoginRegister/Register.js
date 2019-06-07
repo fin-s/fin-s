@@ -54,7 +54,7 @@ class RegisterForm extends Component {
 						need an account? <p>sign up here</p></h2>
 					<form onSubmit={this.handleSignUpFormSubmit}>
 						<div className='registerInput' >
-							<a className='inputAlign'>
+							<div className='inputAlign'>
 								<div>
 									<input
 										type='text'
@@ -83,7 +83,7 @@ class RegisterForm extends Component {
 										onChange={this.handleFormUpdate}
 									/>
 								</div>
-							</a>
+							</div>
 							<div className='signUpButton'>
 								<button type="button" class="btn btn-outline-secondary" onClick={this.handleSignUpFormSubmit}>
 									<b>sign up</b>
