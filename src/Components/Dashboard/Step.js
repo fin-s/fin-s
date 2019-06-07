@@ -1,10 +1,7 @@
 import React, { Component } from 'react'
 
 class Step extends Component {
-  constructor(props){
-    super(props)
-
-  }
+  
 
   render() {
     return (
