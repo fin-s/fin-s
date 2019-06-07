@@ -1,0 +1,80 @@
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  border: none;
+  -webkit-text-fill-color: $gold-color;
+  transition: background-color 5000s ease-in-out 0s;
+  font-family: 'Raleway', sans-serif;
+}
+
+input[type=text]{
+  background-color: #34373F;
+  border: none;
+  color: $gold-color;
+  height: 4vh;
+  width: 12vw;
+  font-family: 'Raleway', sans-serif;
+  font-size: 20px;
+  text-align: center;
+  margin: 9px;
+  margin-right: 12px;
+}
+
+input[type=number]{
+  @extend input[type=text]
+}
+textarea[name=notes]{
+  @extend input[type=text]
+}
+
+
+
+select {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 15px;
+  width: 15%;
+}     
+select {
+      font-family: 'Raleway';
+      display: inline-block;
+      width: 15%;
+      cursor: pointer;
+      padding: 10px 8px;
+      outline: 0;
+      border: 1px solid $independence-color;
+      border-radius: 9px;
+      background: $black-color;
+      color: $gold-color;
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+  }
+      
+  select::-ms-expand {
+          display: none;
+      }
+       
+      select:hover, select:focus {
+          color: $gold-color;
+          background: $independence-color;
+      }
+
+ select:disabled {
+          opacity: 0.5;
+          pointer-events: none;
+      }
+
+.select select:hover ~ .select_arrow,
+.select select:focus ~ .select_arrow {
+  border-color: #000000;
+}
+.select select:disabled ~ .select_arrow {
+  border-top-color: #cccccc;
+}
