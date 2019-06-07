@@ -49,9 +49,7 @@ class Dashboard extends Component {
             <Chart />
           </div>
           <div className='rightSide'>
-            <div className='nextSteps'>
               <NextSteps />
-            </div>
             <div className='horizonSnapshot'>
               <HorizonSnapshot loadingSnapshot={loadingSnapshot} snapshotList={snapshotList} />
             </div>
