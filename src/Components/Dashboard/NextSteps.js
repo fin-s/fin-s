@@ -18,7 +18,7 @@ class NextSteps extends Component {
   }
 
   async componentDidMount() {
-    this.getThreeSteps()
+    await this.getThreeSteps()
   }
 
   getThreeSteps = async () => {
@@ -79,25 +79,31 @@ class NextSteps extends Component {
 
   render() {
     return (
-      <div>
+      <div className='next-step-hold'>
         <h3>Next Steps</h3>
         <div name="progress-bar" />
         <div className='stepContainer'>
           {!this.state.showAll ? <>{this.state.loading ? <div>loading</div> :
         this.state.displayArray.map(element => {
           return <Step
+          key={element.index}
+          complete={this.state.stepsCompleted[element.index]}
           stepNumber={element.stepNumber}
           task={element.task}
           handleClick={this.handleClick}
-          index={element.index}/>
+          index={element.index}
+          stepsCompleted={this.state.stepsCompleted}/>
         })}</> : 
         <>
         {this.state.steps.map(element => {
           return <Step
+          key={element.index}
+          complete={this.state.stepsCompleted[element.index]}
           stepNumber={element.stepNumber}
           task={element.task}
           handleClick={this.handleClick}
-          index={element.index}/>
+          index={element.index}
+          stepsCompleted={this.state.stepsCompleted}/>
         })}
         </>}
 
