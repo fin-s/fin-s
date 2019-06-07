@@ -1,5 +1,4 @@
-.horizonSnapshot{
-  border: solid;
+.horizonSnapshot {
   height: 70%;
   width: 90%;
   color: $gold-color;
@@ -7,19 +6,106 @@
   margin-top: 5%;
 }
 
-.horizon{
-  
-}
-
-.innerInfo{
-  
-}
-
-.title{
+.horizon {
+  font-size: 2rem;
   text-align: center;
-  font-size: 30px;
 }
 
-.span{
-  color: red;
+.horizonList {
+  overflow-y: scroll;
+  height: 600px;
 }
+
+
+.income {
+  font-size: 20px;
+  line-height: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: solid;
+  position: relative;
+  .amount {
+    color: $green-color;
+    justify-self: flex-end;
+  }
+  .month{
+    align-self: flex-start;
+    position: absolute;
+    left: 10px;
+    // top: 0;
+    // display: inline-block;
+  }
+  .nickname{
+    justify-self: flex-start;
+    color: red;
+  }
+  // .dueDate{
+  //   position: sticky;
+  //   top: 0;
+  // }
+}
+
+.debt {
+  @extend .income;
+  // font-size: 20px;
+  // line-height: 5rem;
+  // display: flex;
+  // flex-direction: column;
+  // align-items: center;
+  // border: solid;
+  // position: relative;
+  .amount {
+    color: $red-color;
+  }
+  .month{
+    align-self: flex-start;
+    position: absolute;
+    left: 10px;
+  }
+  .nickname{
+    justify-self: flex-start;
+    color: red;
+  }
+  // .dueDate{
+  //   position: sticky;
+  //   top: 0;
+  // }
+}
+
+.expense {
+  @extend .income;
+  font-size: 20px;
+  line-height: 5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: solid;
+  position: relative;
+  .amount {
+    color: $red-color;
+    // line-height: 100%;
+  }
+  .month{
+    align-self: flex-start;
+    position: absolute;
+    left: 10px;
+  }
+  .nickname{
+    // justify-self: flex-start;
+    display: inline-block;
+    line-height: 100%;
+    color: red;
+  }
+  // .dueDate{
+  //   position: sticky;
+  //   top: 0;
+  // }
+}
+
+
+// .itemHolder{
+//   display: flex;
+//   justify-content: space-around;
+// }
+//element.style will be income, expense, or debt

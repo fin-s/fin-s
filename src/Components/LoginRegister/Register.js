@@ -46,9 +46,13 @@ class RegisterForm extends Component {
 		return (
 			<>
 
-          <p className ='appInfo'>
-						Welcome to fin-s. 
-							<p>fin-s makes it easy to keep track, and stay on top of your monthly expenses.</p> Our goal is unlike other finance tracking resources, fin-s is geared around guiding users to financial stability by building a roadmap of how to eliminate your debts.</p>
+				<div className='appInfo'>
+					<h1>fin-s makes it easy to  </h1>
+					<h1>track your expenses <i class="fas fa-coins"></i> </h1>
+					<h1>eliminate debt <i class="far fa-credit-card"></i> </h1>
+					<h1>and guide you to financial stability <i class="fas fa-chart-line"></i></h1>
+				</div>
+
 				<main className='main'>
 					<h2 className='registerText'>
 						need an account? <p>sign up here</p></h2>
