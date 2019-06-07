@@ -15,10 +15,10 @@ module.exports = {
 
   setList: async (req, res) => {
     const db = req.app.get('db')
-
+    console.log(`req.body userCtrl.setList`,req.body)
     try {
       const { stepsCompleted } = req.body
-
+      console.log(`stepsCompleted setList userController.js`, stepsCompleted)
       if (stepsCompleted.length === 12) {
         await db.setList([req.session.user.email, stepsCompleted])
 
