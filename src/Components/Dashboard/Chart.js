@@ -8,23 +8,8 @@ class Chart extends Component {
     this.state = {
       divStyle:{width:720, height:360},
       chartData: {
-        labels: [ "jan","feb","mar","apr","may","jun","july","aug","sept","oct","nov","dec"],
-        datasets:[
-          {
-            label: 'Credit Card',
-            fill: true,
-            data:[400, 350, 200, 150, 100, 50, 0],
-            backgroundColor: 'rgba(41, 223, 32, 0.2)',
-            borderColor:'rgb(41, 223, 32)'
-          },
-          {
-            label: 'Student Loan',
-            fill: true,
-            borderColor: 'rgb(223, 207, 32)',
-            data:[300, 250, 210, 200, 195, 187, 175, 130, 100, 70, 60, 50],
-            backgroundColor: 'rgba(223, 207, 32, 0.2)'
-        }
-      ],
+        labels: [],
+        datasets:[],
       }
     };
   }
@@ -46,7 +31,7 @@ class Chart extends Component {
     console.log(userDataSets)
     this.setState({
       chartData: {
-        labels: [ "jan","feb","mar","apr","may","jun","july","aug","sept","oct","nov","dec"],
+        labels: this.getDataLabels(userDataSets),
         datasets: userDataSets
       }
     })
@@ -65,6 +50,61 @@ class Chart extends Component {
 // 100
 // nickname:
 // "Credit card 2"
+getDataLabels = userDataSets => {
+  let longestPayoff = 0;
+  userDataSets.forEach(current => {
+    if (current.data.length > longestPayoff) {
+      longestPayoff = current.data.length;
+    }
+  });
+  let labelArr = [];
+  let month = new Date().getMonth();
+  for (let i = 0; i < longestPayoff; i++) {
+    switch (month) {
+      case 0:
+        labelArr.push("January");
+        break;
+      case 1:
+        labelArr.push("February");
+        break;
+      case 2:
+        labelArr.push("March");
+        break;
+      case 3:
+        labelArr.push("April");
+        break;
+      case 4:
+        labelArr.push("May");
+        break;
+      case 5:
+        labelArr.push("June");
+        break;
+      case 6:
+        labelArr.push("July");
+        break;
+      case 7:
+        labelArr.push("August");
+        break;
+      case 8:
+        labelArr.push("September");
+        break;
+      case 9:
+        labelArr.push("October");
+        break;
+      case 10:
+        labelArr.push("November");
+        break;
+      case 11:
+        labelArr.push("December");
+        break;
+    }
+    if(month === 11){
+      month = -1
+    }
+    month++
+  }
+  return labelArr
+};
 
 getDebtData = (interestRate, balance, minimumPayment, actualPayment) => {
   let payments = []
