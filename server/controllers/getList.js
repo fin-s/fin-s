@@ -13,6 +13,10 @@ const getList = (incomes, debts, expenses) => {
     month: moment().add(2, 'months').format('MMMM'),
     dueDates: []
   }
+  let holdMonth = {
+    month: moment().format('MMMM'),
+    dueDates: []
+  }
 
   let day = new Date().getDate()
   let month = new Date().getMonth()
@@ -21,6 +25,14 @@ const getList = (incomes, debts, expenses) => {
       case 'monthly':
         if (element.interval.incomeDate1 >= day) {
           month0.dueDates.push({
+            nickname: element.nickname,
+            style: 'income',
+            amount: element.amount,
+            dueDate: element.interval.incomeDate1,
+            _id: element._id
+          })
+        } else {
+          holdMonth.dueDates.push({
             nickname: element.nickname,
             style: 'income',
             amount: element.amount,
@@ -52,9 +64,25 @@ const getList = (incomes, debts, expenses) => {
             dueDate: element.interval.incomeDate1,
             _id: element._id
           })
+        } else {
+          holdMonth.dueDates.push({
+            nickname: element.nickname,
+            style: 'income',
+            amount: element.amount,
+            dueDate: element.interval.incomeDate1,
+            _id: element._id
+          })
         }
         if (element.interval.incomeDate2 >= day) {
           month0.dueDates.push({
+            nickname: element.nickname,
+            style: 'income',
+            amount: element.amount,
+            dueDate: element.interval.incomeDate2,
+            _id: element._id
+          })
+        } else {
+          holdMonth.dueDates.push({
             nickname: element.nickname,
             style: 'income',
             amount: element.amount,
@@ -107,7 +135,7 @@ const getList = (incomes, debts, expenses) => {
 
 
         showMe0.forEach(pay => {
-          if (pay >= day)
+          if (pay >= day) {
             month0.dueDates.push({
               nickname: element.nickname,
               style: 'income',
@@ -115,6 +143,15 @@ const getList = (incomes, debts, expenses) => {
               dueDate: pay,
               _id: element._id
             })
+          } else {
+            holdMonth.dueDates.push({
+              nickname: element.nickname,
+              style: 'income',
+              amount: element.amount,
+              dueDate: pay,
+              _id: element._id
+            })
+          }
         })
 
         showMe1.forEach(pay => {
@@ -172,6 +209,15 @@ const getList = (incomes, debts, expenses) => {
         style: 'debt',
         _id: element._id
       })
+    } else {
+      holdMonth.dueDates.push({
+        nickname: element.nickname,
+        dueDate: element.dueDate,
+        amount: payment,
+        balance: element.balance,
+        style: 'debt',
+        _id: element._id
+      })
     }
 
     month1.dueDates.push({
@@ -196,6 +242,14 @@ const getList = (incomes, debts, expenses) => {
   expenses.forEach(element => {
     if (element.dueDate >= day) {
       month0.dueDates.push({
+        nickname: element.nickname,
+        dueDate: element.dueDate,
+        amount: element.amount,
+        style: 'expense',
+        _id: element._id
+      })
+    } else {
+      holdMonth.dueDates.push({
         nickname: element.nickname,
         dueDate: element.dueDate,
         amount: element.amount,
@@ -326,8 +380,54 @@ const getList = (incomes, debts, expenses) => {
     }
   })
 
+  let preList = [...schedule]
 
-  return schedule
+  holdMonth.dueDates.forEach(element => {
+    preList.push({
+      month: holdMonth.month,
+      nickname: element.nickname,
+      dueDate: element.dueDate,
+      amount: element.amount,
+      style: element.style,
+      _id: element._id
+    })
+  })
+
+
+  let currentMonth = moment().format('M')
+
+  let calendarList = preList.map(element => {
+
+    let eventDate = moment().month(element.month).date(element.dueDate).format('YYYY-MM-DD')
+    let eventMonth = moment().month(element.month).format('M')
+
+
+    if (+eventMonth === +currentMonth || +eventMonth - +currentMonth === 1) {
+      return {
+        nickname: element.nickname,
+        dueDate: eventDate,
+        amount: element.amount,
+        style: element.style,
+        _id: element._id
+      }
+    } else {
+      return
+    }
+
+
+  })
+
+  let filteredCalendar = calendarList.filter(element => {
+    return element !== undefined
+  })
+
+
+
+
+  return {
+    calendar: filteredCalendar,
+    horizon: schedule 
+  }
 }
 
 module.exports = {
