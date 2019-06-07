@@ -2,7 +2,8 @@ CREATE TABLE "users" (
   "users_id" serial UNIQUE PRIMARY KEY,
   "firstname" varchar,
   "lastname" varchar,
-  "email" text
+  "email" text,
+  "stepsCompleted" int []
 );
 
 CREATE TABLE "users_login" (
@@ -46,19 +47,4 @@ CREATE TABLE "blog" (
   "users_id" int references users,
   "title" varchar,
   "body" text
-);
-
-CREATE TABLE "steps" (
-  "steps_id" serial PRIMARY KEY,
-  "users_id" int references users,
-  "step1" boolean,
-  "step2" boolean,
-  "step3" boolean,
-  "step4" boolean,
-  "step5" boolean,
-  "step6" boolean,
-  "step7" boolean,
-  "step8" boolean,
-  "step9" boolean,
-  "step10" boolean
 );

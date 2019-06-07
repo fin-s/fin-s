@@ -6,6 +6,8 @@ require('dotenv').config()
 const session = require('express-session')
 const MDBCtrl = require('./mongoDBCtrl')
 const authCtrl = require('./authController')
+const authMiddleware = require('./middlewares/authMiddleware')
+const userCTRL = require('./controllers/userController')
 
 const {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET, MONGO_URI} = process.env
 
@@ -25,6 +27,7 @@ app.post('/auth/login', authCtrl.login)
 app.post('/auth/register', authCtrl.register)
 //REGISTERS A NEW USER
 //EXPECTS firstName, lastName, email, password ON REQ.BODY
+app.delete('/auth/logout', authCtrl.logout)
 app.post('/api/users/register', MDBCtrl.createUser)
 //THIS CREATES A USER OBJECT IN THE MONGODB
 //THIS IS NOW DEPRECATED, DO NOT USE IT
@@ -36,9 +39,12 @@ app.post('/api/users/money', MDBCtrl.updateMoney)
 //INITIALIZES INCOMES, DEBTS, AND EXPENSES
 //EXPECTS 3 ARRAYS CALLED incomes, debts, expenses
 //ALSO EXPECTS email AS A STRING FROM REQ.BODY
-app.post('/api/list', MDBCtrl.fetchList)
+app.get('/api/list', authMiddleware.checkLogin, MDBCtrl.fetchList)
 //FETCHES THE LIST OF UPCOMING EVENTS
 //EXPECTS email AS A QUERY
+app.get('/api/calendar', MDBCtrl.fetchCalendarList)
+//DO NOT USE THIS ENDPOINT
+//IT HAS BEEN DEPRECATED
 app.post('/api/list/incomes', MDBCtrl.addIncome)
 //ADDS NEW INCOMES TO THE EXISTING ARRAY
 //EXPECTS AN ARRAY ON REQ.BODY CALLED incomes OF AT LEAST ONE
@@ -75,6 +81,12 @@ app.delete('/api/list/debts', MDBCtrl.deleteDebt)
 app.delete('/api/list/expenses', MDBCtrl.deleteExpense)
 //Deletes AN income from the users income array
 // needs Expense._id and email on Req.body
+app.get('/api/todos', userCTRL.getList)
+//GETS THE USERS TODO LIST
+//PULLS EMAIL FROM SESSION
+app.post('/api/todos', userCTRL.setList)
+//UPDATES THE USERS TODO LIST
+//NEEDS AN ARRAY OF 12 ITEMS CALLED stepsCompleted
 
 massive(CONNECTION_STRING).then(db => {
   app.set('db', db)

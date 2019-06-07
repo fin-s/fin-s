@@ -1,0 +1,92 @@
+.horizonSnapshot {
+  height: 0px;
+  width: 90%;
+  color: $gold-color;
+  margin-right: 5%;
+  margin-top: 5%;
+}
+
+.horizon {
+  font-size: 2.4rem;
+  text-align: center;
+}
+
+.horizonList {
+  overflow-y: scroll;
+  height: 35rem;
+}
+
+
+.income {
+  font-size: 1.4rem;
+  line-height: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-top: solid 1px;
+  border-bottom: solid 1px;
+  border-color: $independence-color;
+  // border-left: none;
+  // border-right: none;
+  position: relative;
+  text-underline-position: under;
+  margin-bottom: 3rem;
+  margin-top: .8rem;
+  .amount {
+    color: $green-color;
+    justify-self: flex-end;
+  }
+  .month{
+    align-self: flex-start;
+    position: absolute;
+    left: 10px;
+    display: flex;
+
+  }
+  .nickname{
+    justify-self: flex-start;
+    margin-top: .3rem;
+  }
+}
+
+.debt {
+  @extend .income;
+  text-underline-position: under;
+  .amount {
+    color: $red-color;
+  }
+  .month{
+    align-self: flex-start;
+    position: absolute;
+    left: 10px;
+  }
+  .nickname{
+    justify-self: flex-start;
+  }
+}
+
+.expense {
+  @extend .income;
+  text-underline-position: under;
+  height: 5rem;
+  .amount {
+    color: $red-color;
+  }
+  .month{
+    align-self: flex-start;
+    position: absolute;
+    left: 10px;
+  }
+  .nickname{
+    line-height: 100%;
+  }
+}
+
+
+::-webkit-scrollbar-thumb{
+  background: $gold-color;
+}
+
+::-webkit-scrollbar{
+  color: $black-color;
+}

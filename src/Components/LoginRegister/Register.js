@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import {withRouter} from 'react-router-dom'
 
 class RegisterForm extends Component {
 	constructor() {
@@ -35,6 +36,7 @@ class RegisterForm extends Component {
 				lastName,
 				email
 			})
+			this.props.history.push('/wizard')
 		} catch (err) {
 			this.setState({ registerError: true })
 		}
@@ -43,12 +45,20 @@ class RegisterForm extends Component {
 	render() {
 		return (
 			<>
+
+				<div className='appInfo'>
+					<h1>fin-s makes it easy to  </h1>
+					<h1>track your expenses <i class="fas fa-coins"></i> </h1>
+					<h1>eliminate debt <i class="far fa-credit-card"></i> </h1>
+					<h1>and guide you to financial stability <i class="fas fa-chart-line"></i></h1>
+				</div>
+
 				<main className='main'>
 					<h2 className='registerText'>
 						need an account? <p>sign up here</p></h2>
 					<form onSubmit={this.handleSignUpFormSubmit}>
 						<div className='registerInput' >
-							<a className='inputAlign'>
+							<div className='inputAlign'>
 								<div>
 									<input
 										type='text'
@@ -77,7 +87,7 @@ class RegisterForm extends Component {
 										onChange={this.handleFormUpdate}
 									/>
 								</div>
-							</a>
+							</div>
 							<div className='signUpButton'>
 								<button type="button" class="btn btn-outline-secondary" onClick={this.handleSignUpFormSubmit}>
 									<b>sign up</b>
@@ -110,4 +120,4 @@ class RegisterForm extends Component {
 // )(withRouter(RegisterForm))
 
 
-export default RegisterForm
+export default withRouter(RegisterForm)

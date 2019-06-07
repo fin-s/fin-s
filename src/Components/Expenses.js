@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import {withRouter} from 'react-router-dom'
 
 
 class Expenses extends Component {
@@ -40,9 +41,10 @@ class Expenses extends Component {
         {this.props.expenses.map((current, index) => {
           return <span key={index}>{current.nickname} {current.amount}</span>
         })}
+        <span onClick={()=>this.props.history.push('/dashboard')}>Skip for now</span>
       </div>
     )
   }
 }
 
-export default Expenses
+export default withRouter(Expenses)

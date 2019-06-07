@@ -74,3 +74,9 @@ test('Array length should be 3', () => {
     let list = getList(incomes, debts, expenses)
     expect(list.length).toBe(3)
 })
+
+test('Array length should not be 2 or 4', () => {
+    let list = getList(incomes, debts, expenses)
+    expect(list.length).not.toBe(2)
+    expect(list.length).not.toBe(4)
+})

@@ -1,14 +1,8 @@
-Body{
-  background-color: $black-color;
-  color: $gold-color;
-  font-family: 'Raleway', sans-serif;
-}
-
 .header{
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  margin-top: -4.2%;
+  margin-top: -3%;
   margin-bottom: 1.5%;
   margin-right: 6%;
   // border: solid;
@@ -16,9 +10,9 @@ Body{
 
 .main{
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   // border: solid;
-  flex-direction: column;
   font-size: 40px;
 }
 
@@ -61,7 +55,7 @@ input[type=text]{
 
 #logoutButton{
   float: right;
-  margin: -4% 15.3% 0% 0%;
+  margin: -3% 11% 0% 0%;
 }
 
 .errorMess{
@@ -100,4 +94,16 @@ select:-webkit-autofill:focus {
   transition: background-color 5000s ease-in-out 0s;
   font-family: 'Raleway', sans-serif;
 }
+
+
+  .appInfo{
+    width: 550px;
+    text-align: center;
+    font-size: 2.6rem;
+    margin-left: 15%;
+    margin-top: 10%;
+    margin-bottom: -20%;
+    line-height: 4rem;
+  }
+
 
