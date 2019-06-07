@@ -11,7 +11,7 @@ function HorizonSnapshot(props) {
   }
   if (props.loadingSnapshot) {
     return (
-      <div className='horizon'>
+      <div>
         {/* <h3>Horizon Snapshot</h3>
         <h4>Loading...</h4> */}
         <Lottie options={defaultOptions} />
@@ -20,31 +20,33 @@ function HorizonSnapshot(props) {
   } else {
 
     return (
-      <div>
-        <h3>Horizon Snapshot</h3>
+      <p className='horizonList'>
+        <h3 className='horizon'>horizon snapshot</h3>
         <ul>
           {props.snapshotList.map((element, index) => {
             if (element.balance) {
-              return <li key={`${index}${element._id}`} _id={element._id} className={element.style}>
-                <span>{element.nickname}</span>
-                <span>{element.month}</span>
-                <span>{element.dueDate}</span>
-                <span>${element.amount}</span>
-                <span>Balance: ${element.balance}</span>
-                {/* <span>{element._id}</span> */}
-              </li>
+              return <p key={`${index}${element._id}`} _id={element._id} className={element.style}>
+                <p>
+                  <p className='month'><u>{element.month }   {element.dueDate} </u>
+                    {/* <p className='dueDate'><u> { element.dueDate}</u> </p> */}
+                  </p>
+                  <p className='nickname'>{element.nickname} </p>
+                </p>
+                <p className='amount'>${element.amount} </p>
+                <p className='balance'>Balance: ${element.balance}</p>
+              </p>
             } else {
-              return <li key={`${index}${element._id}`}  _id={element._id} className={element.style}>
-                <span>{element.nickname}</span>
-                <span>{element.month}</span>
-                <span>{element.dueDate}</span>
-                <span>${element.amount}</span>
-                {/* <span>{element._id}</span> */}
-              </li>
+              return <p key={`${index}${element._id}`} _id={element._id} className={element.style}>
+                <p className='month'><u>{element.month} {element.dueDate}</u>
+                  {/* <p className='dueDate'><u> {element.dueDate}</u> </p> */}
+                </p>
+                <p className='nickname'>{element.nickname} </p>
+                <p className='amount'>${element.amount} </p>
+              </p>
             }
           })}
         </ul>
-      </div>
+      </p>
     )
   }
 }
