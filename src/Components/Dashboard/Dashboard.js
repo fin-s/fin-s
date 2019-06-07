@@ -34,10 +34,10 @@ class Dashboard extends Component {
       <>
         <NavBar />
         <div className='containers'>
-          {/* <div className='calendar'>
+          <div className='calendar'>
             calendar
                 <Calendar />
-          </div> */}
+          </div>
           <div className='chart'>
             <Chart />
           </div>
