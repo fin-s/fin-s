@@ -27,10 +27,10 @@ class LoginForm extends Component {
     e.preventDefault()
     const { loginEmail: email, loginPassword: password } = this.state
     try {
-      const res = await axios.post('/auth/login', { email, password })
+      await axios.post('/auth/login', { email, password })
       // console.log(res)
       this.setState({
-        isLoggedIn: false
+        isLoggedIn: true
       })
       this.props.history.push('/dashboard')
     } catch (err) {

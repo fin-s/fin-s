@@ -39,9 +39,12 @@ app.post('/api/users/money', MDBCtrl.updateMoney)
 //INITIALIZES INCOMES, DEBTS, AND EXPENSES
 //EXPECTS 3 ARRAYS CALLED incomes, debts, expenses
 //ALSO EXPECTS email AS A STRING FROM REQ.BODY
-app.post('/api/list', authMiddleware.checkLogin, MDBCtrl.fetchList)
+app.get('/api/list', authMiddleware.checkLogin, MDBCtrl.fetchList)
 //FETCHES THE LIST OF UPCOMING EVENTS
 //EXPECTS email AS A QUERY
+app.get('/api/calendar', MDBCtrl.fetchCalendarList)
+//DO NOT USE THIS ENDPOINT
+//IT HAS BEEN DEPRECATED
 app.post('/api/list/incomes', MDBCtrl.addIncome)
 //ADDS NEW INCOMES TO THE EXISTING ARRAY
 //EXPECTS AN ARRAY ON REQ.BODY CALLED incomes OF AT LEAST ONE

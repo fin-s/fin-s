@@ -12,18 +12,22 @@ class Dashboard extends Component {
     super()
     this.state = {
       loadingSnapshot: true,
-      snapshotList: []
+      snapshotList: [],
+      calendarList: []
     }
   }
 
   async componentDidMount() {
     try {
-      const horizonList = await axios.post('/api/list')
-      if(horizonList.data === 'User not logged in'){
+      const lists = await axios.get('/api/list')
+      if(lists.data === 'User not logged in'){
         // console.log(horizonList.data)
-        throw new Error
+        throw new Error()
       }
-      this.setState({loadingSnapshot: false, snapshotList: horizonList.data})
+      const {calendar, horizon} = lists.data
+      this.setState({loadingSnapshot: false, 
+        snapshotList: horizon,
+      calendarList: calendar})
     } catch (err) {
       console.log('Error encountered retrieving horizon events: ', err)
       this.props.history.push('/')
@@ -57,4 +61,4 @@ class Dashboard extends Component {
     )
   }
 }
-export default Dashboard
+export default withRouter(Dashboard)
