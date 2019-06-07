@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-// import Tooltip from 'tooltip.js'
+import Tooltip from 'tooltip.js'
 import Moment from 'moment'
 import FullCalendar from '@fullcalendar/react'
 import dayGridMonth from '@fullcalendar/daygrid'
@@ -9,16 +9,6 @@ import animationData from '../../Lotties/animation-w360-h240.json'
 
 class Calendar extends Component {
 
-  // tooltipHandler = (info) => {
-  //   console.log('fire from tooltip', info)
-  //   var tooltip = new Tooltip(info.el, {
-  //     title: info.event.extendedProps.description,
-  //     placement: 'top',
-  //     trigger: 'hover',
-  //     container: 'body'
-  //   });
-  //   console.log('show new tooltip: ', tooltip)
-  // }
 
   render() {
     let month = Moment().format('M')
@@ -74,10 +64,33 @@ class Calendar extends Component {
         plugins={[ dayGridMonth ]}
         showNonCurrentDates={false}
         eventSources={newSources}
+        // eventRender={this.tooltipHandler}
+        eventMouseEnter={this.handleMouseEnter}
+        eventMouseLeave={this.handleMouseLeave}
         validRange={validRange}
         progressiveEventRendering={true} />
       )
     }
   }
+
+  handleMouseEnter = (info) => {
+    info.el.innerText = info.event.extendedProps.description
+  }
+
+  handleMouseLeave = (info) => {
+    info.el.innerText = info.event.title
+  }
+
+  // tooltipHandler = (info) => {
+  //   console.log('fire from tooltip', info)
+  //   var tooltip = new Tooltip(info.el, {
+  //     title: info.event.extendedProps.description,
+  //     placement: 'top',
+  //     trigger: 'hover',
+  //     container: 'body'
+  //   });
+  //   // console.log('show new tooltip: ', tooltip)
+  // }
+
 }
 export default Calendar
