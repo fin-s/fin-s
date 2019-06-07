@@ -7,7 +7,7 @@
 }
 
 .horizon {
-  font-size: 2rem;
+  font-size: 2.4rem;
   text-align: center;
 }
 
@@ -18,13 +18,20 @@
 
 
 .income {
-  font-size: 20px;
+  font-size: 1.4rem;
   line-height: 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: solid;
+  border-top: solid 1px;
+  border-bottom: solid 1px;
+  border-color: $independence-color;
+  // border-left: none;
+  // border-right: none;
   position: relative;
+  text-underline-position: under;
+  margin-bottom: 3rem;
+  margin-top: .8rem;
   .amount {
     color: $green-color;
     justify-self: flex-end;
@@ -33,28 +40,18 @@
     align-self: flex-start;
     position: absolute;
     left: 10px;
-    // top: 0;
-    // display: inline-block;
+    display: flex;
+
   }
   .nickname{
     justify-self: flex-start;
-    color: red;
+    margin-top: .3rem;
   }
-  // .dueDate{
-  //   position: sticky;
-  //   top: 0;
-  // }
 }
 
 .debt {
   @extend .income;
-  // font-size: 20px;
-  // line-height: 5rem;
-  // display: flex;
-  // flex-direction: column;
-  // align-items: center;
-  // border: solid;
-  // position: relative;
+  text-underline-position: under;
   .amount {
     color: $red-color;
   }
@@ -65,26 +62,15 @@
   }
   .nickname{
     justify-self: flex-start;
-    color: red;
   }
-  // .dueDate{
-  //   position: sticky;
-  //   top: 0;
-  // }
 }
 
 .expense {
   @extend .income;
-  font-size: 20px;
-  line-height: 5rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border: solid;
-  position: relative;
+  text-underline-position: under;
+  height: 5rem;
   .amount {
     color: $red-color;
-    // line-height: 100%;
   }
   .month{
     align-self: flex-start;
@@ -92,20 +78,15 @@
     left: 10px;
   }
   .nickname{
-    // justify-self: flex-start;
-    display: inline-block;
     line-height: 100%;
-    color: red;
   }
-  // .dueDate{
-  //   position: sticky;
-  //   top: 0;
-  // }
 }
 
 
-// .itemHolder{
-//   display: flex;
-//   justify-content: space-around;
-// }
-//element.style will be income, expense, or debt
+::-webkit-scrollbar-thumb{
+  background: $gold-color;
+}
+
+::-webkit-scrollbar{
+  color: $black-color;
+}
