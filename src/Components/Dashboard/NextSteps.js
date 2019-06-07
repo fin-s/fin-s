@@ -56,7 +56,7 @@ class NextSteps extends Component {
   render() {
     return (
       <div>
-        <h3>NextSteps</h3>
+        <h3>Next Steps</h3>
         <div name="progress-bar" />
         <div className='stepContainer'>
           {/* <div className="step">
@@ -81,7 +81,7 @@ class NextSteps extends Component {
           </div>
           <div className="step">
             <h5>Step 4:</h5>
-            <p>If your company has a retirement plan match makes sure to maximize the match and get the free monet</p>
+            <p>If your company has a retirement plan match makes sure to maximize the match and get the free money</p>
             <button
               onClick={() => { this.handleClick(3) }}>x</button>
           </div>
@@ -93,7 +93,7 @@ class NextSteps extends Component {
           </div>
           <div className="step">
             <h5>Step 6:</h5>
-            <p>Pay off the smallest debt with every dollar you can scrap</p>
+            <p>Pay off the smallest debt with every dollar you can scrape</p>
             <button
               onClick={() => { this.handleClick(5) }}>x</button>
           </div>
