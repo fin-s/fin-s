@@ -1,4 +1,6 @@
 @import 'reset';
+@import '~@fullcalendar/core/main.css';
+@import '~@fullcalendar/daygrid/main.css';
 
 @import 'sassVars';
 @import 'LoginRegister';
@@ -7,6 +9,7 @@
 @import 'HorizonSnapshot';
 @import 'Step';
 @import "NextSteps";
+@import 'IncomeDebtExpense';
 
 Body{
   background-color: $black-color;
