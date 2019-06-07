@@ -11,6 +11,8 @@ const userCTRL = require('./controllers/userController')
 
 const {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET, MONGO_URI} = process.env
 
+mongoose.set('useCreateIndex', true)
+
 app.use(express.json())
 app.use(session({
   secret: SESSION_SECRET,

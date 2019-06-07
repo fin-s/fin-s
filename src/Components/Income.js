@@ -42,7 +42,7 @@ class Income extends Component {
 
   render() {
     return (
-      <div>
+      <div >
         <div>
           <h1>enter income</h1>
         </div>
