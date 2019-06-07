@@ -35,6 +35,46 @@ textarea[name=notes]{
 
 
 
-#select-css {
-  color: red;
+select {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 15px;
+  width: 15%;
+}     
+select {
+      font-family: 'Raleway';
+      display: inline-block;
+      width: 15%;
+      cursor: pointer;
+      padding: 10px 8px;
+      outline: 0;
+      border: 1px solid $independence-color;
+      border-radius: 9px;
+      background: $black-color;
+      color: $gold-color;
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+  }
+      
+  select::-ms-expand {
+          display: none;
+      }
+       
+      select:hover, select:focus {
+          color: $gold-color;
+          background: $independence-color;
+      }
+
+ select:disabled {
+          opacity: 0.5;
+          pointer-events: none;
+      }
+
+.select select:hover ~ .select_arrow,
+.select select:focus ~ .select_arrow {
+  border-color: #000000;
+}
+.select select:disabled ~ .select_arrow {
+  border-top-color: #cccccc;
 }
