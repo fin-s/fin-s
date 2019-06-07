@@ -39,20 +39,20 @@ class Debts extends Component {
   render(){
     return(
       <div>
-        <input placeholder='Account Name' onChange={this.handleChange} name='nickname'/>
-        <input placeholder='Balance' onChange={this.handleChange} name='balance' />
-        <input placeholder='Interest Rate' onChange={this.handleChange} name='interestRate' />
-        <input placeholder='Minimum Payment' onChange={this.handleChange} name='minimumPayment' />
-        <input placeholder='Your Average Payment' onChange={this.handleChange} name='actualPayment' />
+        <input placeholder='account name' onChange={this.handleChange} name='nickname' type='text'/>
+        <input placeholder='balance' onChange={this.handleChange} name='balance' type='number'/>
+        <input placeholder='interest rate' onChange={this.handleChange} name='interestRate' type='text'/>
+        <input placeholder='minimum payment' onChange={this.handleChange} name='minimumPayment' type='text' />
+        <input placeholder='your average payment' onChange={this.handleChange} name='actualPayment' type='text' />
         <input type='number' min='1' max='28' placeholder='Day of the Month this comes due' onChange={this.handleChange} name='dueDate' />
-        <textarea columns={20} rows={5} placeholder='Notes' onChange={this.handleChange} name='notes' />
-        <button onClick={this.confirmDebt}>Add Debt</button>
+        <textarea columns={20} rows={5} placeholder='notes' onChange={this.handleChange} name='notes' />
+        <button onClick={this.confirmDebt} type="button" class="btn btn-outline-secondary">add debt</button>
         {this.props.debts.map((current, index) => {
           return(
             <span key={index}>{current.nickname} {current.balance}</span>
           )
         })}
-        <span onClick={()=>this.props.history.push('/dashboard')}>Skip for now</span>
+        <span onClick={()=>this.props.history.push('/dashboard')}>skip for now</span>
       </div>
     )
   }
