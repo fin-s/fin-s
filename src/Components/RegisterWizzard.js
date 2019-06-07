@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {withRouter} from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import Income from './Income'
 import Debts from './Debts'
 import Expenses from './Expenses';
@@ -36,9 +36,9 @@ class RegisterWizzard extends Component {
   }
 
   handleSubmitFinances = async () => {
-    const {incomes, expenses, debts} = this.state
-    try{
-      await axios.post('/api/users/money', {incomes, expenses, debts})
+    const { incomes, expenses, debts } = this.state
+    try {
+      await axios.post('/api/users/money', { incomes, expenses, debts })
       this.props.history.push('/dashboard')
     } catch (err) {
       console.log('Error encountered submitting finances: ', err)
@@ -71,12 +71,12 @@ class RegisterWizzard extends Component {
     let current = switchArr.findIndex(ele => {
       return ele === this.state.switchPage
     })
-    if(pageSwitch){
+    if (pageSwitch) {
       let next = current + 1
-      this.setState({switchPage: switchArr[next % switchArr.length]})
+      this.setState({ switchPage: switchArr[next % switchArr.length] })
     } else {
       let next = current + switchArr.length - 1
-      this.setState({switchPage: switchArr[next % switchArr.length]})
+      this.setState({ switchPage: switchArr[next % switchArr.length] })
     }
   }
 
@@ -86,10 +86,12 @@ class RegisterWizzard extends Component {
     return (
       <div>
         <NavBar />
+        <div className='wizNav'>
         {this.handleWizardConditional(switchPage)}
-        <button onClick={() => this.handleSwitchPage(true)} type="button" class="btn btn-outline-secondary">next form</button>
-        <button onClick={() => this.handleSwitchPage(false)} type="button" class="btn btn-outline-secondary" >previous form</button>
-        <button onClick={() => this.handleSubmitFinances()} type="button" class="btn btn-outline-secondary" >confirm and submit</button>
+          <button onClick={() => this.handleSwitchPage(false)} type="button" class="btn btn-outline-secondary" >previous form</button>
+          <button onClick={() => this.handleSwitchPage(true)} type="button" class="btn btn-outline-secondary">next form</button>
+          <button onClick={() => this.handleSubmitFinances()} type="button" class="btn btn-outline-secondary" >confirm and submit</button>
+        </div>
       </div>
     )
   }
