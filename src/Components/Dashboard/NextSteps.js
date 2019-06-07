@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from 'axios'
+import steps from './steps'
 
 class NextSteps extends Component {
   constructor() {
@@ -7,48 +8,38 @@ class NextSteps extends Component {
 
     this.state = {
       stepsCompleted: [],
-      displayArray: []
+      userSteps: [],
+      displayArray: [],
+      steps: [...steps.steps],
+      showSteps: []
     }
   }
 
   async componentDidMount() {
-    await axios.get('/api/todos')
-      .then(res => {
+    let userSteps = await axios.get('/api/todos')
+
+    let threeSteps = []
+
+    userSteps.data.forEach((element, index) => {
+      if(element === 0 && threeSteps.length < 3){
+        threeSteps.push(index)
+      }
+    })
+
+    this.setState({
+      userSteps: userSteps.data,
+      showSteps: threeSteps
+    })
+
+    this.state.steps.forEach((element, index) => {
+      let displayArray = this.state.displayArray
+      if(this.state.showSteps.includes(index)){
         this.setState({
-          stepsCompleted: res.data
+          displayArray: [...displayArray, element]
         })
-      })
-      .catch(() => console.log('You have an error in your CDM in NextSteps.js'))
-
-
+      }
+    })
   }
-
-  async componentDidUpdate(prevProps, prevState) {
-    const { stepsCompleted
-      // , displayArray 
-    } = this.state
-
-    // if (prevState.stepsCompleted !== stepsCompleted) {
-    //   await stepsCompleted.forEach((element, index) => {
-    //     this.setState({
-    //       displayArray: []
-    //     })
-    //     if (element === 0 && displayArray.length < 3) {
-    //       displayArray.push(index)
-    //     }
-    //   })
-    //   console.log(`stepsCompleted CDU NextSteps.js`, stepsCompleted)
-    //   console.log(`displayArray CDU NextSteps.js`, displayArray)
-
-      await axios.post('/api/todos', stepsCompleted)
-        .then(() => {
-          console.log(`axios.post in CDU NextSteps.js worked`)
-        })
-        .catch(() => {
-          console.log(`CDU obviously didn't work in NexptSteps.js`)
-        })
-    }
-  // }
 
   handleClick(i) {
     let copiedComplete = [...this.state.stepsCompleted]
@@ -68,7 +59,7 @@ class NextSteps extends Component {
         <h3>Next Steps</h3>
         <div name="progress-bar" />
         <div className='stepContainer'>
-          <div className="step">
+          {/* <div className="step">
             <h5>Step 1:</h5>
             <p>Set up a high interest savings account</p>
             <button
@@ -141,7 +132,7 @@ class NextSteps extends Component {
             <p>Invest in alternative income streams</p>
             <button
               onClick={() => { this.handleClick(11) }}>x</button>
-          </div>
+          </div> */}
         </div>
       </div>
     )

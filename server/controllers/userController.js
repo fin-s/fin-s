@@ -3,8 +3,13 @@ module.exports = {
     const db = req.app.get('db')
 
     try {
-      let list = await db.getTodos([req.session.user.email])
-      res.status(200).send(list[0].steps)
+      if(req.session.user) {
+        const {email} = req.session.user
+        let list = await db.getTodos([email])
+        res.status(200).send(list[0].steps)
+      } else {
+        throw new Error()
+      }
     } catch (error) {
       console.log(error)
       res.status(500).send(`Error getting todos`)
