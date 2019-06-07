@@ -20,15 +20,30 @@ class NextSteps extends Component {
     })
     .catch(() => console.log('You have an error in your CDM in NextSteps.js'))
 
-    this.state.stepsCompleted.forEach((element, index) => {
-      if (element === 0 && this.state.displayArray.length < 3) {
-        this.state.displayArray.push(index)
-      }
-    })
+    
   }
 
-  async componentWillUnmount() {
-    await axios.post('/api/todos', this.state.stepsCompleted)
+  async componentDidUpdate() {
+    const { stepsCompleted, displayArray } = this.state
+
+    await stepsCompleted.forEach((element, index) => { 
+      this.setState({
+        displayArray: []
+      })
+      if (element === 0 && displayArray.length < 3) {
+        displayArray.push(index)
+      }
+    })
+    console.log(`stepsCompleted CDU NextSteps.js`, stepsCompleted)
+    console.log(`displayArray CDU NextSteps.js`, displayArray)
+
+    await axios.post('/api/todos', stepsCompleted)
+    .then(() => {
+      console.log(`axios.post in CDU NextSteps.js worked`)
+    })
+    .catch(() => {
+      console.log(`CDU obviously didn't work in NexptSteps.js`)
+    })
   }
 
   handleClick(i) {
