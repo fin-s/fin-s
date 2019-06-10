@@ -33,21 +33,11 @@ class Expenses extends Component {
   render(){
     return(
       <div>
-<<<<<<< HEAD
-        <input onChange={this.handleChange} name='nickname' placeholder='Expense name' type='text' required/>
-        <input onChange={this.handleChange} name='amount' placeholder='Amount' type='number' required/>
-        <textarea onChange={this.handleChange} columns={20} rows={5} name='notes' placeholder='notes' />
-        
-        <input type='number' min='1' max='28' placeholder='Day of the Month this comes due' onChange={this.handleChange} name='dueDate' required/>
-
-        <button onClick={this.confirmExpense}>Add Expense</button>
-=======
         <input onChange={this.handleChange} name='nickname' placeholder='expense name' type='text'/>
         <input onChange={this.handleChange} name='amount' placeholder='amount' type='text'/>
         <textarea onChange={this.handleChange} columns={20} rows={5} name='notes' placeholder='notes' />
         <input type='number' min='1' max='28' placeholder='day' onChange={this.handleChange} name='dueDate' />
         <button onClick={this.confirmExpense} type="button" class="btn btn-outline-secondary" >add expense</button>
->>>>>>> master
         {this.props.expenses.map((current, index) => {
           return <span key={index}>{current.nickname} {current.amount}</span>
         })}
