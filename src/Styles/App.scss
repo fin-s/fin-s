@@ -17,5 +17,12 @@ Body{
   background-color: $black-color;
   color: $gold-color;
   font-family: 'Raleway', sans-serif;
+  text-transform: lowercase;
 }
+
+*{
+  text-transform: lowercase;
+}
+
+
 @import 'NavBar';

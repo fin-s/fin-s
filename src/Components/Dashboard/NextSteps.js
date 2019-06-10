@@ -111,7 +111,7 @@ class NextSteps extends Component {
           <div>
 
             {!this.state.showAll ? <p onClick={this.toggleShow}>Show All</p> :
-              <p onClick={this.toggleShow}>Hide All</p>}
+              <p onClick={this.toggleShow}>Hide</p>}
 
           </div>
         </div>
@@ -119,7 +119,7 @@ class NextSteps extends Component {
       <div>
 
         {!this.state.showAll ? <p className='show-all-text' onClick={this.toggleShow}>Show All</p> :
-          <p className='show-all-text' onClick={this.toggleShow}>Hide All</p>}
+          <p className='show-all-text' onClick={this.toggleShow}>Hide</p>}
 
       </div>
     </div>
