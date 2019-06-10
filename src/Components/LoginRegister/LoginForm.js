@@ -57,7 +57,6 @@ class LoginForm extends Component {
   }
 
   conditionalRender = (bleh) => {
-    // console.log('fire conditional eval')
     if (!bleh) {
       return (<header className='header'>
         <form onSubmit={this.handleLoginFormSubmit}>

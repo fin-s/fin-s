@@ -50,7 +50,8 @@ class Step extends Component {
         <div>
           <div class="step-title-hold">
             <div onClick={this.toggle}>
-              <FontAwesomeIcon icon='square' />
+              {/* <FontAwesomeIcon icon={['far', 'square']} /> */}
+              <i class="far fa-square"></i>
             </div>
             <h5>Step {this.props.stepNumber}:</h5>
           </div>
