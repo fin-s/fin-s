@@ -1,0 +1,27 @@
+.ProfileIncome{
+  width: 90%;
+  margin: 20px 0;
+  font-size: 1.2rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.ProfileIncome-button-hold{
+  display: flex;
+}
+
+.ProfileIncome-button{
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+.ProfileIncome-form-line{
+  display: flex;
+  align-items: center;
+  select{
+    width: 80%;
+  }
+  p{
+    margin-right: 15px;
+  }
+}

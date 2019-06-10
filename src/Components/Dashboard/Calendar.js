@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import Tooltip from 'tooltip.js'
+// import Tooltip from 'tooltip.js'
 import Moment from 'moment'
 import FullCalendar from '@fullcalendar/react'
 import dayGridMonth from '@fullcalendar/daygrid'
@@ -9,8 +9,16 @@ import animationData from '../../Lotties/animation-w360-h240.json'
 
 class Calendar extends Component {
 
+  componentDidUpdate(){
+    if(!this.props.loadingCalendar){
+      let center = document.getElementsByClassName('fc-center')[0]
+      center.innerHTML = `<h3>Monthly surplus funds: $${this.props.surplus}</h3>`
+    }
+  }
 
   render() {
+    // variables declared here instead of inline of the component for the sake of readability
+
     let month = Moment().format('M')
     const validRange = {
       start: Moment().date(1).format('YYYY-MM-DD'),
@@ -38,7 +46,7 @@ class Calendar extends Component {
       },
       {
         events: [],
-        color: 'rgb(210, 0, 0)',
+        color: '#bc2727',
         textColor: '$gold-color'
       }
     ]
@@ -60,7 +68,8 @@ class Calendar extends Component {
     })
 
     if(this.props.loadingCalendar){
-      return (<div>
+      return (
+      <div>
         <Lottie options={defaultOptions} />
       </div>)
     } else {
