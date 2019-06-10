@@ -18,7 +18,7 @@ class NextSteps extends Component {
   }
 
   async componentDidMount() {
-    this.getThreeSteps()
+    await this.getThreeSteps()
   }
 
   getThreeSteps = async () => {
@@ -78,22 +78,33 @@ class NextSteps extends Component {
   }
 
   render() {
-    return (
-      <div>
-        <h3>Next Steps</h3>
+    return (<div className='next-step-hold'>
+      <h3 className='next-step-title'>Next Steps</h3>
+      <div className='nextSteps'>
         <div name="progress-bar" />
         <div className='stepContainer'>
           {!this.state.showAll ? <>{this.state.loading ? <div>loading</div> :
             this.state.displayArray.map(element => {
               return <Step
+<<<<<<< HEAD
                 stepNumber={element.stepNumber}
                 task={element.task}
                 handleClick={this.handleClick}
                 index={element.index} />
+=======
+                key={element.index}
+                complete={this.state.stepsCompleted[element.index]}
+                stepNumber={element.stepNumber}
+                task={element.task}
+                handleClick={this.handleClick}
+                index={element.index}
+                stepsCompleted={this.state.stepsCompleted} />
+>>>>>>> master
             })}</> :
             <>
               {this.state.steps.map(element => {
                 return <Step
+<<<<<<< HEAD
                   stepNumber={element.stepNumber}
                   task={element.task}
                   handleClick={this.handleClick}
@@ -107,8 +118,26 @@ class NextSteps extends Component {
               <p onClick={this.toggleShow}>Hide All</p>}
 
           </div>
+=======
+                  key={element.index}
+                  complete={this.state.stepsCompleted[element.index]}
+                  stepNumber={element.stepNumber}
+                  task={element.task}
+                  handleClick={this.handleClick}
+                  index={element.index}
+                  stepsCompleted={this.state.stepsCompleted} />
+              })}
+            </>}
+>>>>>>> master
         </div>
       </div>
+      <div>
+
+        {!this.state.showAll ? <p className='show-all-text' onClick={this.toggleShow}>Show All</p> :
+          <p className='show-all-text' onClick={this.toggleShow}>Hide All</p>}
+
+      </div>
+    </div>
     )
   }
 }

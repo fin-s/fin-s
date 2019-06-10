@@ -6,23 +6,13 @@
 }
 
 .calendar{
-  border: solid;
+  // border: solid;
   height: 800px;
   width: 65%;
-  color: red;
+  color: $gold-color;
 }
 
-.nextSteps{
-  border: solid;
-  height: 15%;
-  width: 90%;
-  color: $gold-color;
-  margin-right: 5%;
-  margin-bottom: 5%;
-  overflow-y: scroll;
-  font-size: 1.5rem;
-  // display: none;
-}
+
 
 
 

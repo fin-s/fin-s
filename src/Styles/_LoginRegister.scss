@@ -29,6 +29,10 @@ input[type=text]{
   margin-right: 12px;
 }
 
+input[type=password]{
+  @extend input[type=text]
+}
+
 .registerInput{
   float: right;
   margin: 1% 10% 3% 3%;
