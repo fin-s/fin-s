@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Line } from "react-chartjs-2";
 import axios from "axios";
+import Slider from './Slider'
 
 class Chart extends Component {
   constructor(props) {
@@ -9,12 +10,20 @@ class Chart extends Component {
       divStyle:{width:720, height:360},
       chartData: {
         labels: [],
-        datasets:[],
-      }
+        datasets:[]
+      },
+      dataSets:[],
+      surplus: 300,
+      surplusToAdd: 0,
+      debtDisplayIndex: 0
     };
   }
 
   async componentDidMount() {
+    this.setChart()
+  }
+
+ setChart = async () => {
     let user = await axios.get('/api/users')
     let userDataSets = []
     user.data.debts.forEach((current) => {
@@ -22,34 +31,23 @@ class Chart extends Component {
       let dataSet = {
         label: nickname,
         fill: true,
-        data:this.getDebtData(interestRate, balance, minimumPayment, actualPayment),
+        data:this.getDebtData(interestRate, balance, minimumPayment, actualPayment + this.state.surplusToAdd),
         backgroundColor: 'rgba(41, 223, 32, 0.2)',
         borderColor:'rgb(41, 223, 32)'
       }
       userDataSets.push(dataSet)
     })
-    console.log(userDataSets)
     this.setState({
       chartData: {
         labels: this.getDataLabels(userDataSets),
-        datasets: userDataSets
-      }
+        datasets: [userDataSets[0]]
+      },
+      dataSets: userDataSets
+
+
     })
-    // console.log(`USER DATA IS: ${user}`)
   }
-// debt object example
-//   actualPayment:
-// 500
-// balance:
-// 3000
-// dueDate:
-// 10
-// interestRate:
-// 1529
-// minimumPayment:
-// 100
-// nickname:
-// "Credit card 2"
+
 getDataLabels = userDataSets => {
   let longestPayoff = 0;
   userDataSets.forEach(current => {
@@ -123,12 +121,19 @@ payments.push(Math.floor(balance))
 return payments
 }
 
+getSurplusSliderData = (update) => {
+  this.setState({
+    surplusToAdd: update[0]
+  })
+  this.setChart()
+}
+
   render() {
     return (<div className='chartDiv'>
       <Line data={this.state.chartData} 
       options={{
         title:{display:true, text:'Debt payoff timeline', fontSize: '20', fontColor:'#DACE94'}, 
-        legend: { position: 'bottom', display: true, labels: { fontColor: '#DACE94'}},
+        legend: {display: false},
         scales: {
           yAxes: [{
             ticks: {
@@ -146,6 +151,7 @@ return payments
           }]
       }
         }} />
+        <Slider onUpdate={this.getSurplusSliderData} surplus={this.state.surplus} />
     </div>)
   }
 }

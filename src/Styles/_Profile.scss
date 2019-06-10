@@ -1,0 +1,54 @@
+.profile-hold{
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  justify-content: space-between
+}
+
+.Profile{
+  width: 100vw;
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.column{
+  height: 100%;
+  width: 33%;
+  border-right: 1px solid white;
+  border-left: 1px solid white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  overflow-y: scroll;
+}
+
+.column-title{
+  font-size: 3rem;  
+  text-decoration: underline;
+}
+
+.add-new-title{
+  display: flex;
+  font-size: 1.5rem;
+  margin-top: 15px;
+  cursor: pointer;
+  p{
+    margin-left: 10px;
+  }
+}
+
+.add-form{
+  margin-top: 25px;
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  select{
+    width: 100%
+  }
+  input{
+    width: 100%
+  }
+}
