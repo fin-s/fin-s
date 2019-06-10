@@ -1,8 +1,10 @@
 @import 'reset';
-@import '~@fullcalendar/core/main.css';
-@import '~@fullcalendar/daygrid/main.css';
+//I've pulled the styles out of fullcalendars node_modules to edit it here where it will be tracked as part of the build -dillon
+// @import '~@fullcalendar/core/main.css';
+// @import '~@fullcalendar/daygrid/main.css';
 
 @import 'sassVars';
+@import 'fullcalendarCustomStyle';
 @import 'LoginRegister';
 @import 'dashboard';
 @import 'chart';
