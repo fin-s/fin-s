@@ -20,6 +20,8 @@ const getList = (incomes, debts, expenses) => {
 
   let day = new Date().getDate()
   let month = new Date().getMonth()
+  let credits = []
+  let debits = []
   incomes.forEach(element => {
     switch (element.interval.frequency) {
       case 'monthly':
@@ -31,6 +33,7 @@ const getList = (incomes, debts, expenses) => {
             dueDate: element.interval.incomeDate1,
             _id: element._id
           })
+          credits.push(element.amount)
         } else {
           holdMonth.dueDates.push({
             nickname: element.nickname,
@@ -39,6 +42,7 @@ const getList = (incomes, debts, expenses) => {
             dueDate: element.interval.incomeDate1,
             _id: element._id
           })
+          credits.push(element.amount)
         }
         month1.dueDates.push({
           nickname: element.nickname,
@@ -64,6 +68,7 @@ const getList = (incomes, debts, expenses) => {
             dueDate: element.interval.incomeDate1,
             _id: element._id
           })
+          credits.push(element.amount)
         } else {
           holdMonth.dueDates.push({
             nickname: element.nickname,
@@ -72,6 +77,7 @@ const getList = (incomes, debts, expenses) => {
             dueDate: element.interval.incomeDate1,
             _id: element._id
           })
+          credits.push(element.amount)
         }
         if (element.interval.incomeDate2 >= day) {
           month0.dueDates.push({
@@ -81,6 +87,7 @@ const getList = (incomes, debts, expenses) => {
             dueDate: element.interval.incomeDate2,
             _id: element._id
           })
+          credits.push(element.amount)
         } else {
           holdMonth.dueDates.push({
             nickname: element.nickname,
@@ -89,6 +96,7 @@ const getList = (incomes, debts, expenses) => {
             dueDate: element.interval.incomeDate2,
             _id: element._id
           })
+          credits.push(element.amount)
         }
         month1.dueDates.push({
           nickname: element.nickname,
@@ -143,6 +151,7 @@ const getList = (incomes, debts, expenses) => {
               dueDate: pay,
               _id: element._id
             })
+            credits.push(element.amount)
           } else {
             holdMonth.dueDates.push({
               nickname: element.nickname,
@@ -151,6 +160,7 @@ const getList = (incomes, debts, expenses) => {
               dueDate: pay,
               _id: element._id
             })
+            credits.push(element.amount)
           }
         })
 
@@ -209,6 +219,7 @@ const getList = (incomes, debts, expenses) => {
         style: 'debt',
         _id: element._id
       })
+      debits.push(payment)
     } else {
       holdMonth.dueDates.push({
         nickname: element.nickname,
@@ -218,6 +229,7 @@ const getList = (incomes, debts, expenses) => {
         style: 'debt',
         _id: element._id
       })
+      debits.push(payment)
     }
 
     month1.dueDates.push({
@@ -248,6 +260,7 @@ const getList = (incomes, debts, expenses) => {
         style: 'expense',
         _id: element._id
       })
+      debits.push(element.amount)
     } else {
       holdMonth.dueDates.push({
         nickname: element.nickname,
@@ -256,6 +269,7 @@ const getList = (incomes, debts, expenses) => {
         style: 'expense',
         _id: element._id
       })
+      debits.push(element.amount)
     }
     month1.dueDates.push({
       nickname: element.nickname,
@@ -421,12 +435,23 @@ const getList = (incomes, debts, expenses) => {
     return element !== undefined
   })
 
+  let credit = credits.reduce((acc, element) => {
+    return acc += +element
+  }, 0)
+
+  let debit = debits.reduce((acc, element) => {
+    return acc += +element
+  }, 0)
+
+  let surplus = credit - debit
+
 
 
 
   return {
     calendar: filteredCalendar,
-    horizon: schedule 
+    horizon: schedule ,
+    surplus
   }
 }
 

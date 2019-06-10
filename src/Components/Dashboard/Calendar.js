@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import Tooltip from 'tooltip.js'
+// import Tooltip from 'tooltip.js'
 import Moment from 'moment'
 import FullCalendar from '@fullcalendar/react'
 import dayGridMonth from '@fullcalendar/daygrid'
@@ -9,8 +9,15 @@ import animationData from '../../Lotties/animation-w360-h240.json'
 
 class Calendar extends Component {
 
+  componentDidMount(){
+    let center = document.getElementsByClassName('fc-center')
+    console.log('did i get the element? ', center)
+    center.innerHTML = '<h2>bleh</h2>'
+  }
 
   render() {
+    // variables declared here instead of inline of the component for the sake of readability
+
     let month = Moment().format('M')
     const validRange = {
       start: Moment().date(1).format('YYYY-MM-DD'),
