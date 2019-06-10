@@ -90,7 +90,8 @@ class Profile extends Component {
               <section className="column incomes">
                 <IncomeColumn 
                 data={this.state.incomes}
-                handleAddIncome={this.handleAddIncome}/>
+                handleAddIncome={this.handleAddIncome}
+                fetchUserInfo={this.fetchUserInfo}/>
               </section>
               <section className="column"></section>
               <section className="column"></section>

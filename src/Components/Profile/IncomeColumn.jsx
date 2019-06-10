@@ -96,7 +96,7 @@ class IncomeColumn extends Component {
           </form> : <></>}
 
         {this.props.data.map(element => {
-          return <ProfileIncome key={element._id} income={element} />
+          return <ProfileIncome fetchUserInfo={this.props.fetchUserInfo} key={element._id} income={element} />
         })}
       </>
     )

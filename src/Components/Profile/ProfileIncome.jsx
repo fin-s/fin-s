@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import axios from 'axios'
 
 class ProfileIncome extends Component {
 
@@ -34,6 +35,11 @@ class ProfileIncome extends Component {
 
   handleEdit = (e) => {
     e.preventDefault()
+  }
+
+  handleDelete = async () => {
+    await axios.delete(`/api/list/incomes?id=${this.props.income._id}`)
+    this.props.fetchUserInfo()
   }
 
   render() {
@@ -119,7 +125,7 @@ class ProfileIncome extends Component {
         }
         <div className="ProfileIncome-button-hold">
           <FontAwesomeIcon onClick={this.toggleEdit} className='ProfileIncome-button' icon='edit' />
-          <FontAwesomeIcon className='ProfileIncome-button' icon='trash' />
+          <FontAwesomeIcon onClick={this.handleDelete} className='ProfileIncome-button' icon='trash' />
         </div>
       </div>
     )
