@@ -32,6 +32,10 @@ class ProfileIncome extends Component {
     })
   }
 
+  handleEdit = (e) => {
+    e.preventDefault()
+  }
+
   render() {
     const { income } = this.props
 
