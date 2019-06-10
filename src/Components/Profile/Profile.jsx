@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import NavBar from '../NavBar'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import ProfileIncome from './ProfileIncome'
+import ProfileColumn from './ProfileColumn'
 
 class Profile extends Component {
 
@@ -34,19 +33,11 @@ class Profile extends Component {
       incomes: user.data.incomes,
       debts: user.data.debts,
       expenses: user.data.expenses,
-      loading: false,
-      addDebt: false,
-      addExpense: false,
-      addIncome: false
+      loading: false
     })
   }
 
-  toggleAddIncome = () => {
-
-    this.setState({
-      addIncome: !this.state.addIncome
-    })
-  }
+  
   toggleAddDebt = () => {
 
     this.setState({
@@ -66,24 +57,25 @@ class Profile extends Component {
     })
   }
 
-  handleAddIncome = async (e) => {
-    e.preventDefault()
-    const income = {
-      nickname: this.state.incomeNickname,
-      type: this.state.incomeFrequency,
-      amount: +this.state.incomeAmount,
-      notes: this.state.incomeNotes,
+  handleAddIncome = async (income) => {
+    const newIncome = {
+      nickname: income.nickname,
+      type: income.frequency,
+      amount: +income.amount,
+      notes: income.notes,
       interval: {
-        frequency: this.state.incomeFrequency,
-        incomeDate1: +this.state.incomeDate1,
-        incomeDate2: +this.state.incomeDate2,
-        incomeWeekday: +this.state.incomeWeekday
+        frequency: income.frequency,
+        incomeDate1: +income.incomeDate1,
+        incomeDate2: +income.incomeDate2,
+        incomeWeekday: +income.incomeWeekday
       }
     }
+
+    console.log(newIncome)
     this.setState({
       loading: true
     })
-    await axios.post('/api/list/incomes', {incomes: [income]})
+    await axios.post('/api/list/incomes', {incomes: [newIncome]})
     this.fetchUserInfo()
   }
 
@@ -96,76 +88,12 @@ class Profile extends Component {
           {this.state.loading ? <div>Loading...</div> :
             <div className='Profile'>
               <section className="column incomes">
-                <h1 className="column-title">Incomes</h1>
-                <div className="add-new-title" onClick={this.toggleAddIncome}>
-                  <FontAwesomeIcon icon='plus-circle' />
-                  <p>Add new income</p>
-                </div>
-                {this.state.addIncome ?
-                  <form onSubmit={(e)=> this.handleAddIncome(e)} className='add-form'>
-                    <p>Income name</p>
-                    <input onChange={(e) => this.handleChange(e)} name='incomeNickname' type="text" />
-                    <p>Income frequency</p>
-                    <select onChange={(e) => this.handleChange(e)} name="incomeFrequency">
-                      <option value="">--Income Frequency--</option>
-                      <option value="monthly">Monthly</option>
-                      <option value="semi-monthly">Semi-monthly</option>
-                      <option value="weekly">Weekly</option>
-                    </select>
-                    {this.state.incomeFrequency === 'monthly' ?
-                      <div>
-                        <p>Payday</p>
-                        <input onChange={(e) => this.handleChange(e)} name='incomeDate1' type="number" />
-                      </div> : this.state.incomeFrequency === 'semi-monthly' ?
-                        <div>
-                          <p>Paydays</p>
-                          <input onChange={(e) => this.handleChange(e)} name='incomeDate1' type="number" />
-                          <input onChange={(e) => this.handleChange(e)} name='incomeDate2' type="number" />
-                        </div> : this.state.incomeFrequency === 'weekly' ?
-                          <div>
-                            <p>Payday</p>
-                            <select onChange={(e) => this.handleChange(e)} name="incomeWeekday">
-                              <option value={0}>Sunday</option>
-                              <option value={1}>Monday</option>
-                              <option value={2}>Tuesday</option>
-                              <option value={3}>Wednesday</option>
-                              <option value={4}>Thursday</option>
-                              <option value={5}>Friday</option>
-                              <option value={6}>Saturday</option>
-                            </select>
-                          </div> : <p>--Select an income frequency--</p>}
-                    <p>Amount</p>
-                    <input onChange={(e) => this.handleChange(e)} name='incomeAmount' type="number" />
-                    <p>Notes</p>
-                    <input onChange={(e) => this.handleChange(e)} type="text" name='incomeNotes' />
-                    <button type='submit'>Submit</button>
-
-                  </form> : <></>}
-
-                {this.state.incomes.map(element => {
-                  return <ProfileIncome key={element._id} income={element} />
-                })}
+                <ProfileColumn 
+                data={this.state.incomes}
+                handleAddIncome={this.handleAddIncome}/>
               </section>
-              <section className="column debts">
-                <h1 className="column-title">Debts</h1>
-                <div className="add-new-title" onClick={this.toggleAddDebt}>
-                  <FontAwesomeIcon icon='plus-circle' />
-                  <p>Add new debt</p>
-                </div>
-                {this.state.addDebt ? <form className='add-form'>
-
-                </form> : <></>}
-              </section>
-              <section className="column expenses">
-                <h1 className="column-title">Expenses</h1>
-                <div className="add-new-title" onClick={this.toggleAddExpense}>
-                  <FontAwesomeIcon icon='plus-circle' />
-                  <p>Add new expense</p>
-                </div>
-                {this.state.addExpense ? <form className='add-form'>
-
-                </form> : <></>}
-              </section>
+              <section className="column"></section>
+              <section className="column"></section>
             </div>
           }
         </div>
