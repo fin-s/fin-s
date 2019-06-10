@@ -43,7 +43,6 @@ class Dashboard extends Component {
         <NavBar />
         <div className='containers'>
           <div className='calendar'>
-            calendar
                 <Calendar calendarList={calendarList} />
           </div>
           <div className='chart'>
