@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import ProfileIncome from './ProfileIncome'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 
-class ProfileColumn extends Component {
+class IncomeColumn extends Component {
 
   state = {
     nickname: '',
@@ -103,4 +103,4 @@ class ProfileColumn extends Component {
   }
 }
 
-export default ProfileColumn
+export default IncomeColumn

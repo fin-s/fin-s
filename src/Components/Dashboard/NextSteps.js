@@ -86,10 +86,6 @@ class NextSteps extends Component {
           {!this.state.showAll ? <>{this.state.loading ? <div>loading</div> :
             this.state.displayArray.map(element => {
               return <Step
-                stepNumber={element.stepNumber}
-                task={element.task}
-                handleClick={this.handleClick}
-                index={element.index} 
                 key={element.index}
                 complete={this.state.stepsCompleted[element.index]}
                 stepNumber={element.stepNumber}
@@ -101,19 +97,15 @@ class NextSteps extends Component {
             <>
               {this.state.steps.map(element => {
                 return <Step
+                  key={element.index}
+                  complete={this.state.stepsCompleted[element.index]}
                   stepNumber={element.stepNumber}
                   task={element.task}
                   handleClick={this.handleClick}
-                  index={element.index} />
+                  index={element.index}
+                  stepsCompleted={this.state.stepsCompleted} />
               })}
             </>}
-
-          <div>
-
-            {!this.state.showAll ? <p onClick={this.toggleShow}>Show All</p> :
-              <p onClick={this.toggleShow}>Hide All</p>}
-
-          </div>
         </div>
       </div>
       <div>

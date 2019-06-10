@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import NavBar from '../NavBar'
-import ProfileColumn from './ProfileColumn'
+import IncomeColumn from './IncomeColumn'
 
 class Profile extends Component {
 
@@ -88,7 +88,7 @@ class Profile extends Component {
           {this.state.loading ? <div>Loading...</div> :
             <div className='Profile'>
               <section className="column incomes">
-                <ProfileColumn 
+                <IncomeColumn 
                 data={this.state.incomes}
                 handleAddIncome={this.handleAddIncome}/>
               </section>
