@@ -101,16 +101,16 @@ button{
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr 1fr 1fr;
-  grid-template-areas: "\31 " "\32 " "\33 ";
+  grid-template-areas: "31 " "32 " "33 ";
   // margin-left: 2%;
   margin-top: 2%;
 }
 
-.\31  { grid-area: \31 ; }
+.31  { grid-area: 31 ; }
 
-.\32  { grid-area: \32 ; }
+.32  { grid-area: 32 ; }
 
-.\33  { grid-area: \33 ; }
+.33  { grid-area: 33 ; }
 
 #skip{
   height: 3rem;
@@ -137,27 +137,27 @@ div{
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr 1fr 1fr;
-  grid-template-areas: "\34 " "\35 " "\36 ";
+  grid-template-areas: "34 " "35 " "36 ";
   margin-top: 2%;
 }
 
-.\34  { grid-area: \34 ; }
+.34  { grid-area: \34 ; }
 
-.\35  { grid-area: \35 ; }
+.35  { grid-area: \35 ; }
 
-.\36  { grid-area: \36 ; }
+.36  { grid-area: \36 ; }
 
 .grid-container3 {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr 1fr 1fr;
-  grid-template-areas: "\34 " "\35 " "\36 ";
+  grid-template-areas: "34 " "35 " "36 ";
   margin-top: 2%;
 }
 
-.\34  { grid-area: \37 ; }
+.34  { grid-area: 37 ; }
 
-.\35  { grid-area: \38 ; }
+.35  { grid-area: 38 ; }
 
-.\36  { grid-area: \39 ; }
+.36  { grid-area: 39 ; }
 

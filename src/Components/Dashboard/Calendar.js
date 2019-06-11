@@ -51,7 +51,7 @@ class Calendar extends Component {
       }
     ]
 
-    this.props.calendarList.map((ele) => {
+    this.props.calendarList.forEach((ele) => {
       if(ele.style === 'income'){
         newSources[0].events.push({
           title: ele.nickname,
