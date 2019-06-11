@@ -321,11 +321,11 @@ module.exports = {
   deleteIncome: (req, res) => {
 
     try {
-      const { income } = req.body
+      const { id } = req.query
       const { email } = req.session.user
       User.updateOne({ email: email },
         {
-          $pull: { "incomes": { _id: income._id } }
+          $pull: { "incomes": { _id: id } }
         })
         .exec((err, data) => {
           if (err) {

@@ -9,10 +9,11 @@ import animationData from '../../Lotties/animation-w360-h240.json'
 
 class Calendar extends Component {
 
-  componentDidMount(){
-    let center = document.getElementsByClassName('fc-center')
-    console.log('did i get the element? ', center)
-    center.innerHTML = '<h2>bleh</h2>'
+  componentDidUpdate(){
+    if(!this.props.loadingCalendar){
+      let center = document.getElementsByClassName('fc-center')[0]
+      center.innerHTML = `<h3>Monthly surplus funds: $${this.props.surplus}</h3>`
+    }
   }
 
   render() {
@@ -45,7 +46,7 @@ class Calendar extends Component {
       },
       {
         events: [],
-        color: 'rgb(210, 0, 0)',
+        color: '#bc2727',
         textColor: '$gold-color'
       }
     ]
@@ -67,7 +68,8 @@ class Calendar extends Component {
     })
 
     if(this.props.loadingCalendar){
-      return (<div>
+      return (
+      <div>
         <Lottie options={defaultOptions} />
       </div>)
     } else {

@@ -14,7 +14,8 @@ class Dashboard extends Component {
       loadingSnapshot: true,
       loadingCalendar: true,
       snapshotList: [],
-      calendarList: []
+      calendarList: [],
+      surplus: null
     }
   }
 
@@ -24,11 +25,13 @@ class Dashboard extends Component {
       if(lists.data === 'User not logged in'){
         throw new Error()
       }
-      const {calendar, horizon} = lists.data
+      const {calendar, horizon, surplus} = lists.data
       this.setState({loadingSnapshot: false, 
         loadingCalendar: false,
         snapshotList: horizon,
-        calendarList: calendar})
+        calendarList: calendar,
+        surplus: surplus
+      })
     } catch (err) {
       console.log('Error encountered retrieving horizon events: ', err)
       this.props.history.push('/')
@@ -37,14 +40,11 @@ class Dashboard extends Component {
   
 
   render() {
-    const {loadingSnapshot, snapshotList, calendarList} = this.state
+    const {loadingSnapshot, snapshotList, calendarList, surplus, loadingCalendar} = this.state
     return (
       <>
         <NavBar />
         <div className='containers'>
-          <div className='calendar'>
-                <Calendar calendarList={calendarList} />
-          </div>
           <div className='chart'>
             <Chart />
           </div>
@@ -54,6 +54,9 @@ class Dashboard extends Component {
               <HorizonSnapshot loadingSnapshot={loadingSnapshot} snapshotList={snapshotList} />
             </div>
           </div>
+        </div>
+        <div className='calendar'>
+          <Calendar loadingCalendar={loadingCalendar} calendarList={calendarList} surplus={surplus} />
         </div>
       </>
     )
