@@ -97,6 +97,7 @@ getDataLabels = userDataSets => {
       case 11:
         labelArr.push(`December ${year}`);
         break;
+      default: console.log('none')
     }
     if(month === 11){
       year++

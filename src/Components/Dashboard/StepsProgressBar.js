@@ -1,22 +1,29 @@
 import React, { Component } from 'react'
 
 class ProgressBar extends Component {
-  constructor(props){
-    super(props)
 
-    this.state = {
-      progressWidth: this.props.stepsCompleted.reduce( (accumulator, currentValue, currentIndex, array) => accumulator + currentValue )
-    }
+  componentDidMount() {
+    console.log('CDM ProgressWidth', this.calculateProgress())
+    console.log('CDM props.stepsCompleted', this.props.stepsCompleted)
+  }
+
+  calculateProgress() {
+    let progress = this.props.stepsCompleted.reduce((accumulator, currentValue) => {
+      console.log(accumulator)
+     return accumulator += currentValue
+    }, 0)
+
+    let progressWidth = progress / 12
+    return progressWidth
   }
 
   render() {
-    console.log(this.props.stepsCompleted)
-    console.log(this.state.progressWidth)
+    let width = this.calculateProgress()*100
     return (
       <div
       className='outerProgressBar'
         style={{
-          border: '1px gold solid',
+          border: '1px #C5B358 solid',
           height: '15px',
           width: '96%',
           margin: '1% 2%',
@@ -25,10 +32,11 @@ class ProgressBar extends Component {
         <div
         className='Progress'
         style={{
-          backgroundColor: 'gold',
+          backgroundColor: '#2BA851',
           height: '100%',
-          width: '50%',
-          borderRadius: '15px'
+          width: `${width}%`,
+          borderRadius: '15px',
+          transition: '1500ms all'
         }}></div>
       </div>
     )

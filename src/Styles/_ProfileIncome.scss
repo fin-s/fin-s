@@ -4,6 +4,7 @@
   font-size: 1.2rem;
   display: flex;
   justify-content: space-between;
+  position: relative;
 }
 
 .ProfileIncome-button-hold{
@@ -15,13 +16,27 @@
   cursor: pointer;
 }
 
+.ProfileIncome-text-hold{
+  max-width: 85%;
+  input{
+    min-width: 0px;
+  }
+}
+
 .ProfileIncome-form-line{
   display: flex;
   align-items: center;
+  max-width: 100%;
   select{
     width: 80%;
   }
   p{
     margin-right: 15px;
   }
+}
+
+.confirm{
+  border: 1px solid white;
+  background: #2c2e35;
+  height: 12%;
 }
