@@ -48,7 +48,7 @@ class Step extends Component {
     if (!this.state.completed) {
       return (
         <div>
-          <div class="step-title-hold">
+          <div className="step-title-hold">
             <div onClick={this.toggle}>
               <FontAwesomeIcon icon={['far', 'square']} />
             </div>

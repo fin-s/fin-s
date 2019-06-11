@@ -44,14 +44,12 @@ class Income extends Component {
     return (
       <div >
         <div className='grid-container'>
-          <div className='\31'>
+          <div className='one'>
             <div>
               <h1>enter income</h1>
             </div>
-            <input placeholder='income name'
-              // type='text' 
-              onChange={this.handleChange} name='nickname' />
-            <select onChange={this.handleChange} name='type' class='select'>
+            <input placeholder='income name' type='text' onChange={this.handleChange} name='nickname' />
+            <select onChange={this.handleChange} name='type' className='select'>
               <option value=''>-select an option-</option>
               <option value='fixed'>fixed</option>
               <option value='variable'>variable</option>
@@ -76,29 +74,18 @@ class Income extends Component {
                   <option value={5}>friday</option>
                   <option value={6}>saturday</option>
                 </select>
-                : this.state.frequency === 'weekly'
-                  ? <select onChange={this.handleChange} name='incomeWeekday'>
-                    <option value=''>-select an option-</option>
-                    <option value={0}>sunday</option>
-                    <option value={1}>monday</option>
-                    <option value={2}>tuesday</option>
-                    <option value={3}>wednesday</option>
-                    <option value={4}>thursday</option>
-                    <option value={5}>friday</option>
-                    <option value={6}>saturday</option>
-                  </select>
-                  : this.state.frequency === 'semi-monthly'
-                    ? <div >
-                      <input type='number' min='1' max='28' onChange={this.handleChange} name='incomeDate1' placeholder='day 1' />
-                      <input type='number' min='1' max='28' onChange={this.handleChange} name='incomeDate2' placeholder='day 2' />
-                    </div>
-                    : <h1 className='buffer' >input a frequency</h1>}
+                : this.state.frequency === 'semi-monthly'
+                  ? <div >
+                    <input type='number' min='1' max='28' onChange={this.handleChange} name='incomeDate1' placeholder='day 1' />
+                    <input type='number' min='1' max='28' onChange={this.handleChange} name='incomeDate2' placeholder='day 2' />
+                  </div>
+                  : <h1 className='buffer' >input a frequency</h1>}
           </div>
-          <div className='\32'>
+          <div className='two'>
 
             <input onChange={this.handleChange} name='amount' placeholder='amount' type='number' />
             <textarea onChange={this.handleChange} columns={20} rows={5} name='notes' placeholder='notes' ></textarea>
-            <button type="button" class="btn btn-outline-secondary" onClick={this.confirmIncome}>confirm income</button>
+            <button type="button" className="btn btn-outline-secondary" onClick={this.confirmIncome}>confirm income</button>
             <div>
               {this.props.incomes.map((current, index) => {
                 return (
@@ -109,11 +96,13 @@ class Income extends Component {
               })}
             </div>
           </div>
-          <div className='33'>
-            <button id='skip' type="button" class="btn btn-outline-secondary" onClick={() => this.props.history.push('/dashboard')}>skip for now</button>
+          <div className='three'>
+            <button id='skip' type="button" className="btn btn-outline-secondary" onClick={() => this.props.history.push('/dashboard')}>skip for now</button>
           </div>
         </div>
       </div>
+      //   </div >
+      // </div >
     )
   }
 }

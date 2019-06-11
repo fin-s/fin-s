@@ -99,22 +99,22 @@ button {
 .grid-container {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr 1fr 4.5rem;
-  grid-template-areas: "\31 ""\32 ""\33";
+  grid-template-rows: fr 1fr 1fr 4.5rem;
+  grid-template-areas: "one ""two ""three";
   // margin-left: 2%;
   margin-top: 2%;
 }
 
-.\31 {
-  grid-area: \31;
+.one{ 
+  grid-area: 31; 
 }
 
-.\32 {
-  grid-area: \32;
+.two{ 
+  grid-area: 32; 
 }
 
-.\33 {
-  grid-area: \33;
+.three{ 
+  grid-area: 33; 
 }
 
 #skip {
@@ -140,41 +140,43 @@ div {
 .grid-container2 {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr 1fr;
-  grid-template-areas: "\34 ""\35 ""\36";
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-areas: "four " "five " "six ";
   margin-top: 2%;
 }
 
-.\34 {
-  grid-area: \34;
+.four{ 
+  grid-area: 34 ; 
 }
 
-.\35 {
-  grid-area: \35;
+.five{ 
+  grid-area: 35 ; 
 }
 
-.\36 {
-  grid-area: \36;
+.six{ 
+  grid-area: 36 ; 
 }
 
 .grid-container3 {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr 1fr 1fr;
-  grid-template-areas: "\37 ""\38 ""\39 ";
+  grid-template-areas: "seven ""eight ""nine ";
   margin-top: 2%;
 }
 
-.\37 {
-  grid-area: \37;
+.seven {
+  grid-area: 37;
 }
 
-.\38 {
-  grid-area: \38;
+.eight {
+  grid-area: 38;
 }
 
-.\39 {
-  grid-area: \39;
+.nine {
+  grid-area: 39;
+  display: flex;
+  flex-direction: column;
 }
 
 @media (max-width: 1015) {
@@ -183,4 +185,8 @@ div {
       width: 4rem;
     }
   }
+}
+
+#weirdButton{
+  width: 8rem;
 }
