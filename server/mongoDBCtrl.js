@@ -214,6 +214,8 @@ module.exports = {
       const { expenses } = req.body
       const { email } = req.session.user
 
+      // console.log(expenses)
+
       let users = await User.find({ email: email })
       let oldExpenses = users[0].expenses
       let newExpenses = [...oldExpenses, ...expenses]

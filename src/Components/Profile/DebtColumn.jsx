@@ -27,7 +27,7 @@ class DebtColumn extends Component {
     const debt = {
       nickname,
       balance,
-      interestRate,
+      interestRate: interestRate * 100,
       dueDate,
       minimumPayment,
       actualPayment,
@@ -63,7 +63,7 @@ class DebtColumn extends Component {
             </div>
             <div className="ProfileIncome-form-line">
               <p>Interest Rate</p>
-              <input onChange={(e) => this.handleChange(e)} name='interestRate' type="number" />
+              <input onChange={(e) => this.handleChange(e)} name='interestRate' type="number" step='any'/>
               <p>Due Date</p>
               <input onChange={(e) => this.handleChange(e)} name='dueDate' type="number" />
             </div>

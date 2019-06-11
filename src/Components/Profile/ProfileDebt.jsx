@@ -80,7 +80,6 @@ class ProfileDebt extends Component {
 
     if (this.state.popup) {
       popupStyle = {
-        display: 'inline',
         position: 'fixed',
         // left: '10%',
         display: 'flex',
@@ -124,7 +123,7 @@ class ProfileDebt extends Component {
               <p>Balance:</p>
               $<input onChange={(e) => this.handleChange(e)} type="number" name='balance' value={this.state.balance} />
               <p>Interest Rate:</p>
-              <input onChange={(e) => this.handleChange(e)} type="number" name='interestRate' value={this.state.interestRate} />%
+              <input onChange={(e) => this.handleChange(e)} type="number" name='interestRate' value={this.state.interestRate} step='any'/>%
               </div>
             <div className="ProfileIncome-form-line">
               <p>Minimum Payment:</p>

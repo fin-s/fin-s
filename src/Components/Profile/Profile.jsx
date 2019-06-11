@@ -3,6 +3,7 @@ import axios from 'axios'
 import NavBar from '../NavBar'
 import IncomeColumn from './IncomeColumn'
 import DebtColumn from './DebtColumn'
+import ExpenseColumn from './ExpenseColumn'
 
 class Profile extends Component {
 
@@ -70,7 +71,7 @@ class Profile extends Component {
     this.fetchUserInfo()
   }
 
-  handleAddIncome = async (debt) => {
+  handleAddDebt = async (debt) => {
     const newDebt = {
       nickname: debt.nickname,
       balance: debt.balance,
@@ -86,6 +87,22 @@ class Profile extends Component {
       loading: true
     })
     await axios.post('/api/list/debts', {debts: [newDebt]})
+    this.fetchUserInfo()
+  }
+
+  handleAddExpense = async (expense) => {
+    const newExpense = {
+      nickname: expense.nickname,
+      amount: expense.amount,
+      dueDate: expense.dueDate,
+      notes: expense.notes
+    }
+
+    // console.log(newIncome)
+    this.setState({
+      loading: true
+    })
+    await axios.post('/api/list/expenses', {expenses: [newExpense]})
     this.fetchUserInfo()
   }
 
@@ -109,7 +126,12 @@ class Profile extends Component {
                 fetchUserInfo={this.fetchUserInfo}
                 handleAddDebt={this.handleAddDebt}/>
               </section>
-              <section className="column"></section>
+              <section className="column">
+                <ExpenseColumn
+                data={this.state.expenses}
+                fetchUserInfo={this.fetchUserInfo}
+                handleAddExpense={this.handleAddExpense}/>
+              </section>
             </div>
           }
         </div>
