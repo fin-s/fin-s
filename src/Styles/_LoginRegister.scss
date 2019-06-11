@@ -2,7 +2,6 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  margin-top: -3.5rem;
   margin-bottom: 1.5%;
   margin-right: 6%;
 }
@@ -109,19 +108,11 @@ select:-webkit-autofill:focus {
 
 @media (max-width: 1325px) {
   .appInfo {
-    // display: none;
     width: 22rem;
-    // text-align: center;
-    // font-size: 2.6rem;
-    // margin-left: 12%;
-    margin-top: 90%;
-    margin-bottom: -160%;
-    margin-left: 5%;
-    // line-height: 4rem;
   }
 }
 
-@media (max-width: 525px) {
+@media (max-width: 485px) {
   .header {
     margin-right: -2%;
     margin-top: 5%;
@@ -137,7 +128,7 @@ select:-webkit-autofill:focus {
   }
 }
 
-@media (max-width: 525px) {
+@media (max-width: 890px) {
   .registerInput {
     input[type="text"] {
       width: 32vw;
@@ -145,6 +136,11 @@ select:-webkit-autofill:focus {
     input[type="password"] {
       width: 32vw;
     }
+  }
+
+  .appInfo {
+    width: 22rem;
+    margin: 0% 0% 4% 4%;
   }
 
   .main {
