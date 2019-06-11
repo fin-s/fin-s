@@ -3,6 +3,7 @@
   justify-content: space-between;
   margin: 2% 0 0 0;
   width: 100%;
+  min-width: 970px;
 }
 
 .chart-calendar-toggle{
@@ -13,9 +14,10 @@
   position: absolute;
   width: 63%;
   color: $gold-color;
-  margin: 10% 0 0 2%;
+  margin: 14vh 0 0 2%;
   top: 7vh;
   left: 0;
+  min-width: 610px;
 }
 
 .rightSide{
@@ -27,10 +29,11 @@
 
 .chart{
   width: 63%;
-  margin: 10% 0 0 2%;
+  margin: 14vh 0 0 2%;
   position: absolute;
   top: 7vh;
   left: 0;
+  min-width: 610px;
 }
 
 .selected{
@@ -94,3 +97,7 @@
     clip-path: polygon(99% 0, 100% 0, 100% 100%, 99% 100%);
   }
 }
+
+// @media (max-width: 485px){
+
+// }
