@@ -1,14 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import logo from '../Images/newFinS_logo.png'
-// import LoginForm from 'LoginForm';
+import Logo from './Logo'
+import Axios from "axios";
 
 function NavBar() {
+
+  const handleLogout = () => {
+    Axios.delete('/auth/logout')
+  }
+
   return (
     <div className='navBarLinks'>
-      <Link to ='/dashboard'>
-        <img src = {logo} alt ='Logo' type='Logo'/>
-      </Link>
+      <Logo />
       <Link to="/">
         <span className='spans'>
           <h3>
@@ -38,6 +41,14 @@ function NavBar() {
         </span>
       </Link>
       {/* <LoginForm /> */}
+
+      <Link to='/'>
+        <button
+          type="button"
+          class="btn btn-outline-secondary"
+          id='logoutButton'
+          onClick={() => { handleLogout() }}><b>logout</b></button>
+      </Link>
     </div>
   );
 }

@@ -32,6 +32,7 @@
   text-underline-position: under;
   margin-bottom: 3rem;
   margin-top: .8rem;
+  height: 7rem;
   .amount {
     color: $green-color;
     justify-self: flex-end;
@@ -53,6 +54,7 @@
 .debt {
   @extend .income;
   text-underline-position: under;
+  height: 9rem;
   .amount {
     color: $red-color;
   }
@@ -69,7 +71,6 @@
 .expense {
   @extend .income;
   text-underline-position: under;
-  height: 5rem;
   .amount {
     color: $red-color;
   }

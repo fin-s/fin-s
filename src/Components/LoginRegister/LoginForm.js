@@ -28,7 +28,6 @@ class LoginForm extends Component {
     const { loginEmail: email, loginPassword: password } = this.state
     try {
       await axios.post('/auth/login', { email, password })
-      // console.log(res)
       this.setState({
         isLoggedIn: true
       })
@@ -57,7 +56,6 @@ class LoginForm extends Component {
   }
 
   conditionalRender = (bleh) => {
-    // console.log('fire conditional eval')
     if (!bleh) {
       return (<header className='header'>
         <form onSubmit={this.handleLoginFormSubmit}>
@@ -108,6 +106,5 @@ class LoginForm extends Component {
     )
   }
 }
-
 
 export default withRouter(LoginForm)
