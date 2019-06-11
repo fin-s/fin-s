@@ -119,7 +119,7 @@ return (
     </div>
     {!this.state.edit ?
       <div className="ProfileIncome-text-hold">
-        <p>Nickname: {income.nickname}</p>
+        <p style={{fontSize: '1.7rem', fontWeight: 600, textDecoration: 'underline'}}>{income.nickname}</p>
         <p>Frequency: {income.interval.frequency}</p>
         {income.interval.frequency === 'monthly' ?
           <p>Payday: {income.interval.incomeDate1}</p> :

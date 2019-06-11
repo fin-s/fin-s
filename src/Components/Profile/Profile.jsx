@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import NavBar from '../NavBar'
 import IncomeColumn from './IncomeColumn'
+import DebtColumn from './DebtColumn'
 
 class Profile extends Component {
 
@@ -9,17 +10,7 @@ class Profile extends Component {
     loading: true,
     incomes: [],
     debts: [],
-    expenses: [],
-    addIncome: false,
-    addExpense: false,
-    addDebt: false,
-    incomeNickname: '',
-    incomeFrequency: '',
-    incomeDate1: null,
-    incomeDate2: null,
-    incomeWeekday: null,
-    incomeAmount: null,
-    incomeNotes: ''
+    expenses: []
   }
 
   async componentDidMount() {
@@ -79,6 +70,25 @@ class Profile extends Component {
     this.fetchUserInfo()
   }
 
+  handleAddIncome = async (debt) => {
+    const newDebt = {
+      nickname: debt.nickname,
+      balance: debt.balance,
+      dueDate: debt.dueDate,
+      interestRate: debt.interestRate,
+      minimumPayment: debt.minimumPayment,
+      actualPayment: debt.actualPayment,
+      notes: debt.notes
+    }
+
+    // console.log(newIncome)
+    this.setState({
+      loading: true
+    })
+    await axios.post('/api/list/debts', {debts: [newDebt]})
+    this.fetchUserInfo()
+  }
+
 
   render() {
     return (
@@ -93,7 +103,12 @@ class Profile extends Component {
                 handleAddIncome={this.handleAddIncome}
                 fetchUserInfo={this.fetchUserInfo}/>
               </section>
-              <section className="column"></section>
+              <section className="column">
+                <DebtColumn
+                data={this.state.debts}
+                fetchUserInfo={this.fetchUserInfo}
+                handleAddDebt={this.handleAddDebt}/>
+              </section>
               <section className="column"></section>
             </div>
           }

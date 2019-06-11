@@ -15,9 +15,17 @@
   cursor: pointer;
 }
 
+.ProfileIncome-text-hold{
+  max-width: 85%;
+  input{
+    min-width: 0px;
+  }
+}
+
 .ProfileIncome-form-line{
   display: flex;
   align-items: center;
+  max-width: 100%;
   select{
     width: 80%;
   }

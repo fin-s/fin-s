@@ -345,11 +345,11 @@ module.exports = {
   deleteDebt: (req, res) => {
 
     try {
-      const { debt } = req.body
+      const { id } = req.query
       const { email } = req.session.user
       User.updateOne({ email: email },
         {
-          $pull: { "debts": { _id: debt._id } }
+          $pull: { "debts": { _id: id } }
         })
         .exec((err, data) => {
           if (err) {
@@ -367,11 +367,11 @@ module.exports = {
   deleteExpense: (req, res) => {
 
     try {
-      const { expense } = req.body
+      const { id } = req.query
       const { email } = req.session.user
       User.updateOne({ email: email },
         {
-          $pull: { "expenses": { _id: expense._id } }
+          $pull: { "expenses": { _id: id } }
         })
         .exec((err, data) => {
           if (err) {
