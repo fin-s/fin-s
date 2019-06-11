@@ -43,12 +43,12 @@ class Expenses extends Component {
           <input type='number' min='1' max='28' placeholder='day' onChange={this.handleChange} name='dueDate' />
         </div>
         <div className='39'>
-          <button onClick={this.confirmExpense} type="button" class="btn btn-outline-secondary" >add expense</button>
+          <button onClick={this.confirmExpense} type="button" className="btn btn-outline-secondary" >add expense</button>
           {this.props.expenses.map((current, index) => {
             return <span key={index}>{current.nickname} {current.amount}</span>
           })}
         </div>
-        <button type="button" class="btn btn-outline-secondary" id='skip' onClick={() => this.props.history.push('/dashboard')}>skip for now</button>
+        <button type="button" className="btn btn-outline-secondary" id='skip' onClick={() => this.props.history.push('/dashboard')}>skip for now</button>
       </div>
     )
   }

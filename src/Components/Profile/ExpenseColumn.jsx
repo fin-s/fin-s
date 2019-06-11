@@ -43,10 +43,12 @@ class ExpenseColumn extends Component {
   render() {
     return (
       <>
-        <h1 className="column-title">Expenses</h1>
-        <div className="add-new-title" onClick={this.toggleAddDebt}>
-          <FontAwesomeIcon icon='plus-circle' />
-          <p>Add new expense</p>
+        <div className="column-head">
+          <h1 className="column-title">Expenses</h1>
+          <div className="add-new-title" onClick={this.toggleAddDebt}>
+            <FontAwesomeIcon icon='plus-circle' />
+            <p>Add new expense</p>
+          </div>
         </div>
         {this.state.edit ?
           <form onSubmit={(e) => this.handleAddExpense(e)} className='add-form'>

@@ -59,7 +59,7 @@ class Debts extends Component {
             <span key={index}>{current.nickname} {current.balance}</span>
           )
         })}
-        <button id='skip' type="button" class="btn btn-outline-secondary" onClick={() => this.props.history.push('/dashboard')}>skip for now</button>
+        <button id='skip' type="button" className="btn btn-outline-secondary" onClick={() => this.props.history.push('/dashboard')}>skip for now</button>
       </div>
     )
   }

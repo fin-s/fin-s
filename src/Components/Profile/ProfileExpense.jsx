@@ -91,8 +91,9 @@ class ProfileExpense extends Component {
           <p>
             Delete {this.props.expense.nickname}?
           </p>
-          <div className="confirm-button-hold"><button class="btn btn-outline-secondary" onClick={this.togglePopup}>Cancel</button>
-            <button class="btn btn-outline-secondary" onClick={this.handleDelete}>Confirm</button></div>
+          <div className="confirm-button-hold">
+            <button className="btn btn-outline-secondary" onClick={this.togglePopup}>Cancel</button>
+            <button className="btn btn-outline-secondary" onClick={this.handleDelete}>Confirm</button></div>
         </div>
         {!this.state.edit ?
           <div className="ProfileIncome-text-hold">
