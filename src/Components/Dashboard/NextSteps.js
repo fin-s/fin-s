@@ -81,9 +81,9 @@ class NextSteps extends Component {
   render() {
     return (<div className='next-step-hold'>
       <h3 className='next-step-title'>Next Steps</h3>
+        {!this.state.loading && <ProgressBar 
+          stepsCompleted={this.state.stepsCompleted}/>}
       <div className='nextSteps'>
-        <ProgressBar 
-          stepsCompleted={this.state.stepsCompleted}/>
         <div className='stepContainer'>
           {!this.state.showAll ? <>{this.state.loading ? <div>loading</div> :
             this.state.displayArray.map(element => {
