@@ -48,9 +48,9 @@ class Step extends Component {
     if (!this.state.completed) {
       return (
         <div>
-          <div class="step-title-hold">
+          <div className="step-title-hold">
             <div onClick={this.toggle}>
-              <FontAwesomeIcon icon='square' />
+              <FontAwesomeIcon icon={['far', 'square']} />
             </div>
             <h5>Step {this.props.stepNumber}:</h5>
           </div>
@@ -66,7 +66,7 @@ class Step extends Component {
         <div>
           <div class="step-title-hold">
             <div onClick={this.toggle}>
-              <FontAwesomeIcon icon='check-square' />
+              <FontAwesomeIcon icon={['far', 'check-square']} />
             </div>
             <h5>Step {this.props.stepNumber}:</h5></div>
           <p className='completed-task'>{this.props.task}</p>

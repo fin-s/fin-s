@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.19",
+    "@fortawesome/free-regular-svg-icons": "^5.9.0",
     "@fortawesome/free-solid-svg-icons": "^5.9.0",
     "@fortawesome/react-fontawesome": "^0.1.4",
     "@fullcalendar/core": "^4.2.0",
@@ -22,6 +23,7 @@
     "node-sass": "^4.12.0",
     "react": "^16.8.6",
     "react-chartjs-2": "^2.7.6",
+    "react-compound-slider": "^2.0.0",
     "react-dom": "^16.8.6",
     "react-lottie": "^1.2.3",
     "react-redux": "^7.0.3",

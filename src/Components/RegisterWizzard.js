@@ -88,9 +88,9 @@ class RegisterWizzard extends Component {
         <NavBar />
         <div className='wizNav'>
         {this.handleWizardConditional(switchPage)}
-          <button onClick={() => this.handleSwitchPage(false)} type="button" class="btn btn-outline-secondary" >previous form</button>
-          <button onClick={() => this.handleSwitchPage(true)} type="button" class="btn btn-outline-secondary">next form</button>
-          <button onClick={() => this.handleSubmitFinances()} type="button" class="btn btn-outline-secondary" >confirm and submit</button>
+          <button onClick={() => this.handleSwitchPage(false)} type="button" className="btn btn-outline-secondary" >previous form</button>
+          <button onClick={() => this.handleSwitchPage(true)} type="button" className="btn btn-outline-secondary">next form</button>
+          <button onClick={() => this.handleSubmitFinances()} type="button" className="btn btn-outline-secondary" >confirm and submit</button>
         </div>
       </div>
     )

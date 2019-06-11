@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from 'axios'
 import steps from './steps'
 import Step from './Step'
+import ProgressBar from './StepsProgressBar'
 
 class NextSteps extends Component {
   constructor() {
@@ -81,15 +82,12 @@ class NextSteps extends Component {
     return (<div className='next-step-hold'>
       <h3 className='next-step-title'>Next Steps</h3>
       <div className='nextSteps'>
-        <div name="progress-bar" />
+        <ProgressBar 
+          stepsCompleted={this.state.stepsCompleted}/>
         <div className='stepContainer'>
           {!this.state.showAll ? <>{this.state.loading ? <div>loading</div> :
             this.state.displayArray.map(element => {
               return <Step
-                stepNumber={element.stepNumber}
-                task={element.task}
-                handleClick={this.handleClick}
-                index={element.index} 
                 key={element.index}
                 complete={this.state.stepsCompleted[element.index]}
                 stepNumber={element.stepNumber}
@@ -101,25 +99,21 @@ class NextSteps extends Component {
             <>
               {this.state.steps.map(element => {
                 return <Step
+                  key={element.index}
+                  complete={this.state.stepsCompleted[element.index]}
                   stepNumber={element.stepNumber}
                   task={element.task}
                   handleClick={this.handleClick}
-                  index={element.index} />
+                  index={element.index}
+                  stepsCompleted={this.state.stepsCompleted} />
               })}
             </>}
-
-          <div>
-
-            {!this.state.showAll ? <p onClick={this.toggleShow}>Show All</p> :
-              <p onClick={this.toggleShow}>Hide All</p>}
-
-          </div>
         </div>
       </div>
       <div>
 
         {!this.state.showAll ? <p className='show-all-text' onClick={this.toggleShow}>Show All</p> :
-          <p className='show-all-text' onClick={this.toggleShow}>Hide All</p>}
+          <p className='show-all-text' onClick={this.toggleShow}>Hide</p>}
 
       </div>
     </div>
