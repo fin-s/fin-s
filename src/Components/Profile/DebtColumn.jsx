@@ -49,10 +49,12 @@ class DebtColumn extends Component {
   render() {
     return (
       <>
-        <h1 className="column-title">Debts</h1>
-        <div className="add-new-title" onClick={this.toggleAddDebt}>
-          <FontAwesomeIcon icon='plus-circle' />
-          <p>Add new debt</p>
+        <div className="column-head">
+          <h1 className="column-title">Debts</h1>
+          <div className="add-new-title" onClick={this.toggleAddDebt}>
+            <FontAwesomeIcon icon='plus-circle' />
+            <p>Add new debt</p>
+          </div>
         </div>
         {this.state.edit ?
           <form onSubmit={(e) => this.handleAddDebt(e)} className='add-form'>
@@ -63,7 +65,7 @@ class DebtColumn extends Component {
             </div>
             <div className="ProfileIncome-form-line">
               <p>Interest Rate</p>
-              <input onChange={(e) => this.handleChange(e)} name='interestRate' type="number" step='any'/>
+              <input onChange={(e) => this.handleChange(e)} name='interestRate' type="number" step='any' />
               <p>Due Date</p>
               <input onChange={(e) => this.handleChange(e)} name='dueDate' type="number" />
             </div>
