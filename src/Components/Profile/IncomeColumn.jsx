@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import ProfileIncome from './ProfileIncome'
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 class IncomeColumn extends Component {
 
@@ -23,7 +23,7 @@ class IncomeColumn extends Component {
 
   handleAddIncome = (e) => {
     e.preventDefault()
-    const {nickname, frequency, incomeDate1, incomeDate2, incomeWeekday, amount, notes} = this.state
+    const { nickname, frequency, incomeDate1, incomeDate2, incomeWeekday, amount, notes } = this.state
     const income = {
       nickname,
       frequency,
@@ -49,10 +49,12 @@ class IncomeColumn extends Component {
   render() {
     return (
       <>
-        <h1 className="column-title">Incomes</h1>
-        <div className="add-new-title" onClick={this.toggleAddIncome}>
-          <FontAwesomeIcon icon='plus-circle' />
-          <p>Add new income</p>
+        <div className="column-head">
+          <h1 className="column-title">Incomes</h1>
+          <div className="add-new-title" onClick={this.toggleAddIncome}>
+            <FontAwesomeIcon icon='plus-circle' />
+            <p>Add new income</p>
+          </div>
         </div>
         {this.state.edit ?
           <form onSubmit={(e) => this.handleAddIncome(e)} className='add-form'>
@@ -91,7 +93,7 @@ class IncomeColumn extends Component {
             <input onChange={(e) => this.handleChange(e)} name='amount' type="number" />
             <p>Notes</p>
             <input onChange={(e) => this.handleChange(e)} type="text" name='notes' />
-            <button type='submit' class="btn btn-outline-secondary">Submit</button>
+            <button type='submit' className="btn btn-outline-secondary">Submit</button>
 
           </form> : <></>}
 
