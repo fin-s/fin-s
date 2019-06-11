@@ -44,12 +44,12 @@ class Income extends Component {
     return (
       <div >
         <div className='grid-container'>
-          <div className='\31'>
+          <div className='31'>
         <div>
           <h1>enter income</h1>
         </div>
             <input placeholder='income name' type='text' onChange={this.handleChange} name='nickname' />
-            <select onChange={this.handleChange} name='type' class='select'>
+            <select onChange={this.handleChange} name='type' className='select'>
               <option value=''>-select an option-</option>
               <option value='fixed'>fixed</option>
               <option value='variable'>variable</option>
@@ -92,11 +92,11 @@ class Income extends Component {
                   </div>
                   : <h1 className='buffer' >input a frequency</h1>}
                   </div>
-                  <div className='\32'>
+                  <div className='32'>
 
           <input onChange={this.handleChange} name='amount' placeholder='amount' type='number' />
           <textarea onChange={this.handleChange} columns={20} rows={5} name='notes' placeholder='notes' ></textarea>
-          <button type="button" class="btn btn-outline-secondary" onClick={this.confirmIncome}>confirm income</button>
+          <button type="button" className="btn btn-outline-secondary" onClick={this.confirmIncome}>confirm income</button>
         <div>
           {this.props.incomes.map((current, index) => {
             return (
@@ -107,7 +107,7 @@ class Income extends Component {
           })}
         </div>
           </div>
-        <button id='skip' type="button" class="btn btn-outline-secondary" onClick={() => this.props.history.push('/dashboard')}>skip for now</button>
+        <button id='skip' type="button" className="btn btn-outline-secondary" onClick={() => this.props.history.push('/dashboard')}>skip for now</button>
       </div>
           </div>
     )

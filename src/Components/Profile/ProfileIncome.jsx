@@ -94,7 +94,6 @@ class ProfileIncome extends Component {
 
     if (this.state.popup) {
       popupStyle = {
-        display: 'inline',
         position: 'fixed',
         left: '10%',
         display: 'flex',

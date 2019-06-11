@@ -45,7 +45,7 @@ function NavBar() {
       <Link to='/'>
         <button
           type="button"
-          class="btn btn-outline-secondary"
+          className="btn btn-outline-secondary"
           id='logoutButton'
           onClick={() => { handleLogout() }}><b>logout</b></button>
       </Link>
