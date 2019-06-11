@@ -1,15 +1,21 @@
 .containers{
   display: flex;
-
+  justify-content: space-between;
   margin: 2% 0 0 0;
-  padding: 0;
+  width: 100%;
+}
+
+.chart-calendar-toggle{
+  height: 3em;
 }
 
 .calendar{
-  // border: solid;
-  height: 800px;
-  width: 65%;
+  position: absolute;
+  width: 63%;
   color: $gold-color;
+  margin: 10% 0 0 2%;
+  top: 7vh;
+  left: 0;
 }
 
 .rightSide{
@@ -20,9 +26,71 @@
 }
 
 .chart{
-  // border: solid;
-  height: 100%;
-  width: 65%;
-  margin-left: 2%;
+  width: 63%;
+  margin: 10% 0 0 2%;
+  position: absolute;
+  top: 7vh;
+  left: 0;
 }
 
+.selected{
+  animation: .5s linear forwards wipeIn
+}
+
+.unselected{
+  animation: .5s linear forwards wipeOut
+}
+
+@keyframes wipeIn {
+  0% {
+    visibility: hidden;
+    clip-path: polygon(0 0, 1% 0, 1% 100%, 0 100%);
+  }
+  49% {
+    visibility: hidden;
+    clip-path: polygon(0 0, 1% 0, 1% 100%, 0 100%);
+  }
+  50% {
+    visibility: visible;
+    clip-path: polygon(0 0, 1% 0, 1% 1%, 0 1%);
+  }
+  60%{
+    visibility: visible;
+    clip-path: polygon(0 0, 40% 0, 1% 100%, 0 100%);
+  }
+  90%{
+    visibility: visible;
+    clip-path: polygon(0 0, 100% 0, 60% 100%, 0 100%);
+  }
+  100% {
+    visibility: visible;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+}
+
+@keyframes wipeOut {
+  0% {
+    visibility: visible;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+  10%{
+    visibility: visible;
+    clip-path: polygon(40% 0, 100% 0, 100% 100%, 0 100%);
+  }
+  40% {
+    visibility: visible;
+    clip-path: polygon(99% 0, 100% 0, 100% 100%, 60% 100%);
+  }
+  49%{
+    visibility: visible;
+    clip-path: polygon(99% 0, 100% 0, 100% 100%, 99% 100%);
+  }
+  50% {
+    visibility: hidden;
+    clip-path: polygon(99% 0, 100% 0, 100% 100%, 99% 100%);
+  }
+  100% {
+    visibility: hidden;
+    clip-path: polygon(99% 0, 100% 0, 100% 100%, 99% 100%);
+  }
+}

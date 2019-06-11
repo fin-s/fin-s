@@ -15,7 +15,9 @@ class Dashboard extends Component {
       loadingCalendar: true,
       snapshotList: [],
       calendarList: [],
-      surplus: null
+      surplus: null,
+      chartClass: 'chart selected',
+      calendarClass: 'calendar unselected'
     }
   }
 
@@ -37,26 +39,36 @@ class Dashboard extends Component {
       this.props.history.push('/')
     }
   }
+
+  handleToggle = () => {
+    console.log('fire from toggle button')
+    if(this.state.chartClass === 'chart selected'){
+      this.setState({chartClass: 'chart unselected', calendarClass: 'calendar selected'})
+    } else {
+      this.setState({chartClass: 'chart selected', calendarClass: 'calendar unselected'})
+    }
+  }
   
 
   render() {
-    const {loadingSnapshot, snapshotList, calendarList, surplus, loadingCalendar} = this.state
+    const {chartClass, calendarClass, loadingSnapshot, snapshotList, calendarList, surplus, loadingCalendar} = this.state
     return (
       <>
         <NavBar />
         <div className='containers'>
-          <div className='chart'>
+        <button type="button" className="chart-calendar-toggle btn btn-outline-secondary" onClick={this.handleToggle} >Toggle Calendar/Chart View</button>
+          <div className={chartClass}>
             <Chart />
           </div>
+          <div className={calendarClass}>
+            <Calendar loadingCalendar={loadingCalendar} calendarList={calendarList} surplus={surplus} />
+          </div>
           <div className='rightSide'>
-              <NextSteps />
+            <NextSteps />
             <div className='horizonSnapshot'>
               <HorizonSnapshot loadingSnapshot={loadingSnapshot} snapshotList={snapshotList} />
             </div>
           </div>
-        </div>
-        <div className='calendar'>
-          <Calendar loadingCalendar={loadingCalendar} calendarList={calendarList} surplus={surplus} />
         </div>
       </>
     )
