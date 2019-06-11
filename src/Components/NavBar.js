@@ -33,6 +33,14 @@ function NavBar() {
           </h3>
         </span>
       </Link>
+      <Link to='/profile'>
+        <span className='spans'>
+          <h3>
+            <b>profile</b>
+          </h3>
+        </span>
+      </Link>
+      {/* <LoginForm /> */}
 
       <Link to='/'>
         <button
