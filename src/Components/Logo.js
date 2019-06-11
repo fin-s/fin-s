@@ -10,8 +10,7 @@ function Logo() {
         <img 
         src = {logo} 
         alt ='Logo' 
-        type='Logo'
-        style={{marginTop: '5px', border: '1px red solid'}}/>
+        type='Logo'/>
       </Link>
     </div>
   );
