@@ -18,33 +18,33 @@ function HorizonSnapshot(props) {
   } else {
 
     return (
-      <p className='horizonList'>
+      <>
         <h3 className='horizon'>horizon snapshot</h3>
-        <ul>
+        <ul className='horizonList'>
           {props.snapshotList.map((element, index) => {
             if (element.balance) {
-              return <p key={`${index}${element._id}`} _id={element._id} className={element.style}>
-                <p>
-                  <p className='month'><u>{element.month }   {element.dueDate} </u>
+              return <div key={`${index}${element._id}`} _id={element._id} className={element.style}>
+                <div>
+                  <p className='month'><u>{element.month}   {element.dueDate} </u>
                     {/* <p className='dueDate'><u> { element.dueDate}</u> </p> */}
                   </p>
                   <p className='nickname'>{element.nickname} </p>
-                </p>
+                </div>
                 <p className='amount'>${element.amount} </p>
                 <p className='balance'>Balance: ${element.balance}</p>
-              </p>
+              </div>
             } else {
-              return <p key={`${index}${element._id}`} _id={element._id} className={element.style}>
-                <p className='month'><u>{element.month} {element.dueDate}</u>
+              return <div key={`${index}${element._id}`} _id={element._id} className={element.style}>
+                <u className='month'>{element.month} {element.dueDate}</u>
                   {/* <p className='dueDate'><u> {element.dueDate}</u> </p> */}
-                </p>
+                
                 <p className='nickname'>{element.nickname} </p>
                 <p className='amount'>${element.amount} </p>
-              </p>
+              </div>
             }
           })}
         </ul>
-      </p>
+        </>
     )
   }
 }

@@ -34,7 +34,7 @@ app.post('/api/users/register', MDBCtrl.createUser)
 //THIS CREATES A USER OBJECT IN THE MONGODB
 //THIS IS NOW DEPRECATED, DO NOT USE IT
 //EXPECTS firstName, lastName, email ON REQ.BODY
-app.get('/api/users', MDBCtrl.get)
+app.get('/api/users', authMiddleware.checkLogin, MDBCtrl.get)
 //FETCHES USER OBJECT FROM MONGODB
 //EXPECTS USER email AS A STRING ON REQ.BODY
 app.post('/api/users/money', MDBCtrl.updateMoney)

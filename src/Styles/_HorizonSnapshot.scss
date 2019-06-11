@@ -7,7 +7,7 @@
 }
 
 .horizon {
-  font-size: 2.4rem;
+  font-size: 2rem;
   text-align: center;
 }
 
@@ -32,6 +32,7 @@
   text-underline-position: under;
   margin-bottom: 3rem;
   margin-top: .8rem;
+  height: 7rem;
   .amount {
     color: $green-color;
     justify-self: flex-end;
@@ -41,17 +42,19 @@
     position: absolute;
     left: 10px;
     display: flex;
+    // margin-bottom: 20rem;
 
   }
   .nickname{
     justify-self: flex-start;
-    margin-top: .3rem;
+    margin-top: 2rem;
   }
 }
 
 .debt {
   @extend .income;
   text-underline-position: under;
+  height: 9rem;
   .amount {
     color: $red-color;
   }
@@ -68,7 +71,6 @@
 .expense {
   @extend .income;
   text-underline-position: under;
-  height: 5rem;
   .amount {
     color: $red-color;
   }
@@ -85,8 +87,11 @@
 
 ::-webkit-scrollbar-thumb{
   background: $gold-color;
+  // scrollbar-width: thin;
 }
 
 ::-webkit-scrollbar{
   color: $black-color;
+  width: 2px;
+  // scrollbar-width: thin;
 }

@@ -1,14 +1,12 @@
-.header{
+.header {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  margin-top: -3%;
   margin-bottom: 1.5%;
   margin-right: 6%;
-  // border: solid;
 }
 
-.main{
+.main {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -16,53 +14,52 @@
   font-size: 40px;
 }
 
-input[type=text]{
-  background-color: #34373F;
+input[type="text"] {
+  background-color: #34373f;
   border: none;
   color: $gold-color;
   height: 4vh;
-  width: 12vw;
-  font-family: 'Raleway', sans-serif;
+  width: 12rem;
+  font-family: "Raleway", sans-serif;
   font-size: 20px;
   text-align: center;
   margin: 9px;
   margin-right: 12px;
 }
 
-input[type=password]{
-  @extend input[type=text]
+input[type="password"] {
+  @extend input[type="text"];
 }
 
-.registerInput{
+.registerInput {
   float: right;
   margin: 1% 10% 3% 3%;
-
 }
 
-.registerText{
+.registerText {
   text-align: right;
   margin-right: 10.9%;
   margin-top: 2%;
 }
 
-::placeholder{
-  color: #DACE94;
+::placeholder {
+  color: #dace94;
   font-size: 20px;
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
   font-weight: lighter;
 }
 
-.signUpButton{
+.signUpButton {
   margin: 5% 4% 1% 1%;
   float: right;
 }
 
-#logoutButton{
+#logoutButton {
   float: right;
   margin: -3% 11% 0% 0%;
 }
 
-.errorMess{
+.errorMess {
   font-family: $font-fam;
   font-size: 30px;
   color: $red-color;
@@ -72,7 +69,7 @@ input[type=password]{
   // border: solid;
 }
 
-.errorMessage{
+.errorMessage {
   font-family: $font-fam;
   font-size: 30px;
   color: $red-color;
@@ -80,12 +77,12 @@ input[type=password]{
   margin: -5.6% 17.6% 0% 0%;
 }
 
-a{
+a {
   color: $gold-color;
 }
 
 input:-webkit-autofill,
-input:-webkit-autofill:hover, 
+input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 textarea:-webkit-autofill,
 textarea:-webkit-autofill:hover,
@@ -96,18 +93,65 @@ select:-webkit-autofill:focus {
   border: none;
   -webkit-text-fill-color: $gold-color;
   transition: background-color 5000s ease-in-out 0s;
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
 }
 
+.appInfo {
+  width: 550px;
+  text-align: center;
+  font-size: 2.6rem;
+  margin-left: 12%;
+  margin-top: 10%;
+  margin-bottom: -20%;
+  line-height: 4rem;
+}
 
-  .appInfo{
-    width: 550px;
-    text-align: center;
-    font-size: 2.6rem;
-    margin-left: 15%;
-    margin-top: 10%;
-    margin-bottom: -20%;
-    line-height: 4rem;
+@media (max-width: 1325px) {
+  .appInfo {
+    width: 22rem;
+  }
+}
+
+@media (max-width: 485px) {
+  .header {
+    margin-right: -2%;
+    margin-top: 5%;
   }
 
+  .loginInput {
+    input[type="text"] {
+      width: 32vw;
+    }
+    input[type="password"] {
+      width: 32vw;
+    }
+  }
+}
 
+@media (max-width: 890px) {
+  .registerInput {
+    input[type="text"] {
+      width: 32vw;
+    }
+    input[type="password"] {
+      width: 32vw;
+    }
+  }
+
+  .appInfo {
+    width: 22rem;
+    margin: 0% 0% 4% 4%;
+  }
+
+  .main {
+    float: center;
+  }
+
+  .registerText {
+    text-align: center;
+  }
+
+  .registerText {
+    margin: 0;
+  }
+}
