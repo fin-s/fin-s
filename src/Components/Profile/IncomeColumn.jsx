@@ -91,7 +91,7 @@ class IncomeColumn extends Component {
             <input onChange={(e) => this.handleChange(e)} name='amount' type="number" />
             <p>Notes</p>
             <input onChange={(e) => this.handleChange(e)} type="text" name='notes' />
-            <button type='submit'>Submit</button>
+            <button type='submit' class="btn btn-outline-secondary">Submit</button>
 
           </form> : <></>}
 

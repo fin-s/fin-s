@@ -229,6 +229,8 @@ module.exports = {
 
   editIncome: async (req, res) => {
 
+    // console.log(req.body)
+
     try {
       const { income } = req.body
       const { email } = req.session.user
