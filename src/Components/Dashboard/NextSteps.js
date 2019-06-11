@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from 'axios'
 import steps from './steps'
 import Step from './Step'
+import ProgressBar from './StepsProgressBar'
 
 class NextSteps extends Component {
   constructor() {
@@ -81,7 +82,8 @@ class NextSteps extends Component {
     return (<div className='next-step-hold'>
       <h3 className='next-step-title'>Next Steps</h3>
       <div className='nextSteps'>
-        <div name="progress-bar" />
+        <ProgressBar 
+          stepsCompleted={this.state.stepsCompleted}/>
         <div className='stepContainer'>
           {!this.state.showAll ? <>{this.state.loading ? <div>loading</div> :
             this.state.displayArray.map(element => {

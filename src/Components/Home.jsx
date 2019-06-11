@@ -11,14 +11,12 @@ class Home extends Component {
         <div 
         className='HomeNavbar' 
         style={{
-          border: '1px red solid', 
           padding: '0',
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center'}}
         >
           <Logo />
-
           <LoginForm />
           
         </div>
