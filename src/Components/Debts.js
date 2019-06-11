@@ -47,7 +47,7 @@ class Debts extends Component {
         </div>
         <div className='\35'>
           <input placeholder='minimum payment' onChange={this.handleChange} name='minimumPayment' type='text' />
-          <input placeholder='your average payment' onChange={this.handleChange} name='actualPayment' type='text' />
+          <input placeholder='actual payment' onChange={this.handleChange} name='actualPayment' type='text' />
           <input type='number' min='1' max='28' placeholder='day' onChange={this.handleChange} name='dueDate' />
         </div>
         <div className='\36'>
