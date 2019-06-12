@@ -15,7 +15,7 @@ class Dashboard extends Component {
       loadingCalendar: true,
       snapshotList: [],
       calendarList: [],
-      surplus: null,
+      surplus: 1,
       chartClass: 'chart selected',
       calendarClass: 'calendar unselected'
     }
@@ -58,7 +58,7 @@ class Dashboard extends Component {
         <div className='containers'>
           <button type="button" className="chart-calendar-toggle btn btn-outline-secondary" onClick={this.handleToggle} >Toggle Calendar/Chart View</button>
           <div className={chartClass}>
-            <Chart />
+            <Chart surplus={surplus}/>
           </div>
           <div className={calendarClass}>
             <Calendar loadingCalendar={loadingCalendar} calendarList={calendarList} surplus={surplus} />
