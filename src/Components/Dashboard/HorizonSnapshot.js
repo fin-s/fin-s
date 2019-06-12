@@ -26,7 +26,6 @@ function HorizonSnapshot(props) {
               return <div key={`${index}${element._id}`} _id={element._id} className={element.style}>
                 <div>
                   <p className='month'><u>{element.month}   {element.dueDate} </u>
-                    {/* <p className='dueDate'><u> { element.dueDate}</u> </p> */}
                   </p>
                   <p className='nickname'>{element.nickname} </p>
                 </div>
@@ -36,8 +35,6 @@ function HorizonSnapshot(props) {
             } else {
               return <div key={`${index}${element._id}`} _id={element._id} className={element.style}>
                 <u className='month'>{element.month} {element.dueDate}</u>
-                  {/* <p className='dueDate'><u> {element.dueDate}</u> </p> */}
-                
                 <p className='nickname'>{element.nickname} </p>
                 <p className='amount'>${element.amount} </p>
               </div>

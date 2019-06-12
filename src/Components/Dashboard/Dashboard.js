@@ -57,10 +57,10 @@ class Dashboard extends Component {
         <NavBar />
         <div className='containers'>
         <button type="button" className="chart-calendar-toggle btn btn-outline-secondary" onClick={this.handleToggle} >Toggle Calendar/Chart View</button>
-          <div className={chartClass}>
+          <div className={chartClass} id='chart'>
             <Chart surplus={surplus}/>
           </div>
-          <div className={calendarClass}>
+          <div className={calendarClass} id='calendar'>
             <Calendar loadingCalendar={loadingCalendar} calendarList={calendarList} surplus={surplus} />
           </div>
           <div className='rightSide'>

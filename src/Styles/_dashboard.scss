@@ -34,11 +34,11 @@
 }
 
 .selected{
-  animation: .5s linear forwards wipeIn
+  animation: 1.2s linear forwards wipeIn
 }
 
 .unselected{
-  animation: .5s linear forwards wipeOut
+  animation: 1.2s linear forwards wipeOut
 }
 
 @keyframes wipeIn {
@@ -93,4 +93,37 @@
     visibility: hidden;
     clip-path: polygon(99% 0, 100% 0, 100% 100%, 99% 100%);
   }
+}
+
+
+@media(max-width: 500px){
+  #chart{
+    display: none;
+  }
+  #calendar{
+    display: none;
+  }
+
+  .containers{
+    height: 100vh;
+
+    button{
+      display: none;
+    }
+    
+  }
+
+  .rightSide{
+    width: 100%;
+  }
+
+  .next-step-hold{
+    height: 19rem;
+  }
+
+  .show-all-text{
+    margin: .8rem 0% 0% 0%;
+  }
+
+  
 }
