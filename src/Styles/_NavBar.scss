@@ -45,15 +45,16 @@ a{
     bottom: 0;
     align-items: center;
     justify-content: center;
-    background: blue;
-    // background-attachment: local;
+    background: $black-color;
     a{
-      // background: $black-color;
       margin: 0;
       width: 50%;
       height: 100%;
       border-left: 1px solid white;
       border-right: 1px solid white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
   }
 }
