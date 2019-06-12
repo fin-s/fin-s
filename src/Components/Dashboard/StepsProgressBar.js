@@ -2,14 +2,9 @@ import React, { Component } from 'react'
 
 class ProgressBar extends Component {
 
-  componentDidMount() {
-    console.log('CDM ProgressWidth', this.calculateProgress())
-    console.log('CDM props.stepsCompleted', this.props.stepsCompleted)
-  }
 
   calculateProgress() {
     let progress = this.props.stepsCompleted.reduce((accumulator, currentValue) => {
-      console.log(accumulator)
      return accumulator += currentValue
     }, 0)
 

@@ -23,8 +23,8 @@ export default function Handle({ // your handle component
       }}
       {...getHandleProps(id)}
     >
-      <div style={{ fontFamily: 'Roboto', fontSize: 11, marginTop: -35 }}>
-        {value}
+      <div style={{ fontFamily: 'Roboto', color: '#DACE94', fontSize: 20, marginTop: -35 }}>
+        {`$${value}`}
       </div>
     </div>
   )
