@@ -3,19 +3,21 @@
   justify-content: space-between;
   margin: 2% 0 0 0;
   width: 100%;
+  // min-width: 900px;
 }
 
 .chart-calendar-toggle{
-  height: 3em;
+  height: 2.5em;
 }
 
 .calendar{
   position: absolute;
   width: 63%;
   color: $gold-color;
-  margin: 10% 0 0 2%;
+  margin: 14vh 0 0 2%;
   top: 7vh;
   left: 0;
+  // min-width: 610px;
 }
 
 .rightSide{
@@ -27,18 +29,19 @@
 
 .chart{
   width: 63%;
-  margin: 10% 0 0 2%;
+  margin: 14vh 0 0 2%;
   position: absolute;
   top: 7vh;
   left: 0;
+  // min-width: 610px;
 }
 
 .selected{
-  animation: .5s linear forwards wipeIn
+  animation: 1.2s linear forwards wipeIn
 }
 
 .unselected{
-  animation: .5s linear forwards wipeOut
+  animation: 1.2s linear forwards wipeOut
 }
 
 @keyframes wipeIn {
@@ -93,4 +96,38 @@
     visibility: hidden;
     clip-path: polygon(99% 0, 100% 0, 100% 100%, 99% 100%);
   }
+}
+
+
+@media(max-width: 500px){
+  #chart{
+    display: none;
+  }
+  #calendar{
+    display: none;
+  }
+
+  .containers{
+    height: 80vh;
+
+    button{
+      display: none;
+    }
+    
+  }
+
+  .rightSide{
+    width: 100%;
+    height: 90vh;
+  }
+
+  .next-step-hold{
+    height: 19rem;
+  }
+
+  .show-all-text{
+    margin: .8rem 0% 0% 0%;
+  }
+
+  
 }
