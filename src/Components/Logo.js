@@ -7,7 +7,7 @@ function Logo() {
   return (
     <div>
       <Link to ='/dashboard'>
-        <img 
+        <img className='nav-logo'
         src = {logo} 
         alt ='Logo' 
         type='Logo'/>

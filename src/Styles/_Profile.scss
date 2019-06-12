@@ -22,8 +22,8 @@
 .column{
   height: 100%;
   width: 33%;
-  border-right: 1px solid white;
-  border-left: 1px solid white;
+  border-right: 1px solid $independence-color;
+  border-left: 1px solid $independence-color;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -34,7 +34,7 @@
     transition: 1s all;
     width: 100%;
     position: fixed;
-    top: 50px;
+    top: 60px;
     height: 82%;
     // padding-bottom: 50px;
     // padding-top: 60px;
@@ -96,7 +96,7 @@
   bottom: 50px;
   background: #2c2e35;
   display: none;
-  border-top: 1px solid white;
+  border-top: 1px solid $independence-color;
   @media screen and (max-width: 900px) {
     display: flex
   }
@@ -116,11 +116,11 @@
 }
 
 .footer-nav-section:first-child{
-  border-right: 1px solid white;
+  border-right: 1px solid $independence-color;
 }
 
 .footer-nav-section:last-child{
-  border-left: 1px solid white;
+  border-left: 1px solid $independence-color;
 }
 
 // .incomes{

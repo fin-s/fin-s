@@ -15,7 +15,10 @@ class Chart extends Component {
       dataSets: [],
       userDebts: [],
       surplusToAdd: 0,
-      debtDisplayIndex: 0
+      debtDisplayIndex: 0,
+      minimumPaymentTotal: 0,
+      minimumSurplusTotal: 0,
+      actualSurplusTotal: 0
     };
   }
 
@@ -47,7 +50,8 @@ class Chart extends Component {
          {
           label: `${nickname} actual + surplus`,
           fill: true,
-          data: this.getDebtData(interestRate, balance, actualPayment),          backgroundColor:'rgba(41, 223, 32, 0.2)',
+          data: this.getDebtData(interestRate, balance, actualPayment),
+          backgroundColor:'rgba(41, 223, 32, 0.2)',
           borderColor: 'rgb(41, 223, 32)'
          }
        ]
@@ -61,8 +65,15 @@ class Chart extends Component {
 
   setChart = async () => {
     let user = await axios.get("/api/users");
+    console.log(user)
     this.setState({ userDebts: user.data.debts })
     this.formatDebts()
+    console.log(this.state.dataSets[this.state.debtDisplayIndex])
+    this.setState({
+      minimumPaymentTotal: this.state.dataSets[this.state.debtDisplayIndex][0].data.pop(),
+      minimumSurplusTotal: this.state.dataSets[this.state.debtDisplayIndex][1].data.pop(),
+      actualSurplusTotal: this.state.dataSets[this.state.debtDisplayIndex][2].data.pop()
+    })
     this.setState({
       chartData: {
         labels: this.getDataLabels(this.state.dataSets[this.state.debtDisplayIndex]),
@@ -134,15 +145,19 @@ class Chart extends Component {
 
   getDebtData = (interestRate, balance, payment) => {
     let payments = [];
+    let paymentTotal=0
     while (balance > 0) {
+      paymentTotal += payment
       let interestPayment = (interestRate / 120000) * balance;
       let principlePayment = payment - interestPayment;
       balance -= principlePayment;
       if (balance < 0) {
+        paymentTotal += balance
         balance = 0;
       }
       payments.push(Math.floor(balance));
     }
+    payments.push(Math.floor(paymentTotal))
     return payments;
   };
 
@@ -214,12 +229,17 @@ class Chart extends Component {
             }
           }}
         />
-        <Slider
+          <Slider
           onUpdate={this.getSurplusSliderData}
           surplus={this.props.surplus}
-        />
-        <button onClick={this.previousDebt}>Previous</button>
-        <button onClick={this.nextDebt}>Next</button>
+          />
+        <div className='chartButtonContainer'>
+          <button className='btn btn-outline-secondary' onClick={this.previousDebt}>Previous</button>
+          <div className='minpay'>{`You Pay $${this.state.minimumPaymentTotal}`}</div>
+          <div className='minsurpluspay'>{`You Save $${this.state.minimumPaymentTotal - this.state.minimumSurplusTotal}`}</div>
+          <div className='actsurpluspay'>{`You Save $${this.state.minimumPaymentTotal - this.state.actualSurplusTotal}`}</div>
+        <button className='btn btn-outline-secondary' onClick={this.nextDebt}>Next</button>
+        </div>
       </div>
     );
   }
