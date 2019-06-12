@@ -11,7 +11,7 @@ class ExcessMoneySlider extends Component {
       sliderStyle: {
         // Give the slider some width
         position: "relative",
-        width: "100%",
+        width: "80%",
         height: 80
       },
       railStyle: {
@@ -28,7 +28,7 @@ class ExcessMoneySlider extends Component {
 
   render() {
     return (
-      <div><Slider
+      <div className='slider'><Slider
       rootStyle={this.state.sliderStyle}
       domain={[0, this.props.surplus]}
       step={1}
@@ -69,7 +69,6 @@ class ExcessMoneySlider extends Component {
       )}
       </Tracks>
       <Ticks count={5}>
-      {/* // generate approximately 15 ticks within the domain */}
       {({ ticks }) => (
       <div className="slider-ticks">
       {ticks.map(tick => (
