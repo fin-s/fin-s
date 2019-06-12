@@ -5,12 +5,12 @@
 }
 
 .next-step-title{
-  text-align: left;
+  text-align: center;
   font-size: 2rem;
 }
 
 .nextSteps{
-    height: 300px;
+    height: 13rem;
     width: 100%;
     color: $gold-color;
     overflow-y: scroll;
@@ -21,4 +21,5 @@
   text-align: center;
   text-decoration: underline;
   cursor: pointer;
+  // margin-top: -4rem;
 }
