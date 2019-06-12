@@ -53,14 +53,19 @@ class Dashboard extends Component {
   render() {
     const {chartClass, calendarClass, loadingSnapshot, snapshotList, calendarList, surplus, loadingCalendar} = this.state
     return (
-      <>
+      <main className='test'>
         <NavBar />
         <div className='containers'>
+<<<<<<< HEAD
           <button type="button" className="chart-calendar-toggle btn btn-outline-secondary" onClick={this.handleToggle} >Toggle Calendar/Chart View</button>
           <div className={chartClass}>
+=======
+        <button type="button" className="chart-calendar-toggle btn btn-outline-secondary" onClick={this.handleToggle} >Toggle Calendar/Chart View</button>
+          <div className={chartClass} id='chart'>
+>>>>>>> master
             <Chart surplus={surplus}/>
           </div>
-          <div className={calendarClass}>
+          <div className={calendarClass} id='calendar'>
             <Calendar loadingCalendar={loadingCalendar} calendarList={calendarList} surplus={surplus} />
           </div>
           <div className='rightSide'>
@@ -70,7 +75,7 @@ class Dashboard extends Component {
             </div>
           </div>
         </div>
-      </>
+      </main>
     )
   }
 }

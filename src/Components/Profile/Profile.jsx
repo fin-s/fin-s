@@ -11,7 +11,10 @@ class Profile extends Component {
     loading: true,
     incomes: [],
     debts: [],
-    expenses: []
+    expenses: [],
+    incomePosition: 0,
+    debtsPosition: '100%',
+    expensePosition: '200%'
   }
 
   async componentDidMount() {
@@ -29,7 +32,7 @@ class Profile extends Component {
     })
   }
 
-  
+
   toggleAddDebt = () => {
 
     this.setState({
@@ -67,7 +70,7 @@ class Profile extends Component {
     this.setState({
       loading: true
     })
-    await axios.post('/api/list/incomes', {incomes: [newIncome]})
+    await axios.post('/api/list/incomes', { incomes: [newIncome] })
     this.fetchUserInfo()
   }
 
@@ -86,7 +89,7 @@ class Profile extends Component {
     this.setState({
       loading: true
     })
-    await axios.post('/api/list/debts', {debts: [newDebt]})
+    await axios.post('/api/list/debts', { debts: [newDebt] })
     this.fetchUserInfo()
   }
 
@@ -102,38 +105,77 @@ class Profile extends Component {
     this.setState({
       loading: true
     })
-    await axios.post('/api/list/expenses', {expenses: [newExpense]})
+    await axios.post('/api/list/expenses', { expenses: [newExpense] })
     this.fetchUserInfo()
+  }
+
+  show = (type) => {
+    switch(type){
+      case 'income':
+        this.setState({
+          incomePosition: 0,
+          debtsPosition: '100%',
+          expensePosition: '200%'
+        });
+        break;
+      case 'debt':
+        this.setState({
+          incomePosition: '-100%',
+          debtsPosition: 0,
+          expensePosition: '100%'
+        });
+        break;
+      case 'expense':
+        this.setState({
+          incomePosition: '-200%',
+          debtsPosition: '-100%',
+          expensePosition: 0
+        });
+        break;
+      default: console.log('none')
+    }
   }
 
 
   render() {
+
     return (
       <div className='profile-hold'>
         <NavBar />
         <div className='Profile'>
           {this.state.loading ? <div>Loading...</div> :
             <div className='Profile'>
-              <section className="column incomes">
-                <IncomeColumn 
-                data={this.state.incomes}
-                handleAddIncome={this.handleAddIncome}
-                fetchUserInfo={this.fetchUserInfo}/>
+              <section className="column incomes" style={{ left: this.state.incomePosition }}>
+                <IncomeColumn
+                  data={this.state.incomes}
+                  handleAddIncome={this.handleAddIncome}
+                  fetchUserInfo={this.fetchUserInfo} />
               </section>
-              <section className="column">
+              <section className="column debts" style={{ left: this.state.debtsPosition }}>
                 <DebtColumn
-                data={this.state.debts}
-                fetchUserInfo={this.fetchUserInfo}
-                handleAddDebt={this.handleAddDebt}/>
+                  data={this.state.debts}
+                  fetchUserInfo={this.fetchUserInfo}
+                  handleAddDebt={this.handleAddDebt} />
               </section>
-              <section className="column">
+              <section className="column expenses" style={{ left: this.state.expensePosition }}>
                 <ExpenseColumn
-                data={this.state.expenses}
-                fetchUserInfo={this.fetchUserInfo}
-                handleAddExpense={this.handleAddExpense}/>
+                  data={this.state.expenses}
+                  fetchUserInfo={this.fetchUserInfo}
+                  handleAddExpense={this.handleAddExpense} />
               </section>
             </div>
           }
+        </div>
+        <div className='footer-nav'>
+          <div onClick={() => this.show('income')} className="footer-nav-section">
+            Incomes
+          </div>
+          <div onClick={() => this.show('debt')} className="footer-nav-section">
+            Debts
+          </div>
+          <div onClick={() => this.show('expense')} className="footer-nav-section">
+            Expenses
+          </div>
         </div>
       </div>
     )

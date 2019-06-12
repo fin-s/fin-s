@@ -1,5 +1,5 @@
 .horizonSnapshot {
-  height: 0px;
+  // height: 10rem;
   width: 90%;
   color: $gold-color;
   margin-right: 5%;
@@ -13,8 +13,13 @@
 }
 
 .horizonList {
+<<<<<<< HEAD
   // overflow-y: scroll;
+=======
+  overflow-y: auto;
+>>>>>>> master
   height: 35rem;
+
 }
 
 
@@ -27,8 +32,6 @@
   border-top: solid 1px;
   border-bottom: solid 1px;
   border-color: $independence-color;
-  // border-left: none;
-  // border-right: none;
   position: relative;
   text-underline-position: under;
   margin-bottom: 3rem;
@@ -44,8 +47,6 @@
     position: absolute;
     left: 10px;
     display: flex;
-    // margin-bottom: 20rem;
-
   }
   .nickname{
     justify-self: flex-start;
@@ -91,11 +92,21 @@
 
 ::-webkit-scrollbar-thumb{
   background: $gold-color;
-  // scrollbar-width: thin;
 }
 
 ::-webkit-scrollbar{
   color: $black-color;
   width: 2px;
-  // scrollbar-width: thin;
+}
+
+@media (max-width: 500px){
+  .horizonList{
+    height: 16rem;
+    overflow-y: auto;
+  }
+
+  .test{
+    overflow: hidden;
+    height: 100vh;
+  }
 }

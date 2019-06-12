@@ -99,7 +99,8 @@ class ProfileIncome extends Component {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        zIndex: 5
     }
   } else {
   popupStyle = {
@@ -178,7 +179,7 @@ return (
           <p>Notes:</p>
           <input onChange={(e) => this.handleChange(e)} type="text" name='notes' value={this.state.notes} />
         </div>
-        <button class="btn btn-outline-secondary" onClick={this.handleEdit}>Submit</button>
+        <button className="btn btn-outline-secondary" onClick={this.handleEdit}>Submit</button>
       </div>
     }
     <div className="ProfileIncome-button-hold">
