@@ -79,7 +79,7 @@ class LoginForm extends Component {
         <div className='buttonDiv'>
           <button
             type="button"
-            class="btn btn-outline-secondary"
+            className="btn btn-outline-secondary"
             onClick={this.handleLoginFormSubmit}><b>log in</b></button>
         </div>
       </header>)
