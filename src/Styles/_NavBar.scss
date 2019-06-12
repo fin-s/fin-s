@@ -39,19 +39,20 @@ a{
 
   .mobile-nav-container{
     position: fixed;
-    border-top: 1px solid white;
+    border-top: 1px solid $independence-color;
     height: 50px;
     width: 100%;
     bottom: 0;
     align-items: center;
     justify-content: center;
     background: $black-color;
+    z-index: 7;
     a{
       margin: 0;
       width: 50%;
       height: 100%;
-      border-left: 1px solid white;
-      border-right: 1px solid white;
+      border-left: 1px solid $independence-color;
+      border-right: 1px solid $independence-color;
       display: flex;
       justify-content: center;
       align-items: center;
