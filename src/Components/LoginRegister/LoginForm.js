@@ -87,7 +87,7 @@ class LoginForm extends Component {
       return (<div>
         <button
           type="button"
-          class="btn btn-outline-secondary"
+          className="btn btn-outline-secondary"
           id='logoutButton'
           onClick={this.handleLogout}><b>logout</b></button>
       </div>)
