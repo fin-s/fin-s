@@ -56,7 +56,7 @@ class Dashboard extends Component {
       <>
         <NavBar />
         <div className='containers'>
-        <button type="button" className="chart-calendar-toggle btn btn-outline-secondary" onClick={this.handleToggle} >Toggle Calendar/Chart View</button>
+          <button type="button" className="chart-calendar-toggle btn btn-outline-secondary" onClick={this.handleToggle} >Toggle Calendar/Chart View</button>
           <div className={chartClass}>
             <Chart />
           </div>
