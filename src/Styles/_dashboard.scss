@@ -34,11 +34,11 @@
 }
 
 .selected{
-  animation: .5s linear forwards wipeIn
+  animation: 1.2s linear forwards wipeIn
 }
 
 .unselected{
-  animation: .5s linear forwards wipeOut
+  animation: 1.2s linear forwards wipeOut
 }
 
 @keyframes wipeIn {
