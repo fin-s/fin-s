@@ -13,49 +13,60 @@ class Chart extends Component {
         datasets: []
       },
       dataSets: [],
-      surplus: 300,
+      userDebts: [],
       surplusToAdd: 0,
       debtDisplayIndex: 0
     };
   }
 
   async componentDidMount() {
-    let user = await axios.get("/api/users");
-    let userDataSets = [];
-    user.data.debts.forEach(current => {
-      let {
-        nickname,
-        minimumPayment,
-        interestRate,
-        balance,
-        actualPayment
-      } = current;
-      let dataSet = {
-        label: nickname,
-        fill: true,
-        data: this.getDebtData(
-          interestRate,
-          balance,
-          minimumPayment,
-          actualPayment + this.state.surplusToAdd
-        ),
-        backgroundColor: "rgba(41, 223, 32, 0.2)",
-        borderColor: "rgb(41, 223, 32)"
-      };
-      userDataSets.push(dataSet);
-    });
-    this.setState({
-      dataSets: userDataSets
-    })
+    this.setChart()
+  }
 
-    this.setChart();
+  formatDebts = () => {
+   let debts = this.state.userDebts.map((current) => {
+     let { nickname, minimumPayment, interestRate, balance, actualPayment } = current;
+     actualPayment += this.state.surplusToAdd
+     let middlePayment = minimumPayment + this.state.surplusToAdd
+     return(
+       [
+         {  
+          label: `${nickname} minimum`,
+          fill: true,
+          data: this.getDebtData(interestRate, balance, minimumPayment),
+          backgroundColor:'rgba(198, 0, 0, 0.2)',
+          borderColor: 'rgb(198, 0, 0)'
+         },
+         {
+          label: `${nickname} minimum + surplus`,
+          fill: true,
+          data: this.getDebtData(interestRate, balance, middlePayment),
+          backgroundColor:'rgba(198, 200, 0, 0.2)',
+          borderColor: 'rgb(198, 200, 0)'
+         },
+         {
+          label: `${nickname} actual + surplus`,
+          fill: true,
+          data: this.getDebtData(interestRate, balance, actualPayment),          backgroundColor:'rgba(41, 223, 32, 0.2)',
+          borderColor: 'rgb(41, 223, 32)'
+         }
+       ]
+     )
+   })
+   console.log(debts)
+   this.setState({
+     dataSets: debts
+   })
   }
 
   setChart = async () => {
+    let user = await axios.get("/api/users");
+    this.setState({ userDebts: user.data.debts })
+    this.formatDebts()
     this.setState({
       chartData: {
-        labels: this.getDataLabels(this.state.dataSets[0]),
-        datasets: this.state.dataSets[0]
+        labels: this.getDataLabels(this.state.dataSets[this.state.debtDisplayIndex]),
+        datasets: this.state.dataSets[this.state.debtDisplayIndex]
       }
     });
   };
@@ -109,6 +120,8 @@ class Chart extends Component {
         case 11:
           labelArr.push(`December ${year}`);
           break;
+          default:
+            break
       }
       if (month === 11) {
         year++;
@@ -119,11 +132,11 @@ class Chart extends Component {
     return labelArr;
   };
 
-  getDebtData = (interestRate, balance, minimumPayment, actualPayment) => {
+  getDebtData = (interestRate, balance, payment) => {
     let payments = [];
     while (balance > 0) {
       let interestPayment = (interestRate / 120000) * balance;
-      let principlePayment = actualPayment - interestPayment;
+      let principlePayment = payment - interestPayment;
       balance -= principlePayment;
       if (balance < 0) {
         balance = 0;
@@ -134,7 +147,7 @@ class Chart extends Component {
   };
 
   nextDebt = () => {
-    if (this.state.debtDisplayIndex === this.state.dataSet.length) {
+    if (this.state.debtDisplayIndex === this.state.dataSets.length - 1) {
       this.setState({
         debtDisplayIndex: 0
       });
@@ -149,7 +162,7 @@ class Chart extends Component {
   previousDebt = () => {
     if (this.state.debtDisplayIndex === 0) {
       this.setState({
-        debtDisplayIndex: this.state.dataSet.length
+        debtDisplayIndex: this.state.dataSets.length - 1
       });
     } else {
       this.setState({
@@ -178,7 +191,7 @@ class Chart extends Component {
               fontSize: "20",
               fontColor: "#DACE94"
             },
-            legend: { display: false },
+            legend: { position: 'bottom', display: true },
             scales: {
               yAxes: [
                 {
@@ -203,10 +216,10 @@ class Chart extends Component {
         />
         <Slider
           onUpdate={this.getSurplusSliderData}
-          surplus={this.state.surplus}
+          surplus={this.props.surplus}
         />
-        <button onClick={this.nextDebt}>Previous</button>
-        <button onClick={this.previousDebt}>Next</button>
+        <button onClick={this.previousDebt}>Previous</button>
+        <button onClick={this.nextDebt}>Next</button>
       </div>
     );
   }
