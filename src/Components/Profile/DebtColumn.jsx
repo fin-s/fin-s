@@ -59,24 +59,51 @@ class DebtColumn extends Component {
         {this.state.edit ?
           <form onSubmit={(e) => this.handleAddDebt(e)} className='add-form'>
             <div className="ProfileIncome-form-line"><p>debt name</p>
-              <input onChange={(e) => this.handleChange(e)} name='nickname' type="text" />
+              <input 
+              onChange={(e) => this.handleChange(e)} 
+              name='nickname' 
+              type="text" 
+              required  />
               <p>Balance</p>
-              $<input onChange={(e) => this.handleChange(e)} name='balance' type="number" />
+              $<input 
+              onChange={(e) => this.handleChange(e)} 
+              name='balance' 
+              type="number"
+              required  />
             </div>
             <div className="ProfileIncome-form-line">
               <p>Interest Rate</p>
-              <input onChange={(e) => this.handleChange(e)} name='interestRate' type="number" step='any' />
+              <input 
+              onChange={(e) => this.handleChange(e)} 
+              name='interestRate' 
+              type="number" 
+              step='any'
+              required />
               <p>Due Date</p>
-              <input onChange={(e) => this.handleChange(e)} name='dueDate' type="number" />
+              <input 
+              onChange={(e) => this.handleChange(e)} 
+              name='dueDate' 
+              type="number"
+              required  />
             </div>
             <div className="ProfileIncome-form-line">
               <p>Minimum Payment</p>
-              $<input onChange={(e) => this.handleChange(e)} name='minimumPayment' type="number" />
+              $<input 
+              onChange={(e) => this.handleChange(e)} 
+              name='minimumPayment' 
+              type="number"
+              required />
               <p>Actual Payment</p>
-              $<input onChange={(e) => this.handleChange(e)} name='actualPayment' type="number" />
+              $<input 
+              onChange={(e) => this.handleChange(e)} 
+              name='actualPayment' 
+              type="number"
+              required />
             </div>
             <p>Notes</p>
-            <input onChange={(e) => this.handleChange(e)} type="text" name='notes' />
+            <input 
+            onChange={(e) => this.handleChange(e)} type="text" 
+            name='notes' />
             <button type='submit' class="btn btn-outline-secondary">Submit</button>
 
           </form> : <></>}

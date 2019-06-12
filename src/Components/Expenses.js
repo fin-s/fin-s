@@ -35,12 +35,30 @@ class Expenses extends Component {
       <div className='grid-container3'>
         <h1>enter other expenses</h1>
         <div className='seven'>
-          <input onChange={this.handleChange} name='nickname' placeholder='expense name' type='text' />
-          <input onChange={this.handleChange} name='amount' placeholder='amount' type='text' />
+          <input
+            onChange={this.handleChange}
+            name='nickname'
+            placeholder='expense name'
+            type='text'
+            maxLength='25'
+            required />
+          <input
+            onChange={this.handleChange}
+            name='amount'
+            placeholder='amount'
+            type='text'
+            required />
         </div>
         <div className='eight'>
           <textarea onChange={this.handleChange} columns={20} rows={5} name='notes' placeholder='notes' />
-          <input type='number' min='1' max='28' placeholder='day' onChange={this.handleChange} name='dueDate' />
+          <input
+            type='number'
+            min='1'
+            max='28'
+            placeholder='day'
+            onChange={this.handleChange}
+            name='dueDate'
+            required />
         </div>
         <div className='nine'>
           <button onClick={this.confirmExpense} type="button" className="btn btn-outline-secondary" id="weirdButton" >add expense</button>

@@ -54,16 +54,31 @@ class ExpenseColumn extends Component {
           <form onSubmit={(e) => this.handleAddExpense(e)} className='add-form'>
             <div className="ProfileIncome-form-line">
               <p>expense name</p>
-              <input onChange={(e) => this.handleChange(e)} name='nickname' type="text" />
+              <input 
+              onChange={(e) => this.handleChange(e)} 
+              name='nickname' 
+              type="text" 
+              required  />
             </div>
             <div className="ProfileIncome-form-line">
               <p>Amount</p>
-              $<input onChange={(e) => this.handleChange(e)} name='amount' type="number" step='any' />
+              $<input 
+              onChange={(e) => this.handleChange(e)} 
+              name='amount' 
+              type="number" 
+              step='any'
+              required  />
               <p>Due Date</p>
-              <input onChange={(e) => this.handleChange(e)} name='dueDate' type="number" />
+              <input 
+              onChange={(e) => this.handleChange(e)} 
+              name='dueDate' 
+              type="number"
+              required  />
             </div>
             <p>Notes</p>
-            <input onChange={(e) => this.handleChange(e)} type="text" name='notes' />
+            <input 
+            onChange={(e) => this.handleChange(e)} type="text" 
+            name='notes'  />
             <button type='submit' class="btn btn-outline-secondary">Submit</button>
 
           </form> : <></>}
