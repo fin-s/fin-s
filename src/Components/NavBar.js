@@ -12,36 +12,18 @@ function NavBar() {
   return (
     <div className='navBarLinks'>
       <Logo />
-      <Link to="/">
-        <span className='spans'>
-          <h3>
-            <b>home</b>
-          </h3>
-        </span>
-      </Link>
-      <Link to="/wizard">
-        <span className='spans'>
-          <h3>
-            <b>wizard</b>
-          </h3>
-        </span>
-      </Link>
-      <Link to='/dashboard'>
-        <span className='spans'>
-          <h3>
-            <b>dashboard</b>
-          </h3>
-        </span>
-      </Link>
-      <Link to='/profile'>
-        <span className='spans'>
-          <h3>
-            <b>profile</b>
-          </h3>
-        </span>
-      </Link>
-      {/* <LoginForm /> */}
-
+        <div className='mobile-nav-container' >
+          <Link to='/dashboard'>
+              <h3>
+                <b>dashboard</b>
+              </h3>
+          </Link>
+          <Link to='/profile'>
+              <h3>
+                <b>profile</b>
+              </h3>
+          </Link>
+        </div>
       <Link to='/'>
         <button
           type="button"

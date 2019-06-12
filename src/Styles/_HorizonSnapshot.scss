@@ -4,6 +4,7 @@
   color: $gold-color;
   margin-right: 5%;
   margin-top: 5%;
+  
 }
 
 .horizon {
@@ -32,6 +33,7 @@
   margin-bottom: 3rem;
   margin-top: .8rem;
   height: 7rem;
+  z-index: 1;
   .amount {
     color: $green-color;
     justify-self: flex-end;
@@ -52,6 +54,7 @@
   @extend .income;
   text-underline-position: under;
   height: 9rem;
+  z-index: 1;
   .amount {
     color: $red-color;
   }
@@ -68,6 +71,7 @@
 .expense {
   @extend .income;
   text-underline-position: under;
+  z-index: 1;
   .amount {
     color: $red-color;
   }
