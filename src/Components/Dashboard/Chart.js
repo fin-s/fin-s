@@ -27,40 +27,39 @@ class Chart extends Component {
   }
 
   formatDebts = () => {
-    let debts = this.state.userDebts.map((current) => {
-      let { nickname, minimumPayment, interestRate, balance, actualPayment } = current;
-      actualPayment += this.state.surplusToAdd
-      let middlePayment = minimumPayment + this.state.surplusToAdd
-      return (
-        [
-          {
-            label: `${nickname} minimum`,
-            fill: true,
-            data: this.getDebtData(interestRate, balance, minimumPayment),
-            backgroundColor: 'rgba(198, 0, 0, 0.2)',
-            borderColor: 'rgb(198, 0, 0)'
-          },
-          {
-            label: `${nickname} minimum + surplus`,
-            fill: true,
-            data: this.getDebtData(interestRate, balance, middlePayment),
-            backgroundColor: 'rgba(198, 200, 0, 0.2)',
-            borderColor: 'rgb(198, 200, 0)'
-          },
-          {
-            label: `${nickname} actual + surplus`,
-            fill: true,
-            data: this.getDebtData(interestRate, balance, actualPayment),
-            backgroundColor: 'rgba(41, 223, 32, 0.2)',
-            borderColor: 'rgb(41, 223, 32)'
-          }
-        ]
-      )
-    })
-    //  console.log(debts)
-    this.setState({
-      dataSets: debts
-    })
+   let debts = this.state.userDebts.map((current) => {
+     let { nickname, minimumPayment, interestRate, balance, actualPayment } = current;
+     actualPayment += this.state.surplusToAdd
+     let middlePayment = minimumPayment + this.state.surplusToAdd
+     return(
+       [
+         {  
+          label: `${nickname} minimum`,
+          fill: true,
+          data: this.getDebtData(interestRate, balance, minimumPayment),
+          backgroundColor:'rgba(198, 0, 0, 0.2)',
+          borderColor: 'rgb(198, 0, 0)'
+         },
+         {
+          label: `${nickname} actual + surplus`,
+          fill: true,
+          data: this.getDebtData(interestRate, balance, actualPayment),
+          backgroundColor:'rgba(41, 223, 32, 0.2)',
+          borderColor: 'rgb(41, 223, 32)'
+         },
+         {
+          label: `${nickname} minimum + surplus`,
+          fill: true,
+          data: this.getDebtData(interestRate, balance, middlePayment),
+          backgroundColor:'rgba(198, 200, 0, 0.2)',
+          borderColor: 'rgb(198, 200, 0)'
+         }
+       ]
+     )
+   })
+   this.setState({
+     dataSets: debts
+   })
   }
 
   setChart = async () => {
@@ -96,40 +95,40 @@ class Chart extends Component {
     for (let i = 0; i < longestPayoff; i++) {
       switch (month) {
         case 0:
-          labelArr.push(`January ${year}`);
+          labelArr.push(`january ${year}`);
           break;
         case 1:
-          labelArr.push(`February ${year}`);
+          labelArr.push(`february ${year}`);
           break;
         case 2:
-          labelArr.push(`March ${year}`);
+          labelArr.push(`march ${year}`);
           break;
         case 3:
-          labelArr.push(`April ${year}`);
+          labelArr.push(`april ${year}`);
           break;
         case 4:
-          labelArr.push(`May ${year}`);
+          labelArr.push(`may ${year}`);
           break;
         case 5:
-          labelArr.push(`June ${year}`);
+          labelArr.push(`june ${year}`);
           break;
         case 6:
-          labelArr.push(`July ${year}`);
+          labelArr.push(`july ${year}`);
           break;
         case 7:
-          labelArr.push(`August ${year}`);
+          labelArr.push(`august ${year}`);
           break;
         case 8:
-          labelArr.push(`September ${year}`);
+          labelArr.push(`september ${year}`);
           break;
         case 9:
-          labelArr.push(`October ${year}`);
+          labelArr.push(`october ${year}`);
           break;
         case 10:
-          labelArr.push(`November ${year}`);
+          labelArr.push(`november ${year}`);
           break;
         case 11:
-          labelArr.push(`December ${year}`);
+          labelArr.push(`december ${year}`);
           break;
         default:
           break
@@ -144,8 +143,13 @@ class Chart extends Component {
   };
 
   getDebtData = (interestRate, balance, payment) => {
+<<<<<<< HEAD
+    let payments = [balance];
+    let paymentTotal=0
+=======
     let payments = [];
     let paymentTotal = 0
+>>>>>>> master
     while (balance > 0) {
       paymentTotal += payment
       let interestPayment = (interestRate / 120000) * balance;
@@ -202,16 +206,16 @@ class Chart extends Component {
           options={{
             title: {
               display: true,
-              text: "Debt payoff timeline",
+              text: "debt payoff timeline",
               fontSize: "20",
-              fontColor: "#DACE94"
+              fontColor: "#C5B358"
             },
-            legend: { position: 'bottom', display: true },
+            legend: { position: 'bottom', display: true, labels:{fontColor:'#C5B358' }},
             scales: {
               yAxes: [
                 {
                   ticks: {
-                    fontColor: "#DACE94",
+                    fontColor: "#C5B358",
                     // Include a dollar sign in the ticks
                     callback: function (value, index, values) {
                       return "$" + value;
@@ -222,7 +226,7 @@ class Chart extends Component {
               xAxes: [
                 {
                   ticks: {
-                    fontColor: "#DACE94"
+                    fontColor: "#C5B358"
                   }
                 }
               ]
