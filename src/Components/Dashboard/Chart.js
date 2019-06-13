@@ -143,13 +143,8 @@ class Chart extends Component {
   };
 
   getDebtData = (interestRate, balance, payment) => {
-<<<<<<< HEAD
     let payments = [balance];
     let paymentTotal=0
-=======
-    let payments = [];
-    let paymentTotal = 0
->>>>>>> master
     while (balance > 0) {
       paymentTotal += payment
       let interestPayment = (interestRate / 120000) * balance;
