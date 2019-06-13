@@ -20,6 +20,16 @@ class RegisterWizzard extends Component {
     }
   }
 
+  async componentDidMount(){
+    let user = await axios.get('/api/users')
+
+    this.setState({
+      incomes: [...user.data.incomes],
+      debts: [...user.data.debts],
+      expenses: [...user.data.expenses]
+    })
+  }
+
   updateDebts = (newDebt) => {
     this.setState({
       debts: [...this.state.debts, newDebt]
@@ -113,8 +123,18 @@ class RegisterWizzard extends Component {
         <Logo/>
         <div className='wizNav'>
         {this.handleWizardConditional(switchPage)}
-          <button onClick={() => this.handleSwitchPage(false)} type="button" className="btn btn-outline-secondary" >previous form</button>
-          <button onClick={() => this.handleSwitchPage(true)} type="button" className="btn btn-outline-secondary">next form</button>
+
+        <>
+          {this.state.switchPage === 'incomes' ? 
+          <>
+          <button onClick={() => this.handleSwitchPage(true)} type="button" className="btn btn-outline-secondary">next form</button></> :
+          this.state.switchPage === 'debts' ?
+          <><button onClick={() => this.handleSwitchPage(false)} type="button" className="btn btn-outline-secondary" >previous form</button>
+          <button onClick={() => this.handleSwitchPage(true)} type="button" className="btn btn-outline-secondary">next form</button></> :
+          <><button onClick={() => this.handleSwitchPage(false)} type="button" className="btn btn-outline-secondary" >previous form</button>
+          </> 
+          }
+        </>
         </div>
         <div className='errors-hold'>
           <>{this.state.incomeError && <p>Please enter an income</p>}</>

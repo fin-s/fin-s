@@ -7,13 +7,13 @@ class Income extends Component {
     super()
     this.state = {
       nickname: '',
-      type: null,
-      amount: null,
+      type: '',
+      amount: '',
       notes: '',
       frequency: '',
-      incomeWeekday: null,
-      incomeDate1: null,
-      incomeDate2: null
+      incomeWeekday: '',
+      incomeDate1: '',
+      incomeDate2: ''
     }
   }
 
@@ -23,7 +23,8 @@ class Income extends Component {
     })
   }
 
-  confirmIncome = () => {
+  confirmIncome = (e) => {
+    e.preventDefault()
     let { nickname, frequency, incomeWeekday, amount, notes, incomeDate1, incomeDate2 } = this.state
     let newIncome = {
       nickname,
@@ -38,12 +39,21 @@ class Income extends Component {
       }
     }
     this.props.updateIncomes(newIncome)
+    this.setState({
+      nickname: '',
+      frequency: '',
+      incomeDate1: '',
+      incomeDate2: '',
+      incomeWeekday: '',
+      amount: '',
+      notes: ''
+    })
   }
 
   render() {
     return (
       <div >
-        <div className='grid-container'>
+        <form onSubmit={(e) => this.confirmIncome(e)} className='grid-container'>
           <div className='one'>
             <div>
               <h1>enter income</h1>
@@ -55,8 +65,9 @@ class Income extends Component {
               onChange={this.handleChange}
               name='nickname'
               maxLength='25'
+              value={this.state.nickname}
               required />
-            <select
+            {/* <select
               onChange={this.handleChange}
               name='type'
               className='select'
@@ -64,22 +75,23 @@ class Income extends Component {
               <option value=''>-select an option-</option>
               <option value='fixed'>fixed</option>
               <option value='variable'>variable</option>
-            </select>
+            </select> */}
             <select
               onChange={this.handleChange}
               name='frequency'
+              value={this.state.frequency}
               required>
-              <option value=''>-select an option-</option>
+              <option value=''>-income frequency-</option>
               <option value='monthly'>monthly</option>
               <option value='semi-monthly'>semi-monthly</option>
-              <option value='bi-weekly' >bi-weekly</option>
+              {/* <option value='bi-weekly' >bi-weekly</option> */}
               <option value='weekly' >weekly</option>
             </select>
             {this.state.frequency === 'monthly'
-              ? <input type='number' min='1' max='28' placeholder='day' onChange={this.handleChange} name='incomeDate1' required/>
-              : this.state.frequency === 'bi-weekly'
-                ? <select onChange={this.handleChange} name='incomeWeekday' class='select' required>
-                  <option value=''>-select an option-</option>
+              ? <input type='number' min='1' max='28' placeholder='payday' onChange={this.handleChange} name='incomeDate1' value={this.state.incomeDate1} required/>
+              : this.state.frequency === 'weekly'
+                ? <select value={this.state.incomeWeekday} onChange={this.handleChange} name='incomeWeekday' class='select' required>
+                  <option value={null}>-select an option-</option>
                   <option value={0}>sunday</option>
                   <option value={1}>monday</option>
                   <option value={2}>tuesday</option>
@@ -90,21 +102,21 @@ class Income extends Component {
                 </select>
                 : this.state.frequency === 'semi-monthly'
                   ? <div >
-                    <input type='number' min='1' max='28' onChange={this.handleChange} name='incomeDate1' placeholder='day 1' required/>
-                    <input type='number' min='1' max='28' onChange={this.handleChange} name='incomeDate2' placeholder='day 2' required/>
+                    <input type='number' min='1' max='28' onChange={this.handleChange} name='incomeDate1' value={this.state.incomeDate1} placeholder='payday 1' required/>
+                    <input type='number' min='1' max='28' onChange={this.handleChange} name='incomeDate2' value={this.state.incomeDate2} placeholder='payday 2' required/>
                   </div>
                   : <h1 className='buffer' >--input a frequency--</h1>}
           </div>
           <div className='two'>
 
-            <input onChange={this.handleChange} name='amount' placeholder='amount' type='number' required/>
-            <textarea onChange={this.handleChange} columns={20} rows={5} name='notes' placeholder='notes' ></textarea>
-            <button type="button" className="btn btn-outline-secondary" onClick={this.confirmIncome}>confirm income</button>
+            <input onChange={this.handleChange} name='amount' placeholder='amount' type='number' value={this.state.amount} required/>
+            <input onChange={this.handleChange} name='notes' placeholder='notes'  value={this.state.notes}/>
+            <button type="submit" className="btn btn-outline-secondary" >confirm income</button>
             <div>
               {this.props.incomes.map((current, index) => {
                 return (
                   <div key={index}>
-                    <span>{current.nickname} {current.amount}</span>
+                    <p>{current.nickname}: ${current.amount}</p>
                   </div>
                 )
               })}
@@ -113,7 +125,7 @@ class Income extends Component {
           <div className='three'>
             {/* <button id='skip' type="button" className="btn btn-outline-secondary" onClick={() => this.props.history.push('/dashboard')}>skip for now</button> */}
           </div>
-        </div>
+        </form>
       </div>
       //   </div >
       // </div >
