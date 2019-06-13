@@ -5,7 +5,7 @@ import logo from '../Images/newFinS_logo.png'
 
 function Logo() {
   return (
-    <div className='navBarLinks' style={{paddingTop: '15px', marginBottom: '15px'}}>
+    <div className='navBarLinks' style={{paddingTop: '20px'}}>
       <Link to ='/dashboard'>
         <img className='nav-logo'
         src = {logo} 
