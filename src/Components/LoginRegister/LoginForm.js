@@ -66,6 +66,8 @@ class LoginForm extends Component {
               placeholder="email"
               value={this.state.loginEmail}
               onChange={this.handleFormInputUpdate}
+              maxLength='50'
+              required
             />
             <input
               type='password'
@@ -73,6 +75,9 @@ class LoginForm extends Component {
               placeholder="password"
               value={this.state.loginPassword}
               onChange={this.handleFormInputUpdate}
+              minLength='8'
+              maxLength='50'
+              required
             />
           </div>
         </form>

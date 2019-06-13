@@ -103,23 +103,48 @@ class ProfileDebt extends Component {
 
           <div className="ProfileIncome-text-hold">
             <div className="ProfileIncome-form-line">
-              <p>Nickname:</p> <input onChange={(e) => this.handleChange(e)} name='nickname' type="text" value={this.state.nickname} />
+              <p>Nickname:</p> 
+              <input 
+                onChange={(e) => this.handleChange(e)} 
+                name='nickname' 
+                type="text" 
+                value={this.state.nickname}
+                required  />
             </div>
             <div className="ProfileIncome-form-line">
               <p>Balance:</p>
-              $<input onChange={(e) => this.handleChange(e)} type="number" name='balance' value={this.state.balance} />
+              $<input 
+              onChange={(e) => this.handleChange(e)} 
+              type="number" 
+              name='balance' 
+              value={this.state.balance}
+              required  />
               <p>Interest Rate:</p>
               <input onChange={(e) => this.handleChange(e)} type="number" name='interestRate' value={this.state.interestRate} step='any' />%
               </div>
             <div className="ProfileIncome-form-line">
               <p>Minimum Payment:</p>
-              $<input onChange={(e) => this.handleChange(e)} type="number" name='minimumPayment' value={this.state.minimumPayment} />
+              $<input 
+              onChange={(e) => this.handleChange(e)} 
+              type="number" 
+              name='minimumPayment' 
+              value={this.state.minimumPayment}
+              required  />
               <p>Actual Payment:</p>
-              $<input onChange={(e) => this.handleChange(e)} type="number" name='actualPayment' value={this.state.actualPayment} />
+              $<input 
+              onChange={(e) => this.handleChange(e)} 
+              type="number" 
+              name='actualPayment' 
+              value={this.state.actualPayment}
+              required  />
             </div>
             <div className="ProfileIncome-form-line">
               <p>Notes:</p>
-              <input onChange={(e) => this.handleChange(e)} type="text" name='notes' value={this.state.notes} />
+              <input 
+              onChange={(e) => this.handleChange(e)} 
+              type="text" 
+              name='notes' 
+              value={this.state.notes} />
             </div>
             <button className="btn btn-outline-secondary" onClick={this.handleEdit}>Submit</button>
           </div>
@@ -133,6 +158,5 @@ class ProfileDebt extends Component {
     )
   }
 }
-
 
 export default ProfileDebt
