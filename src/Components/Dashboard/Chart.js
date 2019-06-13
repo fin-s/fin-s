@@ -205,6 +205,7 @@ class Chart extends Component {
         <Line
           data={this.state.chartData}
           options={{
+            maintainAspectRatio: false,
             title: {
               display: true,
               text: "debt payoff timeline",
