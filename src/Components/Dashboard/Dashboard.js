@@ -41,7 +41,7 @@ class Dashboard extends Component {
   }
 
   handleToggle = () => {
-    console.log('fire from toggle button')
+    // console.log('fire from toggle button')
     if(this.state.chartClass === 'chart selected'){
       this.setState({chartClass: 'chart unselected', calendarClass: 'calendar selected'})
     } else {
@@ -53,7 +53,7 @@ class Dashboard extends Component {
   render() {
     const {chartClass, calendarClass, loadingSnapshot, snapshotList, calendarList, surplus, loadingCalendar} = this.state
     return (
-      <>
+      <main className='test'>
         <NavBar />
         <div className='containers'>
         <button type="button" className="chart-calendar-toggle btn btn-outline-secondary" onClick={this.handleToggle} >Toggle Calendar/Chart View</button>
@@ -70,7 +70,7 @@ class Dashboard extends Component {
             </div>
           </div>
         </div>
-      </>
+      </main>
     )
   }
 }

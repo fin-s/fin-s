@@ -57,7 +57,6 @@ class Chart extends Component {
        ]
      )
    })
-   console.log(debts)
    this.setState({
      dataSets: debts
    })
@@ -65,10 +64,10 @@ class Chart extends Component {
 
   setChart = async () => {
     let user = await axios.get("/api/users");
-    console.log(user)
+    // console.log(user)
     this.setState({ userDebts: user.data.debts })
     this.formatDebts()
-    console.log(this.state.dataSets[this.state.debtDisplayIndex])
+    // console.log(this.state.dataSets[this.state.debtDisplayIndex])
     this.setState({
       minimumPaymentTotal: this.state.dataSets[this.state.debtDisplayIndex][0].data.pop(),
       minimumSurplusTotal: this.state.dataSets[this.state.debtDisplayIndex][1].data.pop(),
@@ -131,8 +130,8 @@ class Chart extends Component {
         case 11:
           labelArr.push(`december ${year}`);
           break;
-          default:
-            break
+        default:
+          break
       }
       if (month === 11) {
         year++;
@@ -144,8 +143,13 @@ class Chart extends Component {
   };
 
   getDebtData = (interestRate, balance, payment) => {
+<<<<<<< HEAD
     let payments = [balance];
     let paymentTotal=0
+=======
+    let payments = [];
+    let paymentTotal = 0
+>>>>>>> master
     while (balance > 0) {
       paymentTotal += payment
       let interestPayment = (interestRate / 120000) * balance;
@@ -213,7 +217,7 @@ class Chart extends Component {
                   ticks: {
                     fontColor: "#C5B358",
                     // Include a dollar sign in the ticks
-                    callback: function(value, index, values) {
+                    callback: function (value, index, values) {
                       return "$" + value;
                     }
                   }
@@ -229,16 +233,16 @@ class Chart extends Component {
             }
           }}
         />
-          <Slider
+        <Slider
           onUpdate={this.getSurplusSliderData}
           surplus={this.props.surplus}
-          />
+        />
         <div className='chartButtonContainer'>
           <button className='btn btn-outline-secondary' onClick={this.previousDebt}>Previous</button>
           <div className='minpay'>{`You Pay $${this.state.minimumPaymentTotal}`}</div>
           <div className='minsurpluspay'>{`You Save $${this.state.minimumPaymentTotal - this.state.minimumSurplusTotal}`}</div>
           <div className='actsurpluspay'>{`You Save $${this.state.minimumPaymentTotal - this.state.actualSurplusTotal}`}</div>
-        <button className='btn btn-outline-secondary' onClick={this.nextDebt}>Next</button>
+          <button className='btn btn-outline-secondary' onClick={this.nextDebt}>Next</button>
         </div>
       </div>
     );

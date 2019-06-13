@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import Logo from './Logo'
 import Axios from "axios";
 
@@ -7,50 +7,33 @@ function NavBar() {
 
   const handleLogout = () => {
     Axios.delete('/auth/logout')
+    this.props.history.push('/')
   }
 
   return (
     <div className='navBarLinks'>
       <Logo />
-      <Link to="/">
-        <span className='spans'>
-          <h3>
-            <b>home</b>
-          </h3>
-        </span>
-      </Link>
-      <Link to="/wizard">
-        <span className='spans'>
-          <h3>
-            <b>wizard</b>
-          </h3>
-        </span>
-      </Link>
-      <Link to='/dashboard'>
-        <span className='spans'>
+      <div className='mobile-nav-container' >
+        <Link to='/dashboard'>
           <h3>
             <b>dashboard</b>
           </h3>
-        </span>
-      </Link>
-      <Link to='/profile'>
-        <span className='spans'>
+        </Link>
+        <Link to='/profile'>
           <h3>
             <b>profile</b>
           </h3>
-        </span>
-      </Link>
-      {/* <LoginForm /> */}
-
-      <Link to='/'>
+        </Link>
+      </div>
+      <div class="logout-button-hold">
         <button
           type="button"
           className="btn btn-outline-secondary"
           id='logoutButton'
           onClick={() => { handleLogout() }}><b>logout</b></button>
-      </Link>
+      </div>
     </div>
   );
 }
 
-export default NavBar;
+export default withRouter(NavBar);

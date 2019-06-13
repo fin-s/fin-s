@@ -17,7 +17,7 @@ module.exports = {
     },
     {
       stepNumber: 4,
-      task: `If your company has a retirement plan match makes sure to maximize the match and get the free monet`,
+      task: `If your company has a retirement plan match makes sure to maximize the match and get the free money`,
       index: 3
     },
     {
@@ -27,7 +27,7 @@ module.exports = {
     },
     {
       stepNumber: 6,
-      task: `Pay off the smallest debt with every dollar you can scrap`,
+      task: `Pay off the smallest debt with every dollar you can scrape`,
       index: 5
     },
     {

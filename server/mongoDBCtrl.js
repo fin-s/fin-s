@@ -116,6 +116,7 @@ module.exports = {
           if (err) {
             res.error(500).send(err)
           } else {
+            // console.log(data[0])
             res.send(data[0])
           }
         })

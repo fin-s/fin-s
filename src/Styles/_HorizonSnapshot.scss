@@ -1,9 +1,10 @@
 .horizonSnapshot {
-  height: 30rem;
+  // height: 10rem;
   width: 90%;
   color: $gold-color;
   margin-right: 5%;
   margin-top: 5%;
+  
 }
 
 .horizon {
@@ -12,7 +13,7 @@
 }
 
 .horizonList {
-  overflow-y: scroll;
+  overflow-y: auto;
   height: 35rem;
 
 }
@@ -32,6 +33,7 @@
   margin-bottom: 3rem;
   margin-top: .8rem;
   height: 7rem;
+  z-index: 1;
   .amount {
     color: $green-color;
     justify-self: flex-end;
@@ -52,6 +54,7 @@
   @extend .income;
   text-underline-position: under;
   height: 9rem;
+  z-index: 1;
   .amount {
     color: $red-color;
   }
@@ -68,6 +71,7 @@
 .expense {
   @extend .income;
   text-underline-position: under;
+  z-index: 1;
   .amount {
     color: $red-color;
   }
@@ -93,6 +97,16 @@
 
 @media (max-width: 500px){
   .horizonList{
-    height: 20rem;
+    height: 16rem;
+    overflow-y: auto;
+  }
+
+  .test{
+    overflow: hidden;
+    height: 100vh;
+  }
+
+  .horizonSnapshot{
+    // padding-bottom: 50px;
   }
 }
