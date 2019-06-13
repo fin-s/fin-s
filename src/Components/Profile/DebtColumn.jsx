@@ -77,6 +77,7 @@ class DebtColumn extends Component {
               onChange={(e) => this.handleChange(e)} 
               name='interestRate' 
               type="number" 
+              max='40'
               step='any'
               required />
               <p>Due Date</p>
@@ -93,6 +94,7 @@ class DebtColumn extends Component {
               name='minimumPayment' 
               min={((this.state.interestRate/1200)*this.state.balance) * 1.1}
               type="number"
+              step='any'
               required />
               <p>Actual Payment</p>
               $<input 
@@ -100,6 +102,7 @@ class DebtColumn extends Component {
               name='actualPayment' 
               min={((this.state.interestRate/1200)*this.state.balance) * 1.1}
               type="number"
+              step='any'
               required />
             </div>
             <p>Notes</p>
