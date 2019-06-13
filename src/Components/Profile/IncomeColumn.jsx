@@ -59,9 +59,13 @@ class IncomeColumn extends Component {
         {this.state.edit ?
           <form onSubmit={(e) => this.handleAddIncome(e)} className='add-form'>
             <p>Income name</p>
-            <input onChange={(e) => this.handleChange(e)} name='nickname' type="text" />
+            <input 
+            onChange={(e) => this.handleChange(e)} 
+            name='nickname' 
+            type="text" 
+            required />
             <p>Income frequency</p>
-            <select onChange={(e) => this.handleChange(e)} name="frequency">
+            <select onChange={(e) => this.handleChange(e)} name="frequency" required>
               <option value="">--Income Frequency--</option>
               <option value="monthly">Monthly</option>
               <option value="semi-monthly">Semi-monthly</option>
@@ -70,16 +74,28 @@ class IncomeColumn extends Component {
             {this.state.frequency === 'monthly' ?
               <div>
                 <p>Payday</p>
-                <input onChange={(e) => this.handleChange(e)} name='incomeDate1' type="number" />
+                <input 
+                onChange={(e) => this.handleChange(e)} 
+                name='incomeDate1' 
+                type="number" 
+                required  />
               </div> : this.state.frequency === 'semi-monthly' ?
                 <div>
                   <p>Paydays</p>
-                  <input onChange={(e) => this.handleChange(e)} name='incomeDate1' type="number" />
-                  <input onChange={(e) => this.handleChange(e)} name='incomeDate2' type="number" />
+                  <input 
+                  onChange={(e) => this.handleChange(e)} 
+                  name='incomeDate1' 
+                  type="number" 
+                  required  />
+                  <input 
+                  onChange={(e) => this.handleChange(e)} 
+                  name='incomeDate2' 
+                  type="number"
+                  required  />
                 </div> : this.state.frequency === 'weekly' ?
                   <div>
                     <p>Payday</p>
-                    <select onChange={(e) => this.handleChange(e)} name="incomeWeekday">
+                    <select onChange={(e) => this.handleChange(e)} name="incomeWeekday" required>
                       <option value={0}>Sunday</option>
                       <option value={1}>Monday</option>
                       <option value={2}>Tuesday</option>
@@ -90,9 +106,15 @@ class IncomeColumn extends Component {
                     </select>
                   </div> : <p>--Select an income frequency--</p>}
             <p>Amount</p>
-            <input onChange={(e) => this.handleChange(e)} name='amount' type="number" />
+            <input 
+            onChange={(e) => this.handleChange(e)} name='amount' 
+            type="number"
+            required  />
             <p>Notes</p>
-            <input onChange={(e) => this.handleChange(e)} type="text" name='notes' />
+            <input 
+            onChange={(e) => this.handleChange(e)} 
+            type="text" 
+            name='notes'  />
             <button type='submit' className="btn btn-outline-secondary">Submit</button>
 
           </form> : <></>}

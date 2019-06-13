@@ -134,7 +134,8 @@ div {
 }
 
 .buffer {
-  margin-top: 2rem;
+  margin: 5px 0;
+  font-size: 1.5rem
 }
 
 .grid-container2 {
@@ -166,15 +167,15 @@ div {
 }
 
 .seven {
-  grid-area: 37;
+  grid-area: 'seven';
 }
 
 .eight {
-  grid-area: 38;
+  grid-area: 'eight';
 }
 
 .nine {
-  grid-area: 39;
+  grid-area: 'nine';
   display: flex;
   flex-direction: column;
 }
@@ -189,4 +190,8 @@ div {
 
 #weirdButton{
   width: 8rem;
+}
+
+.errors-hold{
+  margin-left: 20px;
 }

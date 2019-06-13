@@ -27,39 +27,39 @@ class Chart extends Component {
   }
 
   formatDebts = () => {
-   let debts = this.state.userDebts.map((current) => {
-     let { nickname, minimumPayment, interestRate, balance, actualPayment } = current;
-     actualPayment += this.state.surplusToAdd
-     let middlePayment = minimumPayment + this.state.surplusToAdd
-     return(
-       [
-         {  
-          label: `${nickname} minimum`,
-          fill: true,
-          data: this.getDebtData(interestRate, balance, minimumPayment),
-          backgroundColor:'rgba(198, 0, 0, 0.2)',
-          borderColor: 'rgb(198, 0, 0)'
-         },
-         {
-          label: `${nickname} actual + surplus`,
-          fill: true,
-          data: this.getDebtData(interestRate, balance, actualPayment),
-          backgroundColor:'rgba(41, 223, 32, 0.2)',
-          borderColor: 'rgb(41, 223, 32)'
-         },
-         {
-          label: `${nickname} minimum + surplus`,
-          fill: true,
-          data: this.getDebtData(interestRate, balance, middlePayment),
-          backgroundColor:'rgba(198, 200, 0, 0.2)',
-          borderColor: 'rgb(198, 200, 0)'
-         }
-       ]
-     )
-   })
-   this.setState({
-     dataSets: debts
-   })
+    let debts = this.state.userDebts.map((current) => {
+      let { nickname, minimumPayment, interestRate, balance, actualPayment } = current;
+      actualPayment += this.state.surplusToAdd
+      // let middlePayment = minimumPayment + this.state.surplusToAdd
+      return (
+        [
+          {
+            label: `${nickname} minimum payment`,
+            fill: true,
+            data: this.getDebtData(interestRate, balance, minimumPayment),
+            backgroundColor: 'rgba(221, 77, 77, 0.2)',
+            borderColor: '#DD4D4d'
+          },
+          {
+            label: `${nickname} payment + added surplus`,
+            fill: true,
+            data: this.getDebtData(interestRate, balance, actualPayment),
+            backgroundColor: 'rgba(43, 168, 81, 0.2)',
+            borderColor: 'rgb(43, 168, 81)'
+          }
+          // {
+          //   label: `${nickname} minimum + surplus`,
+          //   fill: true,
+          //   data: this.getDebtData(interestRate, balance, middlePayment),
+          //   backgroundColor: 'rgba(198, 200, 0, 0.2)',
+          //   borderColor: 'rgb(198, 200, 0)'
+          // }
+        ]
+      )
+    })
+    this.setState({
+      dataSets: debts
+    })
   }
 
   setChart = async () => {
@@ -70,8 +70,8 @@ class Chart extends Component {
     // console.log(this.state.dataSets[this.state.debtDisplayIndex])
     this.setState({
       minimumPaymentTotal: this.state.dataSets[this.state.debtDisplayIndex][0].data.pop(),
-      minimumSurplusTotal: this.state.dataSets[this.state.debtDisplayIndex][1].data.pop(),
-      actualSurplusTotal: this.state.dataSets[this.state.debtDisplayIndex][2].data.pop()
+      // minimumSurplusTotal: this.state.dataSets[this.state.debtDisplayIndex][2].data.pop(),
+      actualSurplusTotal: this.state.dataSets[this.state.debtDisplayIndex][1].data.pop()
     })
     this.setState({
       chartData: {
@@ -144,7 +144,7 @@ class Chart extends Component {
 
   getDebtData = (interestRate, balance, payment) => {
     let payments = [balance];
-    let paymentTotal=0
+    let paymentTotal = 0
     while (balance > 0) {
       paymentTotal += payment
       let interestPayment = (interestRate / 120000) * balance;
@@ -199,13 +199,14 @@ class Chart extends Component {
         <Line
           data={this.state.chartData}
           options={{
+            maintainAspectRatio: false,
             title: {
               display: true,
               text: "debt payoff timeline",
               fontSize: "20",
               fontColor: "#C5B358"
             },
-            legend: { position: 'bottom', display: true, labels:{fontColor:'#C5B358' }},
+            legend: { position: 'bottom', display: true, labels: { fontColor: '#C5B358' } },
             scales: {
               yAxes: [
                 {
@@ -228,15 +229,15 @@ class Chart extends Component {
             }
           }}
         />
+        <p style={{marginTop: '10px'}}>see how much you can save by adding your surplus to your payment</p>
         <Slider
           onUpdate={this.getSurplusSliderData}
           surplus={this.props.surplus}
-          />
-          <div>try adding surplus money to your payment</div>
+        />
         <div className='chartButtonContainer'>
           <button className='btn btn-outline-secondary' onClick={this.previousDebt}>Previous</button>
           <div className='minpay'>{`You Pay $${this.state.minimumPaymentTotal}`}</div>
-          <div className='minsurpluspay'>{`You Save $${this.state.minimumPaymentTotal - this.state.minimumSurplusTotal}`}</div>
+          {/* <div className='minsurpluspay'>{`You Save $${this.state.minimumPaymentTotal - this.state.minimumSurplusTotal}`}</div> */}
           <div className='actsurpluspay'>{`You Save $${this.state.minimumPaymentTotal - this.state.actualSurplusTotal}`}</div>
           <button className='btn btn-outline-secondary' onClick={this.nextDebt}>Next</button>
         </div>

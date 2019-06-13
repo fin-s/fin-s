@@ -95,17 +95,39 @@ class ProfileExpense extends Component {
 
           <div className="ProfileIncome-text-hold">
             <div className="ProfileIncome-form-line">
-              <p>Nickname:</p> <input onChange={(e) => this.handleChange(e)} name='nickname' type="text" value={this.state.nickname} />
+              <p>Nickname:</p> 
+              <input 
+                onChange={(e) => this.handleChange(e)} 
+                name='nickname' 
+                type="text" 
+                value={this.state.nickname} 
+                maxLength='25'
+                required  />
             </div>
             <div className="ProfileIncome-form-line">
               <p>Amount:</p>
-              $<input onChange={(e) => this.handleChange(e)} type="number" name='amount' value={this.state.amount} step='any' />
+              $<input 
+              onChange={(e) => this.handleChange(e)} 
+              type="number" 
+              name='amount' 
+              value={this.state.amount} 
+              step='any'
+              required  />
               <p>Due Date:</p>
-              <input onChange={(e) => this.handleChange(e)} type="number" name='dueDate' value={this.state.dueDate} />
+              <input 
+              onChange={(e) => this.handleChange(e)} 
+              type="number" 
+              name='dueDate' 
+              value={this.state.dueDate}
+              required  />
             </div>
             <div className="ProfileIncome-form-line">
               <p>Notes:</p>
-              <input onChange={(e) => this.handleChange(e)} type="text" name='notes' value={this.state.notes} />
+              <input 
+              onChange={(e) => this.handleChange(e)} 
+              type="text" 
+              name='notes' 
+              value={this.state.notes}  />
             </div>
             <button className="btn btn-outline-secondary" onClick={this.handleEdit}>Submit</button>
           </div>
