@@ -159,5 +159,4 @@ class ProfileDebt extends Component {
   }
 }
 
-
 export default ProfileDebt
