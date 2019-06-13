@@ -25,7 +25,7 @@ function NavBar() {
           </h3>
         </Link>
       </div>
-      <div class="logout-button-hold">
+      <div className="logout-button-hold">
         <button
           type="button"
           className="btn btn-outline-secondary"

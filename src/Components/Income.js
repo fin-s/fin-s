@@ -24,10 +24,10 @@ class Income extends Component {
   }
 
   confirmIncome = () => {
-    let { nickname, type, frequency, incomeWeekday, amount, notes, incomeDate1, incomeDate2 } = this.state
+    let { nickname, frequency, incomeWeekday, amount, notes, incomeDate1, incomeDate2 } = this.state
     let newIncome = {
       nickname,
-      type,
+      type: frequency,
       amount,
       notes,
       interval: {
@@ -47,6 +47,7 @@ class Income extends Component {
           <div className='one'>
             <div>
               <h1>enter income</h1>
+              <p style={{marginLeft: '15px', width: '80%', marginTop: '10px', marginBottom: '10px'}}>This can be anything: a job, rental property, or odd jobs</p>
             </div>
             <input
               placeholder='income name'
@@ -92,7 +93,7 @@ class Income extends Component {
                     <input type='number' min='1' max='28' onChange={this.handleChange} name='incomeDate1' placeholder='day 1' required/>
                     <input type='number' min='1' max='28' onChange={this.handleChange} name='incomeDate2' placeholder='day 2' required/>
                   </div>
-                  : <h1 className='buffer' >input a frequency</h1>}
+                  : <h1 className='buffer' >--input a frequency--</h1>}
           </div>
           <div className='two'>
 
@@ -110,7 +111,7 @@ class Income extends Component {
             </div>
           </div>
           <div className='three'>
-            <button id='skip' type="button" className="btn btn-outline-secondary" onClick={() => this.props.history.push('/dashboard')}>skip for now</button>
+            {/* <button id='skip' type="button" className="btn btn-outline-secondary" onClick={() => this.props.history.push('/dashboard')}>skip for now</button> */}
           </div>
         </div>
       </div>

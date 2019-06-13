@@ -3,8 +3,8 @@ import { withRouter } from 'react-router-dom'
 import Income from './Income'
 import Debts from './Debts'
 import Expenses from './Expenses';
-import NavBar from './NavBar'
 import axios from 'axios'
+import Logo from './Logo'
 
 class RegisterWizzard extends Component {
   constructor() {
@@ -13,7 +13,10 @@ class RegisterWizzard extends Component {
       incomes: [],
       expenses: [],
       debts: [],
-      switchPage: 'incomes'
+      switchPage: 'incomes',
+      incomeError: false,
+      debtError: false,
+      expenseError: false
     }
   }
 
@@ -37,12 +40,34 @@ class RegisterWizzard extends Component {
 
   handleSubmitFinances = async () => {
     const { incomes, expenses, debts } = this.state
-    try {
-      await axios.post('/api/users/money', { incomes, expenses, debts })
-      this.props.history.push('/dashboard')
-    } catch (err) {
-      console.log('Error encountered submitting finances: ', err)
+
+    if(incomes.length === 0) {
+      this.setState({
+        incomeError: true
+      })
     }
+
+    if(debts.length === 0) {
+      this.setState({
+        debtError: true
+      })
+    }
+
+    if(expenses.length === 0){
+      this.setState({
+        expenseError: true
+      })
+    }
+
+    if(incomes.length !== 0 && debts.length !== 0 && expenses.length !== 0) {
+      try {
+        await axios.post('/api/users/money', { incomes, expenses, debts })
+        this.props.history.push('/dashboard')
+      } catch (err) {
+        console.log('Error encountered submitting finances: ', err)
+      }
+    }
+
   }
 
   handleWizardConditional = (page) => {
@@ -57,7 +82,7 @@ class RegisterWizzard extends Component {
         )
       case 'expenses':
         return (
-          <Expenses expenses={this.state.expenses} updateExpenses={this.updateExpenses} />
+          <Expenses handleSubmitFinances={this.handleSubmitFinances} expenses={this.state.expenses} updateExpenses={this.updateExpenses} />
         )
       default:
         return (
@@ -85,12 +110,16 @@ class RegisterWizzard extends Component {
     const { switchPage } = this.state
     return (
       <div>
-        <NavBar />
+        <Logo/>
         <div className='wizNav'>
         {this.handleWizardConditional(switchPage)}
           <button onClick={() => this.handleSwitchPage(false)} type="button" className="btn btn-outline-secondary" >previous form</button>
           <button onClick={() => this.handleSwitchPage(true)} type="button" className="btn btn-outline-secondary">next form</button>
-          <button onClick={() => this.handleSubmitFinances()} type="button" className="btn btn-outline-secondary" >confirm and submit</button>
+        </div>
+        <div className='errors-hold'>
+          <>{this.state.incomeError && <p>Please enter an income</p>}</>
+          <>{this.state.debtError && <p>Please enter an debt</p>}</>
+          <>{this.state.expenseError && <p>Please enter an expense</p>}</>
         </div>
       </div>
     )
