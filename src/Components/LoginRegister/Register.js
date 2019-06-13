@@ -65,26 +65,34 @@ class RegisterForm extends Component {
 										name='firstName'
 										placeholder='first name'
 										onChange={this.handleFormUpdate}
+										minLength='2'
+										maxLength='25'
+										required
 									/>
 									<input
 										type='text'
 										name='lastName'
 										placeholder='last name'
 										onChange={this.handleFormUpdate}
+										minLength='2'
+										maxLength='25'
+										required
 									/>
 								</div>
 								<div>
 									<input
-										type='text'
+										type='email'
 										name='email'
 										placeholder='email'
 										onChange={this.handleFormUpdate}
+										required
 									/>
 									<input
 										type='password'
 										name='password'
 										placeholder='password'
 										onChange={this.handleFormUpdate}
+										required
 									/>
 								</div>
 							</div>
@@ -105,19 +113,5 @@ class RegisterForm extends Component {
 		)
 	}
 }
-
-// const mapStateToProps = (state) => {
-// 	return { ...state }
-// }
-
-// const mapDispatchToProps = {
-// 	updateUsername
-// }
-
-// export default connect(
-// 	mapStateToProps,
-// 	mapDispatchToProps
-// )(withRouter(RegisterForm))
-
 
 export default withRouter(RegisterForm)
