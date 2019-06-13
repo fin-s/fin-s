@@ -65,10 +65,10 @@ class Step extends Component {
       return (
         <div>
           <div className="step-title-hold">
-            <div onClick={this.toggle}>
+            <div onClick={this.toggle} id='checkBox'>
               <FontAwesomeIcon icon={['far', 'check-square']} />
             </div>
-            <h5>Step {this.props.stepNumber}:</h5></div>
+            <h5 > Step {this.props.stepNumber}:</h5></div>
           <p className='completed-task'>{this.props.task}</p>
 
           {/* <button

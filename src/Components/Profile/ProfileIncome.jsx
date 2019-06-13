@@ -119,10 +119,17 @@ class ProfileIncome extends Component {
 
           <div className="ProfileIncome-text-hold">
             <div className="ProfileIncome-form-line">
-              <p>Nickname:</p> <input onChange={(e) => this.handleChange(e)} name='nickname' type="text" value={this.state.nickname} />
+              <p>Nickname:</p> 
+              <input 
+              onChange={(e) => this.handleChange(e)} 
+              name='nickname' 
+              type="text" 
+              value={this.state.nickname}
+              maxLength='25'
+              required  />
             </div>
             <div className="ProfileIncome-form-line">
-              <p>Frequency:</p> <select onChange={(e) => this.handleChange(e)} value={this.state.frequency} name="frequency" id="">
+              <p>Frequency:</p> <select onChange={(e) => this.handleChange(e)} value={this.state.frequency} name="frequency" id="" required>
                 <option value="monthly">Monthly</option>
                 <option value="semi-monthly">Semi-monthly</option>
                 <option value="weekly">Weekly</option>
@@ -131,20 +138,20 @@ class ProfileIncome extends Component {
             {this.state.frequency === 'monthly' ?
               <div className="ProfileIncome-form-line">
                 <p>Payday:</p>
-                <input onChange={(e) => this.handleChange(e)} type="number" name='incomeDate1' value={this.state.incomeDate1} />
+                <input onChange={(e) => this.handleChange(e)} type="number" name='incomeDate1' value={this.state.incomeDate1} required/>
               </div> :
               this.state.frequency === 'semi-monthly' ?
                 <><div className='ProfileIncome-form-line'>
                   <p>Payday 1:</p>
-                  <input onChange={(e) => this.handleChange(e)} type="number" name='incomeDate1' value={this.state.incomeDate1} />
+                  <input onChange={(e) => this.handleChange(e)} type="number" name='incomeDate1' value={this.state.incomeDate1} required/>
                 </div>
                   <div className="ProfileIncome-form-line">
                     <p>Payday 2: </p>
-                    <input onChange={(e) => this.handleChange(e)} type="number" name='incomeDate2' value={this.state.incomeDate2} />
+                    <input onChange={(e) => this.handleChange(e)} type="number" name='incomeDate2' value={this.state.incomeDate2} required/>
                   </div></> :
                 <div className="ProfileIncome-form-line">
                   <p>Payday:</p>
-                  <select onChange={(e) => this.handleChange(e)} name="incomeWeekday" value={this.state.incomeWeekday} id="">
+                  <select onChange={(e) => this.handleChange(e)} name="incomeWeekday" value={this.state.incomeWeekday} id="" required>
                     <option value={0}>Sunday</option>
                     <option value={1}>Monday</option>
                     <option value={2}>Tuesday</option>
@@ -157,11 +164,11 @@ class ProfileIncome extends Component {
             }
             <div className="ProfileIncome-form-line">
               <p>Amount:</p>
-              <input onChange={(e) => this.handleChange(e)} type="number" name='amount' value={this.state.amount} />
+              <input onChange={(e) => this.handleChange(e)} type="number" name='amount' value={this.state.amount} required/>
             </div>
             <div className="ProfileIncome-form-line">
               <p>Notes:</p>
-              <input onChange={(e) => this.handleChange(e)} type="text" name='notes' value={this.state.notes} />
+              <input onChange={(e) => this.handleChange(e)} type="text" name='notes' value={this.state.notes}  />
             </div>
             <button className="btn btn-outline-secondary" onClick={this.handleEdit}>Submit</button>
           </div>

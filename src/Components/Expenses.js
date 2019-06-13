@@ -36,12 +36,30 @@ class Expenses extends Component {
         <h1>enter other expenses</h1>
         <p style={{marginLeft: '15px', width: '80%'}}>This is any other expense: groceries, gas, or food.  If it belongs on your budget, it belongs here</p>
         <div className='seven'>
-          <input onChange={this.handleChange} name='nickname' placeholder='expense name' type='text' />
-          <input onChange={this.handleChange} name='amount' placeholder='amount' type='text' />
+          <input
+            onChange={this.handleChange}
+            name='nickname'
+            placeholder='expense name'
+            type='text'
+            maxLength='25'
+            required />
+          <input
+            onChange={this.handleChange}
+            name='amount'
+            placeholder='amount'
+            type='text'
+            required />
         </div>
         <div className='eight'>
           <textarea onChange={this.handleChange} columns={20} rows={5} name='notes' placeholder='notes' />
-          <input type='number' min='1' max='28' placeholder='day' onChange={this.handleChange} name='dueDate' />
+          <input
+            type='number'
+            min='1'
+            max='28'
+            placeholder='day'
+            onChange={this.handleChange}
+            name='dueDate'
+            required />
         </div>
         <div className='nine'>
           <button onClick={this.confirmExpense} type="button" className="btn btn-outline-secondary" id="weirdButton" >add expense</button>
