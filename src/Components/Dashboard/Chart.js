@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Line } from "react-chartjs-2";
 import axios from "axios";
 import Slider from "./Slider";
+import {withRouter} from 'react-router-dom'
 
 class Chart extends Component {
   constructor(props) {
@@ -64,21 +65,26 @@ class Chart extends Component {
 
   setChart = async () => {
     let user = await axios.get("/api/users");
-    // console.log(user)
-    this.setState({ userDebts: user.data.debts })
-    this.formatDebts()
-    // console.log(this.state.dataSets[this.state.debtDisplayIndex])
-    this.setState({
-      minimumPaymentTotal: this.state.dataSets[this.state.debtDisplayIndex][0].data.pop(),
-      // minimumSurplusTotal: this.state.dataSets[this.state.debtDisplayIndex][2].data.pop(),
-      actualSurplusTotal: this.state.dataSets[this.state.debtDisplayIndex][1].data.pop()
-    })
-    this.setState({
-      chartData: {
-        labels: this.getDataLabels(this.state.dataSets[this.state.debtDisplayIndex]),
-        datasets: this.state.dataSets[this.state.debtDisplayIndex]
-      }
-    });
+    // console.log(user.data)
+
+    if(user.data.incomes.length === 0 || user.data.debts.length === 0 || user.data.expenses.length === 0) {
+      this.props.history.push('/wizard')
+    } else {
+      this.setState({ userDebts: user.data.debts })
+      this.formatDebts()
+      // console.log(this.state.dataSets[this.state.debtDisplayIndex])
+      this.setState({
+        minimumPaymentTotal: this.state.dataSets[this.state.debtDisplayIndex][0].data.pop(),
+        // minimumSurplusTotal: this.state.dataSets[this.state.debtDisplayIndex][2].data.pop(),
+        actualSurplusTotal: this.state.dataSets[this.state.debtDisplayIndex][1].data.pop()
+      })
+      this.setState({
+        chartData: {
+          labels: this.getDataLabels(this.state.dataSets[this.state.debtDisplayIndex]),
+          datasets: this.state.dataSets[this.state.debtDisplayIndex]
+        }
+      });
+    }
   };
 
   getDataLabels = userDataSets => {
@@ -245,4 +251,4 @@ class Chart extends Component {
   }
 }
 
-export default Chart;
+export default withRouter(Chart);
