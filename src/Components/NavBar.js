@@ -3,11 +3,11 @@ import { Link, withRouter } from "react-router-dom";
 import Logo from './Logo'
 import Axios from "axios";
 
-function NavBar() {
+function NavBar(props) {
 
   const handleLogout = () => {
     Axios.delete('/auth/logout')
-    this.props.history.push('/')
+    props.history.push('/')
   }
 
   return (
@@ -15,12 +15,12 @@ function NavBar() {
       <Logo />
       <div className='mobile-nav-container' >
         <Link to='/dashboard'>
-          <h3>
+          <h3 style={{paddingTop: '5px'}}>
             <b>dashboard</b>
           </h3>
         </Link>
         <Link to='/profile'>
-          <h3>
+          <h3 style={{paddingTop: '5px'}}>
             <b>profile</b>
           </h3>
         </Link>
