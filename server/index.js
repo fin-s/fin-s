@@ -23,6 +23,8 @@ app.use(session({
   }
 }))
 
+app.use(express.static(`${__dirname}/../build`))
+
 app.post('/auth/login', authCtrl.login)
 //LOGS USER IN
 //EXPECTS email AND password ON REQ.BODY
