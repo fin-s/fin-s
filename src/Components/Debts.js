@@ -70,7 +70,7 @@ class Debts extends Component {
           <input
             placeholder='interest %'
             type='number'
-            max='50'
+            max='40'
             min='1'
             onChange={this.handleChange}
             name='interestRate'
