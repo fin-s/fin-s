@@ -10,7 +10,7 @@ export default function Tick({ tick, count }) {  // your own tick component
           marginLeft: -0.5,
           width: 1,
           height: 8,
-          backgroundColor: '#DACE94',
+          backgroundColor: '#C5B358',
           left: `${tick.percent}%`,
         }}
       />
@@ -18,7 +18,7 @@ export default function Tick({ tick, count }) {  // your own tick component
         style={{
           position: 'absolute',
           marginTop: 60,
-          color: '#DACE94',
+          color: '#C5B358',
           fontSize: 20,
           textAlign: 'center',
           marginLeft: `${-(100 / count) / 2}%`,
