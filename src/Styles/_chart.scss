@@ -22,13 +22,18 @@
 }
 .minpay{
   background-color: rgba(198, 0, 0, 0.2);
-  border: 2px solid rgb(198,0,0);
+  border: 2px solid $red-color;
+  padding: 10px;
+  border-radius: 5px
 }
 .minsurpluspay{
   background-color: rgba(198, 200, 0, 0.2);
-  border: 2px solid rgb(198, 200, 0);
+  border: 2px solid $green-color;
 }
 .actsurpluspay{
   background-color: rgba(41, 223, 32, 0.2);
-  border: 2px solid rgb(41, 223, 32);
+  border: 2px solid $green-color;
+  padding: 10px;
+  border-radius: 5px
+
 }

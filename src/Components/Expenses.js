@@ -34,6 +34,7 @@ class Expenses extends Component {
     return (
       <div className='grid-container3'>
         <h1>enter other expenses</h1>
+        <p style={{marginLeft: '15px', width: '80%'}}>This is any other expense: groceries, gas, or food.  If it belongs on your budget, it belongs here</p>
         <div className='seven'>
           <input onChange={this.handleChange} name='nickname' placeholder='expense name' type='text' />
           <input onChange={this.handleChange} name='amount' placeholder='amount' type='text' />
@@ -47,7 +48,8 @@ class Expenses extends Component {
           {this.props.expenses.map((current, index) => {
             return <span key={index}>{current.nickname} {current.amount}</span>
           })}
-          <button type="button" className="btn btn-outline-secondary" id='skip' onClick={() => this.props.history.push('/dashboard')}>skip for now</button>
+          <button style={{width: '200px'}} onClick={() => this.props.handleSubmitFinances()} type="button" className="btn btn-outline-secondary" >confirm and submit</button>
+          {/* <button type="button" className="btn btn-outline-secondary" id='skip' onClick={() => this.props.history.push('/dashboard')}>skip for now</button> */}
         </div>
       </div>
     )

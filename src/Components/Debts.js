@@ -41,6 +41,7 @@ class Debts extends Component {
       <div className='grid-container2'>
         <div className='four'>
           <h1>enter debts</h1>
+          <p style={{marginLeft: '15px', width: '80%', marginTop: '10px', marginBottom: '10px'}}>This is anything with an interest rate: mortgage, credit card, or loan</p>
           <input placeholder='account name' onChange={this.handleChange} name='nickname' type='text' />
           <input placeholder='balance' onChange={this.handleChange} name='balance' type='number' />
           <input placeholder='interest rate' type='number' max='100' min='0' onChange={this.handleChange} name='interestRate' step='any' />
@@ -58,7 +59,7 @@ class Debts extends Component {
             <span key={index}>{current.nickname} {current.balance}</span>
             )
           })}
-        <button id='skip' type="button" class="btn btn-outline-secondary" onClick={() => this.props.history.push('/dashboard')}>skip for now</button>
+        {/* <button id='skip' type="button" class="btn btn-outline-secondary" onClick={() => this.props.history.push('/dashboard')}>skip for now</button> */}
           </div>
       </div>
     )
