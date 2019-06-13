@@ -12,7 +12,7 @@ class ProfileIncome extends Component {
     incomeDate1: null,
     incomeDate2: null,
     notes: '',
-    popup: false
+    confirm: false
   }
 
   componentDidMount() {
@@ -68,9 +68,9 @@ class ProfileIncome extends Component {
     this.props.fetchUserInfo()
   }
 
-  togglePopup = () => {
+  toggleConfirm = () => {
     this.setState({
-      popup: !this.state.popup
+      confirm: !this.state.confirm
     })
   }
 
@@ -192,7 +192,45 @@ return (
                 <option value={6}>Saturday</option>
               </select>
             </div>
+            {this.state.frequency === 'monthly' ?
+              <div className="ProfileIncome-form-line">
+                <p>Payday:</p>
+                <input onChange={(e) => this.handleChange(e)} type="number" name='incomeDate1' value={this.state.incomeDate1} />
+              </div> :
+              this.state.frequency === 'semi-monthly' ?
+                <><div className='ProfileIncome-form-line'>
+                  <p>Payday 1:</p>
+                  <input onChange={(e) => this.handleChange(e)} type="number" name='incomeDate1' value={this.state.incomeDate1} />
+                </div>
+                  <div className="ProfileIncome-form-line">
+                    <p>Payday 2: </p>
+                    <input onChange={(e) => this.handleChange(e)} type="number" name='incomeDate2' value={this.state.incomeDate2} />
+                  </div></> :
+                <div className="ProfileIncome-form-line">
+                  <p>Payday:</p>
+                  <select onChange={(e) => this.handleChange(e)} name="incomeWeekday" value={this.state.incomeWeekday} id="">
+                    <option value={0}>Sunday</option>
+                    <option value={1}>Monday</option>
+                    <option value={2}>Tuesday</option>
+                    <option value={3}>Wednesday</option>
+                    <option value={4}>Thursday</option>
+                    <option value={5}>Friday</option>
+                    <option value={6}>Saturday</option>
+                  </select>
+                </div>
+            }
+            <div className="ProfileIncome-form-line">
+              <p>Amount:</p>
+              <input onChange={(e) => this.handleChange(e)} type="number" name='amount' value={this.state.amount} />
+            </div>
+            <div className="ProfileIncome-form-line">
+              <p>Notes:</p>
+              <input onChange={(e) => this.handleChange(e)} type="text" name='notes' value={this.state.notes} />
+            </div>
+            <button className="btn btn-outline-secondary" onClick={this.handleEdit}>Submit</button>
+          </div>
         }
+<<<<<<< HEAD
         <div className="ProfileIncome-form-line">
           <p>Amount:</p>
           <input 
@@ -211,14 +249,14 @@ return (
           value={this.state.notes} />
         </div>
         <button className="btn btn-outline-secondary" onClick={this.handleEdit}>Submit</button>
+=======
+        <div className="ProfileIncome-button-hold">
+          <FontAwesomeIcon onClick={this.toggleEdit} className='ProfileIncome-button' icon='edit' />
+          <FontAwesomeIcon onClick={this.toggleConfirm} className='ProfileIncome-button' icon='trash' />
+        </div>
+>>>>>>> master
       </div>
-    }
-    <div className="ProfileIncome-button-hold">
-      <FontAwesomeIcon onClick={this.toggleEdit} className='ProfileIncome-button' icon='edit' />
-      <FontAwesomeIcon onClick={this.togglePopup} className='ProfileIncome-button' icon='trash' />
-    </div>
-  </div>
-)
+    )
   }
 }
 

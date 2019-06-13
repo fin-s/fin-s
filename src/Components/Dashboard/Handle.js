@@ -18,12 +18,12 @@ export default function Handle({ // your handle component
         textAlign: 'center',
         cursor: 'pointer',
         borderRadius: '50%',
-        backgroundColor: '#B3A97A',
+        backgroundColor: '#C5B358',
         color: '#333'
       }}
       {...getHandleProps(id)}
     >
-      <div style={{ fontFamily: 'Roboto', color: '#DACE94', fontSize: 20, marginTop: -35 }}>
+      <div style={{ fontFamily: 'Roboto', color: '#C5B358', fontSize: 20, marginTop: -35 }}>
         {`$${value}`}
       </div>
     </div>

@@ -48,9 +48,9 @@ class RegisterForm extends Component {
 
 				<div className='appInfo'>
 					<h1>fin-s makes it easy to  </h1>
-					<h1>track your expenses <i class="fas fa-coins"></i> </h1>
-					<h1>eliminate debt <i class="far fa-credit-card"></i> </h1>
-					<h1>and guide you to financial stability <i class="fas fa-chart-line"></i></h1>
+					<h1>track your expenses <i className="fas fa-coins"></i> </h1>
+					<h1>eliminate debt <i className="far fa-credit-card"></i> </h1>
+					<h1>and guide you to financial stability <i className="fas fa-chart-line"></i></h1>
 				</div>
 
 				<main className='main'>
@@ -97,7 +97,7 @@ class RegisterForm extends Component {
 								</div>
 							</div>
 							<div className='signUpButton'>
-								<button type="button" class="btn btn-outline-secondary" onClick={this.handleSignUpFormSubmit}>
+								<button type="button" className="btn btn-outline-secondary" onClick={this.handleSignUpFormSubmit}>
 									<b>sign up</b>
 								</button>
 							</div>

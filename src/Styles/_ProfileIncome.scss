@@ -5,7 +5,7 @@
   display: flex;
   justify-content: space-between;
   position: relative;
-  @media screen and (max-width: 420px) {
+  @media screen and (max-width: 520px) {
     font-size: 1rem;
   }
 }
@@ -32,6 +32,9 @@
   max-width: 100%;
   select{
     width: 80%;
+  }
+  input{
+    min-width: 60px;
   }
   p{
     margin-right: 15px;
