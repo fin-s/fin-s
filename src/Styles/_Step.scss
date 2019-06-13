@@ -1,7 +1,20 @@
-.completed-task{
-  text-decoration: line-through
+.completed-task {
+  text-decoration: line-through;
 }
 
-.step-title-hold{
+.step-title-hold {
   display: flex;
+}
+
+.step-title-hold {
+  margin: 3% 0;
+
+  div {
+    margin: 0 4% 0 0;
+  }
+}
+.incomplete-task,
+.completed-task {
+  font-size: 1.1rem;
+  line-height: 1.3rem;
 }
