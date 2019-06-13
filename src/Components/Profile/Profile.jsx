@@ -66,7 +66,7 @@ class Profile extends Component {
       }
     }
 
-    console.log(newIncome)
+    // console.log(newIncome)
     this.setState({
       loading: true
     })

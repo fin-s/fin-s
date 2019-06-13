@@ -41,7 +41,7 @@ class Dashboard extends Component {
   }
 
   handleToggle = () => {
-    console.log('fire from toggle button')
+    // console.log('fire from toggle button')
     if(this.state.chartClass === 'chart selected'){
       this.setState({chartClass: 'chart unselected', calendarClass: 'calendar selected'})
     } else {

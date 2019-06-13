@@ -31,7 +31,7 @@ a{
     margin: -20% 0% 0% 0%;
 }
 
-@media (max-width: 420px){
+@media (max-width: 520px){
   .navBarLinks{
     justify-content: space-between;
     height: 50px;
@@ -58,4 +58,9 @@ a{
       align-items: center;
     }
   }
+}
+
+.logout-button-hold{
+  position: fixed;
+  right: 25px;
 }

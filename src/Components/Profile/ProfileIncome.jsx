@@ -12,7 +12,7 @@ class ProfileIncome extends Component {
     incomeDate1: null,
     incomeDate2: null,
     notes: '',
-    popup: false
+    confirm: false
   }
 
   componentDidMount() {
@@ -68,9 +68,9 @@ class ProfileIncome extends Component {
     this.props.fetchUserInfo()
   }
 
-  togglePopup = () => {
+  toggleConfirm = () => {
     this.setState({
-      popup: !this.state.popup
+      confirm: !this.state.confirm
     })
   }
 
@@ -90,104 +90,88 @@ class ProfileIncome extends Component {
       }
     }
 
-    let popupStyle
+    return (
+      <div className='ProfileIncome'>
+        {!this.state.edit ?
+          <>
+            {!this.state.confirm ? <div className="ProfileIncome-text-hold">
+              <p style={{ fontSize: '1.7rem', fontWeight: 600, textDecoration: 'underline' }}>{income.nickname}</p>
+              <p>Frequency: {income.interval.frequency}</p>
+              {income.interval.frequency === 'monthly' ?
+                <p>Payday: {income.interval.incomeDate1}</p> :
+                income.interval.frequency === 'semi-monthly' ?
+                  <><p>Payday 1: {income.interval.incomeDate1}</p>
+                    <p>Payday 2: {income.interval.incomeDate2}</p></> :
+                  <p>Payday: {getWeekday(income.interval.incomeWeekday)}</p>}
+              <p>Amount: {income.amount}</p>
+              <p>Notes: {income.notes}</p>
+            </div> :
+              <div className="ProfileIncome-text-hold">
+                <p>
+                  Delete {this.props.income.nickname}?
+        </p>
+                <div className="ProfileIncome-form-line"><button className="btn btn-outline-secondary" onClick={this.toggleConfirm}>Cancel</button>
+                  <button className="btn btn-outline-secondary" onClick={this.handleDelete}>Confirm</button>
+                </div>
+              </div>
+            }
+          </> :
 
-    if (this.state.popup) {
-      popupStyle = {
-        position: 'fixed',
-        left: '10%',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        zIndex: 5
-    }
-  } else {
-  popupStyle = {
-    display: 'none'
-  }
-}
-
-return (
-  <div className='ProfileIncome'>
-    <div className="confirm" style={popupStyle}>
-      <p>
-        Delete {this.props.income.nickname}?
-          </p>
-      <div className="confirm-button-hold"><button className="btn btn-outline-secondary" onClick={this.togglePopup}>Cancel</button>
-        <button className="btn btn-outline-secondary" onClick={this.handleDelete}>Confirm</button></div>
-    </div>
-    {!this.state.edit ?
-      <div className="ProfileIncome-text-hold">
-        <p style={{fontSize: '1.7rem', fontWeight: 600, textDecoration: 'underline'}}>{income.nickname}</p>
-        <p>Frequency: {income.interval.frequency}</p>
-        {income.interval.frequency === 'monthly' ?
-          <p>Payday: {income.interval.incomeDate1}</p> :
-          income.interval.frequency === 'semi-monthly' ?
-            <><p>Payday 1: {income.interval.incomeDate1}</p>
-              <p>Payday 2: {income.interval.incomeDate2}</p></> :
-            <p>Payday: {getWeekday(income.interval.incomeWeekday)}</p>}
-        <p>Amount: {income.amount}</p>
-        <p>Notes: {income.notes}</p>
-      </div> :
-
-
-
-      <div className="ProfileIncome-text-hold">
-        <div className="ProfileIncome-form-line">
-          <p>Nickname:</p> <input onChange={(e) => this.handleChange(e)} name='nickname' type="text" value={this.state.nickname} />
-        </div>
-        <div className="ProfileIncome-form-line">
-          <p>Frequency:</p> <select onChange={(e) => this.handleChange(e)} value={this.state.frequency} name="frequency" id="">
-            <option value="monthly">Monthly</option>
-            <option value="semi-monthly">Semi-monthly</option>
-            <option value="weekly">Weekly</option>
-          </select>
-        </div>
-        {this.state.frequency === 'monthly' ?
-          <div className="ProfileIncome-form-line">
-            <p>Payday:</p>
-            <input onChange={(e) => this.handleChange(e)} type="number" name='incomeDate1' value={this.state.incomeDate1} />
-          </div> :
-          this.state.frequency === 'semi-monthly' ?
-            <><div className='ProfileIncome-form-line'>
-              <p>Payday 1:</p>
-              <input onChange={(e) => this.handleChange(e)} type="number" name='incomeDate1' value={this.state.incomeDate1} />
-            </div>
-              <div className="ProfileIncome-form-line">
-                <p>Payday 2: </p>
-                <input onChange={(e) => this.handleChange(e)} type="number" name='incomeDate2' value={this.state.incomeDate2} />
-              </div></> :
+          <div className="ProfileIncome-text-hold">
             <div className="ProfileIncome-form-line">
-              <p>Payday:</p>
-              <select onChange={(e) => this.handleChange(e)} name="incomeWeekday" value={this.state.incomeWeekday} id="">
-                <option value={0}>Sunday</option>
-                <option value={1}>Monday</option>
-                <option value={2}>Tuesday</option>
-                <option value={3}>Wednesday</option>
-                <option value={4}>Thursday</option>
-                <option value={5}>Friday</option>
-                <option value={6}>Saturday</option>
+              <p>Nickname:</p> <input onChange={(e) => this.handleChange(e)} name='nickname' type="text" value={this.state.nickname} />
+            </div>
+            <div className="ProfileIncome-form-line">
+              <p>Frequency:</p> <select onChange={(e) => this.handleChange(e)} value={this.state.frequency} name="frequency" id="">
+                <option value="monthly">Monthly</option>
+                <option value="semi-monthly">Semi-monthly</option>
+                <option value="weekly">Weekly</option>
               </select>
             </div>
+            {this.state.frequency === 'monthly' ?
+              <div className="ProfileIncome-form-line">
+                <p>Payday:</p>
+                <input onChange={(e) => this.handleChange(e)} type="number" name='incomeDate1' value={this.state.incomeDate1} />
+              </div> :
+              this.state.frequency === 'semi-monthly' ?
+                <><div className='ProfileIncome-form-line'>
+                  <p>Payday 1:</p>
+                  <input onChange={(e) => this.handleChange(e)} type="number" name='incomeDate1' value={this.state.incomeDate1} />
+                </div>
+                  <div className="ProfileIncome-form-line">
+                    <p>Payday 2: </p>
+                    <input onChange={(e) => this.handleChange(e)} type="number" name='incomeDate2' value={this.state.incomeDate2} />
+                  </div></> :
+                <div className="ProfileIncome-form-line">
+                  <p>Payday:</p>
+                  <select onChange={(e) => this.handleChange(e)} name="incomeWeekday" value={this.state.incomeWeekday} id="">
+                    <option value={0}>Sunday</option>
+                    <option value={1}>Monday</option>
+                    <option value={2}>Tuesday</option>
+                    <option value={3}>Wednesday</option>
+                    <option value={4}>Thursday</option>
+                    <option value={5}>Friday</option>
+                    <option value={6}>Saturday</option>
+                  </select>
+                </div>
+            }
+            <div className="ProfileIncome-form-line">
+              <p>Amount:</p>
+              <input onChange={(e) => this.handleChange(e)} type="number" name='amount' value={this.state.amount} />
+            </div>
+            <div className="ProfileIncome-form-line">
+              <p>Notes:</p>
+              <input onChange={(e) => this.handleChange(e)} type="text" name='notes' value={this.state.notes} />
+            </div>
+            <button className="btn btn-outline-secondary" onClick={this.handleEdit}>Submit</button>
+          </div>
         }
-        <div className="ProfileIncome-form-line">
-          <p>Amount:</p>
-          <input onChange={(e) => this.handleChange(e)} type="number" name='amount' value={this.state.amount} />
+        <div className="ProfileIncome-button-hold">
+          <FontAwesomeIcon onClick={this.toggleEdit} className='ProfileIncome-button' icon='edit' />
+          <FontAwesomeIcon onClick={this.toggleConfirm} className='ProfileIncome-button' icon='trash' />
         </div>
-        <div className="ProfileIncome-form-line">
-          <p>Notes:</p>
-          <input onChange={(e) => this.handleChange(e)} type="text" name='notes' value={this.state.notes} />
-        </div>
-        <button className="btn btn-outline-secondary" onClick={this.handleEdit}>Submit</button>
       </div>
-    }
-    <div className="ProfileIncome-button-hold">
-      <FontAwesomeIcon onClick={this.toggleEdit} className='ProfileIncome-button' icon='edit' />
-      <FontAwesomeIcon onClick={this.togglePopup} className='ProfileIncome-button' icon='trash' />
-    </div>
-  </div>
-)
+    )
   }
 }
 
