@@ -143,13 +143,8 @@ class Chart extends Component {
   };
 
   getDebtData = (interestRate, balance, payment) => {
-<<<<<<< HEAD
     let payments = [balance];
     let paymentTotal=0
-=======
-    let payments = [];
-    let paymentTotal = 0
->>>>>>> master
     while (balance > 0) {
       paymentTotal += payment
       let interestPayment = (interestRate / 120000) * balance;
@@ -236,7 +231,8 @@ class Chart extends Component {
         <Slider
           onUpdate={this.getSurplusSliderData}
           surplus={this.props.surplus}
-        />
+          />
+          <div>try adding surplus money to your payment</div>
         <div className='chartButtonContainer'>
           <button className='btn btn-outline-secondary' onClick={this.previousDebt}>Previous</button>
           <div className='minpay'>{`You Pay $${this.state.minimumPaymentTotal}`}</div>
