@@ -20,7 +20,7 @@
     "moment-weekdaysin": "^1.0.1",
     "mongod": "^2.0.0",
     "mongoose": "^5.5.12",
-    "node-sass": "^4.12.0",
+    "node-sass": "^7.0.0",
     "react": "^16.8.6",
     "react-chartjs-2": "^2.7.6",
     "react-compound-slider": "^2.0.0",
